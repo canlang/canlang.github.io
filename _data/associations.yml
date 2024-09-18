@@ -1,0 +1,26 @@
+# Associations
+# comment out the urls if you do not wish to display them
+
+- organization: MUTE
+  role: Education and Training Manager
+  year: 2007 &mdash; Present
+  # url: https://www.peta.org/
+  summary: Snowboard club (univ.)
+
+
+- organization: PlanB
+  role: Digger
+  year: 2004 &mdash; 2006
+  # url: https://www.peta.org/
+  summary: Snowboard team
+
+- organization: MILS
+  role: Staff
+  year: 2003 &mdash; 2005
+  # url: https://www.peta.org/
+  summary: Snowboard club
+# - organization: Yale Amnesty International
+#   role: Communications coordinator
+#   year: 2002 &mdash; 2004
+#   url: http://campuspress.yale.edu/amnesty/
+#   summary: During my junion and senior years at Yale, I was actively involved in Yale Amnesty International where I helped facilitate our student organization communications through website maintenance, writing for our campus publication, and graphic design of related materials.

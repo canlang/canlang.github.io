@@ -1,0 +1,29 @@
+# Degree
+- degree: Doctor of Engineering, School of Computing
+  uni: KAIST
+  year: 2012 &mdash; 2021
+  awards: 
+    - award: ICT Express Best Reviewer Award (2018)
+    # - award: Micro Chained Rader Project (Top 10 KAIST research achievements 2015)
+  summary: 
+
+- degree: Master of Engineering, School of Computing
+  uni: KAIST
+  year: 2010 &mdash; 2012
+  awards: 
+    - award: ITS Best Paper Award (2012)
+  summary: 
+
+- degree: Bachelor of Engineering, Computer Science
+  uni: Hanyang University
+  year: 2006 &mdash; 2010
+  awards:
+    - award: Summa Cumme Laude graduate
+  summary: 
+  # summary: If you had any meaningful roles at college, feel free to write about them here
+
+# - degree: High School Diploma
+#   uni: Chungwon High School
+#   year: 2004
+  # award: Most likely to succeed
+  # summary: You can choose to have either a single or multiple awards

@@ -1,0 +1,23 @@
+# Projects
+# uncomment the urls if you wish to display them, and add your own URL
+
+# Springfield Community Outreach Group
+- project: 워리어 플랫폼용 증기-에너지 하베스터 및 실내외 통합 위치인식 시스템 개발 연구, Agency for Defense Development
+  role: Project Leader
+  duration: 2007 &mdash; Present
+  # url: "#"
+  description: SCOG is a local monthly meetup in Springfield where we share opportunities to volunteer in the community and organize support for families and neighborhoods in need of assistance that the community can provide.
+
+# ISCR
+- project: 	GPS 신호 미약 환경 속 이동체의 위치파악 기술 연구, Institute for Security Convergence Research
+  role: Project Leader
+  duration: 2021
+  # url: "#"
+  description: Jazz Notes is an open source node/ember app that helps you keep track of your music compositions and new ideas.
+
+# HUAWEI
+- project: 	크라우드소싱 라디오맵 구축 자동화 기법 개발, Huawei
+  role: Project Leader
+  duration: 2018 &mdash; 2020
+  # url: "#"
+  description: Jazz Notes is an open source node/ember app that helps you keep track of your music compositions and new ideas.
