@@ -80,14 +80,32 @@
         <div class="resume-item" itemscope itemprop="alumniOf" itemtype="http://schema.org/CollegeOrUniversity">
           <h3 class="resume-item-title" itemprop="name">{{ education.uni }}</h3>
           <h4 class="resume-item-details group" itemprop="description">{{ education.degree }} &bull; {{ education.year }}</h4>
-          <h5 class="resume-item-details award-title" itemprop="description">{{ education.award }}</h5>
-          <p class="resume-item-copy" itemprop="description">
-            <ul class="resume-item-list">
-              {% for award in education.awards %}
-              <li>{{ award.award }}</li>
-              {% endfor %}
-            </ul>
+          
+          {% if education.dissertation %}
+          <h5 class="resume-item-details">Dissertation: <span class="highlight">{{ education.dissertation }}</span></h5>
+          {% endif %}
 
+          {% if education.thesis %}
+          <h5 class="resume-item-details">Thesis: <span class="highlight">{{ education.thesis }}</span></h5>
+          {% endif %}
+
+          {% if education.project %}
+          <h5 class="resume-item-details">Project: <span class="highlight">{{ education.project }}</span></h5>
+          {% endif %}
+
+          {% if education.committee %}
+          <h5 class="resume-item-details">Committee:</h5>
+          <p class="resume-item-copy">{{ education.committee }}</p>
+          {% endif %}
+
+          {% if education.awards %}
+          <h5 class="resume-item-details award-title">Awards:</h5>
+          <ul class="resume-item-list">
+            {% for award in education.awards %}
+            <li>{{ award.award }} ({{ award.organization }}, {{ award.year }})</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
 
           <p class="resume-item-copy">{{ education.summary }}</p>
         </div>

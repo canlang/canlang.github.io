@@ -1,24 +1,11 @@
 # Associations
 # comment out the urls if you do not wish to display them
 
-- organization: MUTE
-  role: Education and Training Manager
-  year: 2007 &mdash; Present
-  # url: https://www.peta.org/
-  summary: Snowboard club (univ.)
+- organization: MUTE (Snowboard Club, University), Plan-B (Snowboard Team), MILS (Snowboard Association)
+  role: Staff (MUTE), Park Designer (Plan-B), Staff (MILS)
+  year: 2007–Present (MUTE), 2004–2006 (Plan-B), 2003–2005 (MILS)
+  summary: Active member and staff in university and regional snowboard organizations, contributing to club management, park design, and team coordination.
 
-
-- organization: PlanB
-  role: Digger
-  year: 2004 &mdash; 2006
-  # url: https://www.peta.org/
-  summary: Snowboard team
-
-- organization: MILS
-  role: Staff
-  year: 2003 &mdash; 2005
-  # url: https://www.peta.org/
-  summary: Snowboard club
 # - organization: Yale Amnesty International
 #   role: Communications coordinator
 #   year: 2002 &mdash; 2004

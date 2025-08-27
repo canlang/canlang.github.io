@@ -1,13 +1,8 @@
 # Jobs
-- company: Very Expert in Carwash
-  position: Artist
-  duration: Jan, 2022 &mdash; Present
-  summary: Take one hour from cleaning to quick detailing
-
-- company: "&quot;Chobo&quot; in Carwash"
-  position: Internship
-  duration: Jun, 2019 &mdash; Jan, 2022
-  summary: Started detailing my car for the first time in the Washzone
+- company: Samsung Research
+  position: Staff Engineer
+  duration: Apr. 2022 — Present
+  summary: "Developed data-driven indoor localization and hand motion tracking technologies using deep learning within the Indoor Positioning Solution team and the Connectivity and Sensing AI team."
 
 # # VP of Global Communications
 # - company: Springfield International Human Rights Outreach

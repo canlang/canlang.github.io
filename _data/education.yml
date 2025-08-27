@@ -1,29 +1,35 @@
 # Degree
-- degree: Doctor of Engineering, School of Computing
+- degree: Ph.D. in Computer Science
   uni: KAIST
-  year: 2012 &mdash; 2021
+  year: Sep. 2012 — Feb. 2021
   awards: 
-    - award: ICT Express Best Reviewer Award (2018)
-    # - award: Micro Chained Rader Project (Top 10 KAIST research achievements 2015)
-  summary: 
+    # - award: Best Paper Award
+    #   organization: IEEE International Conference on Communications
+    #   year: 2017
+  
+  dissertation: "High-Precision Indoor Positioning Using Geomagnetic Anomaly"
+  committee: "Dongsoo Han (Chair), Giwan Yoon, Geehyuk Lee, Junekoo Rhee, Hojin Choi"
+  summary: "Conducted advanced research on indoor positioning systems, focusing on geomagnetic anomalies to achieve high precision."
 
-- degree: Master of Engineering, School of Computing
+- degree: M.S. in Computer Science
   uni: KAIST
-  year: 2010 &mdash; 2012
+  year: Sep. 2010 — Aug. 2012
   awards: 
-    - award: ITS Best Paper Award (2012)
-  summary: 
+    # - award: ITS Best Paper Award
+    #   organization: International Telecommunications Society
+    #   year: 2012
+  
+  thesis: "Missing Signal Imputation for Accurate WLAN-based Indoor Localization System"
+  summary: "Developed innovative algorithms to enhance the accuracy of WLAN-based localization systems by addressing missing signal challenges."
 
-- degree: Bachelor of Engineering, Computer Science
+- degree: B.S. in Computer Science
   uni: Hanyang University
-  year: 2006 &mdash; 2010
-  awards:
-    - award: Summa Cumme Laude graduate
-  summary: 
-  # summary: If you had any meaningful roles at college, feel free to write about them here
+  year: Mar. 2006 — Feb. 2010
+  awards: 
+    # - award: LEE GAHYUNG Scholarship (Dean's List)
+    #   organization: Hanyang University
+    #   year: 2010
+  
+  project: "Intelligent Lane Detection"
+  summary: "Designed and implemented a system for detecting lanes intelligently, showcasing strong foundational skills in computer vision and algorithm development."
 
-# - degree: High School Diploma
-#   uni: Chungwon High School
-#   year: 2004
-  # award: Most likely to succeed
-  # summary: You can choose to have either a single or multiple awards
