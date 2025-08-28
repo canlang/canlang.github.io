@@ -1,4 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <style>
+    @font-face {
+      font-family: 'Yeon Sung';
+      src: url('/_assets/Yeon_Sung/YeonSung-Regular.ttf') format('truetype');
+    }
+  </style>
   <rect width="64" height="64" rx="10" ry="10" fill="#fff" />
-  <text x="12" y="40" font-family="monospace" font-size="36" fill="#000">SJ</text>
+  <text x="50%" y="50%" font-family="'Yeon Sung', sans-serif" font-size="36" fill="#000" dominant-baseline="middle" text-anchor="middle">상재</text>
 </svg>
