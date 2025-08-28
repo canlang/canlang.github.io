@@ -5,6 +5,6 @@
       src: url('/_assets/Yeon_Sung/YeonSung-Regular.ttf') format('truetype');
     }
   </style>
-  <rect width="64" height="64" rx="10" ry="10" fill="#fff" />
-  <text x="50%" y="50%" font-family="'Yeon Sung', sans-serif" font-size="36" fill="#000" dominant-baseline="middle" text-anchor="middle">상재</text>
+  <rect width="64" height="64" rx="10" ry="10" fill="none" />
+  <text x="50%" y="50%" font-family="'Yeon Sung', sans-serif" font-size="36" fill="#000" dominant-baseline="central" text-anchor="middle">상재</text>
 </svg>
