@@ -125,7 +125,18 @@
         {% assign sorted_papers = site.data.papers | sort: 'year' | reverse %}
         {% for paper in sorted_papers %}
         <div class="resume-item" itemscope itemtype="http://schema.org/CreativeWork">
-          <h3 class="resume-item-title" itemprop="name">{{ paper.title }}</h3>
+          {% comment %} Linkify publication titles when url or doi is provided {% endcomment %}
+          {% assign link = paper.url %}
+          {% if link == nil and paper.doi %}
+            {% assign link = 'https://doi.org/' | append: paper.doi %}
+          {% endif %}
+          <h3 class="resume-item-title" itemprop="name">
+            {% if link %}
+              <a href="{{ link }}" target="_blank" rel="noopener">{{ paper.title }}</a>
+            {% else %}
+              {{ paper.title }}
+            {% endif %}
+          </h3>
           <h4 class="resume-item-details" itemprop="datePublished">{{ paper.venue }} &bull; {{ paper.year }}</h4>
           <p class="resume-item-copy"><strong>Authors:</strong> {{ paper.authors | join: ', ' }}</p>
         </div>

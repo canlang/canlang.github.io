@@ -31,3 +31,89 @@ Elekspot: A Platform for Urban Place Recognition via Crowdsourcing Elekspot: A P
 Minkyu Lee, SukHoon Jung, Sangjae Lee, and Dongsoo Han.
 • SAINT’12, 2012 IEEE/IPSJ 12th International Symposium on Applications and the Internet,
 Izmir, Turkey (Conference)
+
+
+\section{Publications}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {\href{https://ieeexplore.ieee.org/document/9216148}{\myuline{Indoor Localization Using Augmented Vector of Geomagnetic Field}}}{2020}
+      {\textbf{Sangjae Lee}, Seungwoo Chae, and Dongsoo Han.}{}
+    %   {with Prof Dongsoo Han (first author)}{}
+      \resumeItemListStart
+        \resumeItem{IEEE Access (Journal)}
+        % \resumeItem{Journal publication}
+      \resumeItemListEnd
+    
+    \resumeSubheading
+      {\href{https://www.mdpi.com/1424-8220/20/18/5182}{\myuline{Fusion of the SLAM with Wi-Fi-Based Positioning Methods for Mobile Robot}}}
+      {2020}
+      {Gunwoo Lee, Byeong-Cheol Moon, \textbf{Sangjae Lee}, and Dongsoo Han.}{}
+      \resumeItemListStart
+        \resumeItem{MDPI Sensors (Journal)}
+        % \resumeItem{Journal publication}
+      \resumeItemListEnd
+    
+      
+    \resumeSubheading
+      {\href{https://dl.acm.org/doi/abs/10.1145/3307334.3328596}{\myuline{Rover Who Make Indoor Radio Map}}}{2019}
+      {\textbf{Sangjae Lee}, and Dongsoo Han.}{}
+      \resumeItemListStart
+        \resumeItem{MobiSys'19, Proceedings of the 17th Annual International Conference on Mobile Systems, Applications, and Services, Seoul, South Korea (Conference proceeding)}
+        % \resumeItem{Conference proceeding (poster) - MobiSys'19}
+      \resumeItemListEnd
+      
+    \resumeSubheading
+      {\href{https://ieeexplore.ieee.org/abstract/document/7997159/}{\myuline{Construction of an Indoor Positioning System for Home IoT Applications}}}{2017}
+      {\textbf{Sangjae Lee}, et al.}{}
+      \resumeItemListStart
+        \resumeItem{ICC'17, IEEE International Conference on Communications, Paris, France \\(Conference)}
+        % \resumeItem{Conference proceeding - ICC'17 }
+        % \resumeItem{Learned various techniques: XRD analysis, cyclic voltammetry, thermogravimetric analysis, hydrothermal synthesis, data analysis}
+        % \begin{itemize}
+        %     \item DOI: 10.1002/celc.201801244
+        % \end{itemize}
+      \resumeItemListEnd
+      
+    \resumeSubheading
+      {\href{https://www.sciencedirect.com/science/article/pii/S1574119216000389}{\myuline{A Crowdsourcing-Based Global Indoor Positioning and Navigation System}}}{2016}
+      {Suk-hoon Jung, \textbf{Sangjae Lee}, and Dongsoo Han.}{}
+      \resumeItemListStart
+        \resumeItem{Pervasive and Mobile Computing (Journal)}
+        % \resumeItem{Journal publication}
+      \resumeItemListEnd
+      
+    \resumeSubheading
+      {\href{https://www.sciencedirect.com/science/article/pii/S2405959516300145}{\myuline{A Sensor Fusion Method for WI-Fi-Based Indoor Positioning}}}{2016}
+      {Dongsoo Han, Suk-hoon Jung, and \textbf{Sangjae Lee}.}{}
+      \resumeItemListStart
+        \resumeItem{ICT Express (Journal)}
+        % \resumeItem{Journal publication}
+      \resumeItemListEnd
+ 
+    \resumeSubheading
+      {\href{https://ieeexplore.ieee.org/abstract/document/7275535/}{\myuline{KAILOS: KAIST Indoor Locating System}}}{2014}
+      {Dongsoo Han, \textbf{Sangjae Lee}, and Sunghoon Kim.}{}
+      \resumeItemListStart
+        \resumeItem{IPIN'14, International Conference on Indoor Positioning and Indoor Navigation, Busan, South Korea (Conference)}
+        % \resumeItem{Conference proceeding - IPIN'14 }
+      \resumeItemListEnd 
+      
+    \resumeSubheading
+      {\href{https://dl.acm.org/doi/abs/10.1145/2442810.2442825}{\myuline{Uncaught Signal Imputation for WLAN-Based Positioning}}}{2012}
+      {\textbf{Sangjae Lee}, Sukhoon Jung, and Dongsoo Han. }{}
+      \resumeItemListStart
+        \resumeItem{MobiGIS'12, Proceedings of the First ACM SIGSPATIAL International Workshop on Mobile Geographic Information Systems, Redondo Beach, California (Conference)}
+        % \resumeItem{Conference proceeding - MobiGIS'12 }
+      \resumeItemListEnd 
+      
+    \resumeSubheading
+      {\href{https://ieeexplore.ieee.org/abstract/document/6305280/}{\myuline{Elekspot: A Platform for Urban Place Recognition via Crowdsourcing}}}{2012}
+      {Minkyu Lee, SukHoon Jung, \textbf{Sangjae Lee}, and Dongsoo Han.}{}
+      \resumeItemListStart
+        \resumeItem{SAINT'12, 2012 IEEE/IPSJ 12th International Symposium on Applications and the Internet, Izmir, Turkey (Conference)}
+        % \resumeItem{Conference proceeding - SAINT'12}
+      \resumeItemListEnd 
+      
+
+  \resumeSubHeadingListEnd
+
