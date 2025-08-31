@@ -115,6 +115,27 @@
       {% endif %}
 
 
+      {% if site.resume_section_publications %}
+      <!-- begin Publications -->
+      <section class="content-section publications">
+        <header class="section-header">
+          <h2>Publications</h2>
+        </header>
+
+        {% assign sorted_papers = site.data.papers | sort: 'year' | reverse %}
+        {% for paper in sorted_papers %}
+        <div class="resume-item" itemscope itemtype="http://schema.org/CreativeWork">
+          <h3 class="resume-item-title" itemprop="name">{{ paper.title }}</h3>
+          <h4 class="resume-item-details" itemprop="datePublished">{{ paper.venue }} &bull; {{ paper.year }}</h4>
+          <p class="resume-item-copy"><strong>Authors:</strong> {{ paper.authors | join: ', ' }}</p>
+        </div>
+        {% endfor %}
+
+      </section>
+      <!-- end Publications -->
+      {% endif %}
+
+
       {% if site.resume_section_projects %}
       <!-- begin Projects -->
       <section class="content-section">

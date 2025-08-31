@@ -1,0 +1,33 @@
+Publications
+Indoor Localization Using Augmented Vector of Geomagnetic Field 2020
+Sangjae Lee, Seungwoo Chae, and Dongsoo Han.
+• IEEE Access (Journal)
+Fusion of the SLAM with Wi-Fi-Based Positioning Methods for Mobile Robot Fusion of the SLAM with Wi-Fi-Based Positioning Methods for Mobile Robot Fusion of the SLAM with Wi-Fi-Based Positioning Methods for Mobile Robot Fusion of the SLAM with Wi-Fi-Based Positioning Methods for Mobile Robot Fusion of the SLAM with Wi-Fi-Based Positioning Methods for Mobile Robot Fusion of the SLAM with Wi-Fi-Based Positioning Methods for Mobile Robot Fusion of the SLAM with Wi-Fi-Based Positioning Methods for Mobile Robot 2020
+Gunwoo Lee, Byeong-Cheol Moon, Sangjae Lee, and Dongsoo Han.
+• MDPI Sensors (Journal)
+Rover Who Make Indoor Radio Map Rover Who Make Indoor Radio Map Rover Who Make Indoor Radio Map 2019
+Sangjae Lee, and Dongsoo Han.
+• MobiSys’19, Proceedings of the 17th Annual International Conference on Mobile Systems,
+Applications, and Services, Seoul, South Korea (Conference proceeding)
+Construction of an Indoor Positioning System for Home IoT Applications 2017
+Sangjae Lee, et al.
+• ICC’17, IEEE International Conference on Communications, Paris, France
+(Conference)
+A Crowdsourcing-Based Global Indoor Positioning and Navigation System 2016
+Suk-hoon Jung, Sangjae Lee, and Dongsoo Han.
+• Pervasive and Mobile Computing (Journal)
+A Sensor Fusion Method for WI-Fi-Based Indoor Positioning A Sensor Fusion Method for WI-Fi-Based Indoor Positioning 2016
+Dongsoo Han, Suk-hoon Jung, and Sangjae Lee.
+• ICT Express (Journal)
+KAILOS: KAIST Indoor Locating System KAILOS: KAIST Indoor Locating System 2014
+Dongsoo Han, Sangjae Lee, and Sunghoon Kim.
+• IPIN’14, International Conference on Indoor Positioning and Indoor Navigation, Busan, South
+Korea (Conference)
+Uncaught Signal Imputation for WLAN-Based Positioning 2012
+Sangjae Lee, Sukhoon Jung, and Dongsoo Han.
+• MobiGIS’12, Proceedings of the First ACM SIGSPATIAL International Workshop on Mobile
+Geographic Information Systems, Redondo Beach, California (Conference)
+Elekspot: A Platform for Urban Place Recognition via Crowdsourcing Elekspot: A Platform for Urban Place Recognition via Crowdsourcing 2012
+Minkyu Lee, SukHoon Jung, Sangjae Lee, and Dongsoo Han.
+• SAINT’12, 2012 IEEE/IPSJ 12th International Symposium on Applications and the Internet,
+Izmir, Turkey (Conference)

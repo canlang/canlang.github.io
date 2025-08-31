@@ -1,0 +1,81 @@
+# Publications
+- year: 2020
+  title: "Indoor Localization Using Augmented Vector of Geomagnetic Field"
+  authors:
+    - Sangjae Lee
+    - Seungwoo Chae
+    - Dongsoo Han
+  venue: "IEEE Access"
+  type: journal
+
+- year: 2020
+  title: "Fusion of the SLAM with Wi-Fi-Based Positioning Methods for Mobile Robot"
+  authors:
+    - Gunwoo Lee
+    - Byeong-Cheol Moon
+    - Sangjae Lee
+    - Dongsoo Han
+  venue: "Sensors (MDPI)"
+  type: journal
+
+- year: 2019
+  title: "Rover Who Make Indoor Radio Map"
+  authors:
+    - Sangjae Lee
+    - Dongsoo Han
+  venue: "MobiSys '19, ACM International Conference on Mobile Systems, Applications, and Services, Seoul, South Korea"
+  type: conference
+
+- year: 2017
+  title: "Construction of an Indoor Positioning System for Home IoT Applications"
+  authors:
+    - Sangjae Lee
+    - et al.
+  venue: "ICC '17, IEEE International Conference on Communications, Paris, France"
+  type: conference
+
+- year: 2016
+  title: "A Crowdsourcing-Based Global Indoor Positioning and Navigation System"
+  authors:
+    - Suk-hoon Jung
+    - Sangjae Lee
+    - Dongsoo Han
+  venue: "Pervasive and Mobile Computing"
+  type: journal
+
+- year: 2016
+  title: "A Sensor Fusion Method for Wi-Fi-Based Indoor Positioning"
+  authors:
+    - Dongsoo Han
+    - Suk-hoon Jung
+    - Sangjae Lee
+  venue: "ICT Express"
+  type: journal
+
+- year: 2014
+  title: "KAILOS: KAIST Indoor Locating System"
+  authors:
+    - Dongsoo Han
+    - Sangjae Lee
+    - Sunghoon Kim
+  venue: "IPIN '14, International Conference on Indoor Positioning and Indoor Navigation, Busan, South Korea"
+  type: conference
+
+- year: 2012
+  title: "Uncaught Signal Imputation for WLAN-Based Positioning"
+  authors:
+    - Sangjae Lee
+    - Sukhoon Jung
+    - Dongsoo Han
+  venue: "MobiGIS '12, ACM SIGSPATIAL International Workshop on Mobile Geographic Information Systems, Redondo Beach, California"
+  type: conference
+
+- year: 2012
+  title: "Elekspot: A Platform for Urban Place Recognition via Crowdsourcing"
+  authors:
+    - Minkyu Lee
+    - SukHoon Jung
+    - Sangjae Lee
+    - Dongsoo Han
+  venue: "SAINT '12, IEEE/IPSJ International Symposium on Applications and the Internet, Izmir, Turkey"
+  type: conference
