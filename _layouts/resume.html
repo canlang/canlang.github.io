@@ -122,7 +122,8 @@
           <h2>Publications</h2>
         </header>
 
-        {% assign sorted_papers = site.data.papers | sort: 'year' | reverse %}
+        <!-- {% assign sorted_papers = site.data.papers | sort: 'year' | reverse %} -->
+        {% assign sorted_papers = site.data.papers %}
         {% for paper in sorted_papers %}
         <div class="resume-item" itemscope itemtype="http://schema.org/CreativeWork">
           {% comment %} Linkify publication titles when url or doi is provided {% endcomment %}
