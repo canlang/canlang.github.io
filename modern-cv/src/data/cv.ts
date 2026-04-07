@@ -8,9 +8,9 @@ export const cv = {
   linkedin: "https://www.linkedin.com/in/sjlee-korea/",
   location: "Daejeon, Republic of Korea",
   intro:
-    "Staff Engineer at Samsung Research with a Ph.D. in Computer Science from KAIST. I develop research-backed systems spanning indoor localization, wireless sensing, context-aware networking, and LLM-driven optimization for large-scale deployments.",
+    "Staff Engineer at Samsung Research with a Ph.D. in Computer Science from KAIST, specializing in indoor localization, wireless sensing, sensor fusion, and AI-driven network optimization.",
   profile:
-    "My work connects robust sensing algorithms with product-oriented intelligence systems. Across research and engineering roles, I have focused on translating noisy real-world signals into dependable positioning and network decisions that can scale beyond the lab.",
+    "My work focuses on turning sensing and localization research into dependable systems for real-world deployment. Across research and engineering roles, I have developed methods that connect noisy physical signals to practical positioning, connectivity, and optimization decisions.",
   metrics: [
     {
       value: "14+",
@@ -55,13 +55,14 @@ export const cv = {
       role: "Staff Engineer",
       period: "Apr 2022 - Present",
       summary:
-        "Leading research and development for indoor localization and wireless intelligence systems, evolving from signal-based positioning toward AI-assisted autonomous optimization.",
+        "Leading research and development for indoor localization and wireless intelligence systems, with work spanning signal-based positioning, learned sensing models, and AI-driven optimization.",
       bullets: [
-        "Developed spatial discrimination models that distinguish users in near-identical indoor environments using deep neural networks.",
+        "Developed indoor localization systems using geomagnetic signals, Wi-Fi, and conventional machine learning approaches.",
+        "Built spatial discrimination models for distinguishing users within near-identical indoor environments using deep neural networks.",
         "Designed motion-based proximity detection systems for device interaction and sensing applications.",
-        "Built context-aware network switching mechanisms between cellular and Wi-Fi using learned models for connectivity optimization.",
+        "Developed context-aware network switching mechanisms between cellular and Wi-Fi using learned models for connectivity optimization.",
         "Currently developing LLM-based network optimization agents for autonomous decision-making in wireless environments.",
-        "Bridged research prototypes and deployment-oriented system design across localization, sensing, and networking."
+        "Extended research prototypes into deployment-oriented system design across localization, sensing, and networking."
       ]
     }
   ],
@@ -140,12 +141,12 @@ export const cv = {
       items: ["Python", "Java", "C/C++", "JavaScript"]
     },
     {
-      label: "ML and Data",
-      items: ["Deep learning", "Signal processing", "Data pipelines", "Feature engineering"]
+      label: "Modeling & Analysis",
+      items: ["Deep learning", "Signal processing", "Sensor fusion", "Data pipelines"]
     },
     {
-      label: "Systems",
-      items: ["Indoor localization", "Wireless sensing", "Network optimization", "Sensor fusion"]
+      label: "Systems & Domains",
+      items: ["Indoor localization", "Wireless sensing", "Network optimization", "LLM-based optimization"]
     }
   ]
 };
