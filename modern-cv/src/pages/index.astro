@@ -79,7 +79,7 @@ const highlightAuthor = (authors: string[]) =>
       </div>
 
       <aside class="side-column">
-        <section class="section section-side">
+        <section class="section section-side section-compact">
           <div class="section-header">
             <p class="section-label">Research Interests</p>
           </div>
@@ -88,7 +88,7 @@ const highlightAuthor = (authors: string[]) =>
           </ul>
         </section>
 
-        <section class="section section-side">
+        <section class="section section-side section-compact">
           <div class="section-header">
             <p class="section-label">Education</p>
           </div>
@@ -107,7 +107,7 @@ const highlightAuthor = (authors: string[]) =>
           </div>
         </section>
 
-        <section class="section section-side">
+        <section class="section section-side section-compact">
           <div class="section-header">
             <p class="section-label">Projects</p>
           </div>
@@ -128,7 +128,7 @@ const highlightAuthor = (authors: string[]) =>
           </div>
         </section>
 
-        <section class="section section-side">
+        <section class="section section-side section-compact">
           <div class="section-header">
             <p class="section-label">Skills</p>
           </div>
@@ -148,15 +148,15 @@ const highlightAuthor = (authors: string[]) =>
 
 <style>
   :global(:root) {
-    --page-bg: #f5f3ef;
-    --paper: #fffdf9;
-    --text: #182125;
-    --muted: #5e6b73;
-    --line: #d9d2c8;
-    --line-strong: #b8aea2;
-    --accent: #184f57;
-    --accent-soft: #6e7c83;
-    --shadow: 0 18px 50px rgba(28, 30, 32, 0.08);
+    --page-bg: #f6f4f1;
+    --paper: #fffefc;
+    --text: #182026;
+    --muted: #4f5d66;
+    --line: #ddd6cd;
+    --line-strong: #bdb4a8;
+    --accent: #1a4f57;
+    --accent-soft: #6a767d;
+    --shadow: 0 12px 30px rgba(22, 25, 27, 0.05);
   }
 
   :global(html) {
@@ -168,9 +168,7 @@ const highlightAuthor = (authors: string[]) =>
   :global(body) {
     margin: 0;
     min-height: 100vh;
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(245, 243, 239, 0.95)),
-      var(--page-bg);
+    background: var(--page-bg);
   }
 
   h1,
@@ -190,37 +188,37 @@ const highlightAuthor = (authors: string[]) =>
   }
 
   .page {
-    max-width: 1120px;
+    max-width: 1080px;
     margin: 0 auto;
-    padding: 48px 20px 72px;
+    padding: 40px 20px 64px;
   }
 
   .masthead {
     display: flex;
     justify-content: space-between;
-    gap: 24px;
+    gap: 28px;
     align-items: end;
-    padding: 0 0 24px;
+    padding: 0 0 20px;
     border-bottom: 1px solid var(--line-strong);
   }
 
   .kicker,
   .section-label {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.16em;
     color: var(--accent-soft);
   }
 
   h1 {
-    font-size: clamp(2.7rem, 5vw, 4.4rem);
-    line-height: 0.96;
-    margin-top: 10px;
+    font-size: clamp(2.4rem, 4.6vw, 3.8rem);
+    line-height: 1;
+    margin-top: 8px;
   }
 
   .title {
-    margin-top: 10px;
-    font-size: 1.08rem;
+    margin-top: 8px;
+    font-size: 1rem;
     color: var(--accent);
     font-weight: 600;
   }
@@ -228,10 +226,10 @@ const highlightAuthor = (authors: string[]) =>
   .contact {
     min-width: 280px;
     display: grid;
-    gap: 7px;
+    gap: 5px;
     justify-items: end;
     text-align: right;
-    font-size: 0.96rem;
+    font-size: 0.93rem;
     color: var(--muted);
   }
 
@@ -246,55 +244,55 @@ const highlightAuthor = (authors: string[]) =>
   }
 
   .profile {
-    margin-top: 24px;
-    padding: 24px 0 30px;
+    margin-top: 18px;
+    padding: 20px 0 24px;
     border-bottom: 1px solid var(--line);
     display: grid;
-    gap: 14px;
-    max-width: 78ch;
-    color: var(--muted);
-    line-height: 1.72;
-    font-size: 1rem;
+    gap: 12px;
+    max-width: 74ch;
+    color: var(--text);
+    line-height: 1.68;
+    font-size: 0.98rem;
   }
 
   .content-grid {
-    margin-top: 28px;
+    margin-top: 24px;
     display: grid;
-    grid-template-columns: minmax(0, 1.55fr) minmax(290px, 0.9fr);
-    gap: 34px;
+    grid-template-columns: minmax(0, 1.7fr) minmax(260px, 0.88fr);
+    gap: 26px;
     align-items: start;
   }
 
   .section {
     background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 24px;
+    border: 1px solid rgba(221, 214, 205, 0.72);
+    border-radius: 12px;
+    padding: 22px;
     box-shadow: var(--shadow);
   }
 
   .section + .section {
-    margin-top: 22px;
-  }
-
-  .section-side + .section-side {
     margin-top: 18px;
   }
 
+  .section-side + .section-side {
+    margin-top: 14px;
+  }
+
   .section-header {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 
   h2 {
-    font-size: 1.28rem;
-    margin-top: 6px;
+    font-size: 1.18rem;
+    margin-top: 4px;
   }
 
   .entry + .entry,
   .publication + .publication,
   .stack-entry + .stack-entry {
-    margin-top: 18px;
-    padding-top: 18px;
+    margin-top: 16px;
+    padding-top: 16px;
     border-top: 1px solid var(--line);
   }
 
@@ -308,65 +306,66 @@ const highlightAuthor = (authors: string[]) =>
   }
 
   h3 {
-    font-size: 1.02rem;
-    line-height: 1.35;
+    font-size: 0.98rem;
+    line-height: 1.42;
   }
 
   .entry-meta,
   .publication-authors,
   .stack-copy {
     color: var(--muted);
-    line-height: 1.65;
+    line-height: 1.6;
   }
 
   .entry-meta {
-    margin-top: 5px;
-    font-size: 0.95rem;
+    margin-top: 4px;
+    font-size: 0.91rem;
   }
 
   .entry-period,
   .stack-top span,
   .publication-top span {
-    font-size: 0.84rem;
+    font-size: 0.8rem;
     white-space: nowrap;
     color: var(--accent-soft);
   }
 
   .entry-summary {
-    margin-top: 12px;
+    margin-top: 10px;
     color: var(--text);
-    line-height: 1.65;
+    line-height: 1.62;
   }
 
   .entry-list {
-    margin: 12px 0 0;
+    margin: 10px 0 0;
     padding-left: 18px;
     display: grid;
-    gap: 8px;
+    gap: 7px;
   }
 
   .entry-list li {
-    line-height: 1.55;
+    line-height: 1.5;
     color: var(--text);
   }
 
   .publication-top a {
     text-decoration: none;
     font-weight: 700;
-    line-height: 1.45;
+    line-height: 1.4;
   }
 
   .publication-authors,
   .stack-copy {
-    margin-top: 8px;
+    margin-top: 6px;
   }
 
   .plain-list {
     margin: 0;
     padding-left: 18px;
     display: grid;
-    gap: 8px;
+    gap: 6px;
     color: var(--text);
+    line-height: 1.5;
   }
 
   .stack {
@@ -375,10 +374,14 @@ const highlightAuthor = (authors: string[]) =>
 
   .subtle-link {
     display: inline-block;
-    margin-top: 10px;
-    font-size: 0.92rem;
+    margin-top: 8px;
+    font-size: 0.88rem;
     color: var(--accent);
     text-decoration: none;
+  }
+
+  .section-compact {
+    padding: 18px;
   }
 
   @media (max-width: 920px) {
@@ -397,7 +400,7 @@ const highlightAuthor = (authors: string[]) =>
 
   @media (max-width: 640px) {
     .page {
-      padding: 24px 14px 44px;
+      padding: 24px 14px 40px;
     }
 
     .section {
