@@ -1,23 +1,30 @@
-name: Jekyll site CI
+name: Modern CV Deploy
 on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          ruby-version: 3.3
-          bundler-cache: true # Caches gems for faster builds
+          node-version: 22
+          cache: npm
+          cache-dependency-path: modern-cv/package-lock.json
+
       - name: Install dependencies
-        run: bundle install
-      - name: Build site
-        run: bundle exec jekyll build
+        working-directory: modern-cv
+        run: npm ci
+
+      - name: Build modern CV site
+        working-directory: modern-cv
+        run: npm run build
         env:
-          GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
+          ASTRO_TELEMETRY_DISABLED: 1
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
+          publish_dir: ./modern-cv/dist

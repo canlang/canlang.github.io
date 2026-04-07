@@ -1,0 +1,472 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { cv } from "../data/cv";
+
+const firstAuthor = cv.name;
+
+const highlightAuthor = (authors: string[]) =>
+  authors
+    .map((author) => (author === firstAuthor ? `<strong>${author}</strong>` : author))
+    .join(", ");
+---
+
+<Layout title={`${cv.name} | Modern CV`} description={cv.intro}>
+  <main class="page">
+    <section class="hero card">
+      <div class="hero-copy">
+        <p class="eyebrow">Wireless Sensing · Indoor Localization · Network Intelligence</p>
+        <h1>{cv.name}</h1>
+        <p class="role">{cv.title}</p>
+        <p class="intro">{cv.intro}</p>
+        <div class="actions">
+          <a href={`mailto:${cv.email}`} class="button button-primary">Contact</a>
+          <a href={cv.github} class="button button-secondary" target="_blank" rel="noreferrer">GitHub</a>
+          <a href={cv.linkedin} class="button button-secondary" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </div>
+      <div class="hero-meta">
+        <div class="meta-panel">
+          <span class="meta-label">Location</span>
+          <strong>{cv.location}</strong>
+        </div>
+        <div class="meta-panel">
+          <span class="meta-label">Email</span>
+          <a href={`mailto:${cv.email}`}>{cv.email}</a>
+        </div>
+        <div class="meta-panel">
+          <span class="meta-label">Phone</span>
+          <a href={`tel:${cv.phone}`}>{cv.phone}</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="column-main">
+        <section class="card section">
+          <div class="section-head">
+            <p class="section-kicker">Experience</p>
+            <h2>Building localization systems into network intelligence</h2>
+          </div>
+          {cv.experience.map((job) => (
+            <article class="timeline-item">
+              <div class="timeline-top">
+                <div>
+                  <h3>{job.role}</h3>
+                  <p class="org">{job.company}</p>
+                </div>
+                <span class="pill">{job.period}</span>
+              </div>
+              <p class="summary">{job.summary}</p>
+              <ul class="bullet-list">
+                {job.bullets.map((bullet) => <li>{bullet}</li>)}
+              </ul>
+            </article>
+          ))}
+        </section>
+
+        <section class="card section">
+          <div class="section-head">
+            <p class="section-kicker">Selected Publications</p>
+            <h2>Research contributions led as first author</h2>
+          </div>
+          <div class="publication-list">
+            {cv.publications.map((paper) => (
+              <article class="publication">
+                <div class="publication-top">
+                  <span class="year">{paper.year}</span>
+                  <a href={paper.url} target="_blank" rel="noreferrer">
+                    {paper.title}
+                  </a>
+                </div>
+                <p class="venue">{paper.venue}</p>
+                <p class="authors" set:html={highlightAuthor(paper.authors)} />
+              </article>
+            ))}
+          </div>
+        </section>
+      </div>
+
+      <aside class="column-side">
+        <section class="card section compact">
+          <div class="section-head">
+            <p class="section-kicker">Research Interests</p>
+          </div>
+          <div class="tag-list">
+            {cv.interests.map((interest) => <span class="tag">{interest}</span>)}
+          </div>
+        </section>
+
+        <section class="card section compact">
+          <div class="section-head">
+            <p class="section-kicker">Education</p>
+          </div>
+          <div class="stack">
+            {cv.education.map((item) => (
+              <article class="stack-item">
+                <div class="stack-top">
+                  <h3>{item.degree}</h3>
+                  <span class="period">{item.period}</span>
+                </div>
+                <p class="org">{item.school}</p>
+                {item.detail && <p class="detail">{item.detail}</p>}
+                {item.focus && <p class="detail">{item.focus}</p>}
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="card section compact">
+          <div class="section-head">
+            <p class="section-kicker">Projects</p>
+          </div>
+          <div class="stack">
+            {cv.projects.map((project) => (
+              <article class="stack-item">
+                <div class="stack-top">
+                  <h3>{project.name}</h3>
+                  <span class="period">{project.period}</span>
+                </div>
+                <p class="org">{project.title}</p>
+                <p class="detail">{project.description}</p>
+                <a href={project.url} target="_blank" rel="noreferrer" class="inline-link">
+                  Visit project
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="card section compact">
+          <div class="section-head">
+            <p class="section-kicker">Skills</p>
+          </div>
+          <div class="stack">
+            {cv.skills.map((skill) => (
+              <article class="stack-item">
+                <h3>{skill.label}</h3>
+                <p class="detail">{skill.items.join(" · ")}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      </aside>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  :global(:root) {
+    color-scheme: light;
+    --bg: #f4efe7;
+    --bg-accent: radial-gradient(circle at top left, rgba(245, 184, 79, 0.28), transparent 32%),
+      radial-gradient(circle at bottom right, rgba(38, 114, 106, 0.22), transparent 28%),
+      linear-gradient(180deg, #f8f4ee 0%, #eee6da 100%);
+    --surface: rgba(255, 251, 246, 0.84);
+    --text: #1e2d2e;
+    --muted: #55676b;
+    --line: rgba(30, 45, 46, 0.12);
+    --accent: #0f766e;
+    --accent-strong: #c46a18;
+    --shadow: 0 24px 60px rgba(58, 45, 24, 0.12);
+  }
+
+  :global(html) {
+    font-family: "IBM Plex Sans", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  :global(body) {
+    margin: 0;
+    background: var(--bg-accent);
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 40px 20px 72px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(300px, 0.95fr);
+    gap: 24px;
+    align-items: start;
+  }
+
+  .card {
+    background: var(--surface);
+    backdrop-filter: blur(18px);
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    box-shadow: var(--shadow);
+  }
+
+  .hero {
+    padding: 36px;
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(260px, 0.8fr);
+    gap: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: auto -5% -30% auto;
+    width: 260px;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, rgba(196, 106, 24, 0.24), rgba(15, 118, 110, 0.08));
+    border-radius: 50%;
+    filter: blur(10px);
+  }
+
+  .eyebrow,
+  .section-kicker,
+  .meta-label,
+  .period,
+  .year {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.76rem;
+    color: var(--accent-strong);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: "Manrope", sans-serif;
+    margin: 0;
+    color: #162324;
+  }
+
+  h1 {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 0.95;
+    margin-top: 12px;
+  }
+
+  h2 {
+    font-size: clamp(1.4rem, 2vw, 2rem);
+    margin-top: 6px;
+  }
+
+  h3 {
+    font-size: 1.05rem;
+  }
+
+  .role {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 14px 0 0;
+  }
+
+  .intro,
+  .summary,
+  .detail,
+  .authors,
+  .venue,
+  .org {
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .intro {
+    max-width: 64ch;
+    margin: 18px 0 0;
+    font-size: 1rem;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 180ms ease, background 180ms ease;
+  }
+
+  .button:hover,
+  .inline-link:hover,
+  .publication-top a:hover {
+    transform: translateY(-1px);
+  }
+
+  .button-primary {
+    background: linear-gradient(135deg, #0f766e, #146c64);
+    color: white;
+  }
+
+  .button-secondary {
+    background: rgba(255, 250, 243, 0.88);
+    color: var(--text);
+    border: 1px solid var(--line);
+  }
+
+  .hero-meta {
+    display: grid;
+    gap: 14px;
+    align-content: start;
+  }
+
+  .meta-panel,
+  .stack-item,
+  .timeline-item,
+  .publication {
+    background: rgba(255, 255, 255, 0.52);
+    border: 1px solid rgba(30, 45, 46, 0.08);
+    border-radius: 20px;
+    padding: 18px;
+  }
+
+  .meta-panel a,
+  .publication-top a,
+  .inline-link {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .meta-panel strong {
+    display: block;
+    margin-top: 8px;
+    font-size: 1rem;
+  }
+
+  .meta-panel a {
+    display: block;
+    margin-top: 8px;
+    font-weight: 600;
+  }
+
+  .section {
+    padding: 28px;
+  }
+
+  .section + .section,
+  .compact + .compact {
+    margin-top: 24px;
+  }
+
+  .section-head {
+    margin-bottom: 18px;
+  }
+
+  .timeline-item + .timeline-item,
+  .stack-item + .stack-item,
+  .publication + .publication {
+    margin-top: 16px;
+  }
+
+  .timeline-top,
+  .stack-top,
+  .publication-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: baseline;
+  }
+
+  .pill {
+    background: rgba(15, 118, 110, 0.1);
+    color: var(--accent);
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .bullet-list {
+    margin: 16px 0 0;
+    padding-left: 18px;
+    display: grid;
+    gap: 10px;
+  }
+
+  .bullet-list li {
+    color: var(--text);
+    line-height: 1.55;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .tag {
+    border-radius: 999px;
+    padding: 9px 14px;
+    background: rgba(196, 106, 24, 0.08);
+    border: 1px solid rgba(196, 106, 24, 0.12);
+    color: #70431c;
+    font-size: 0.95rem;
+  }
+
+  .stack {
+    display: grid;
+    gap: 14px;
+  }
+
+  .publication-top a {
+    font-family: "Manrope", sans-serif;
+    font-size: 1.02rem;
+    font-weight: 700;
+  }
+
+  .venue,
+  .authors,
+  .org,
+  .detail,
+  .summary {
+    margin: 8px 0 0;
+  }
+
+  .compact {
+    position: sticky;
+    top: 20px;
+  }
+
+  @media (max-width: 960px) {
+    .hero,
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .compact {
+      position: static;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .page {
+      padding: 18px 14px 40px;
+    }
+
+    .hero,
+    .section {
+      padding: 22px;
+      border-radius: 22px;
+    }
+
+    .timeline-top,
+    .stack-top,
+    .publication-top {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
