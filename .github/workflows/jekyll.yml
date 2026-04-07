@@ -1,6 +1,9 @@
 name: Deploy Modern CV to GitHub Pages
 on: [push]
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: read
   pages: write

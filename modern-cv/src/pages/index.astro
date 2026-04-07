@@ -12,37 +12,39 @@ const highlightAuthor = (authors: string[]) =>
 
 <Layout title={`${cv.name} | CV`} description={cv.intro}>
   <main class="page">
-    <header class="hero">
-      <div class="hero-main">
-        <p class="eyebrow">{cv.headline}</p>
+    <header class="masthead">
+      <div class="identity">
+        <p class="eyebrow">Curriculum Vitae</p>
         <h1>{cv.name}</h1>
-        <p class="role">{cv.title}</p>
-        <div class="summary">
-          <p>{cv.intro}</p>
-          <p>{cv.profile}</p>
-        </div>
+        <p class="title">{cv.title}</p>
       </div>
-
-      <aside class="hero-side">
-        <div class="contact-block">
-          <p class="block-label">Contact</p>
-          <a href={`mailto:${cv.email}`}>{cv.email}</a>
-          <a href={`tel:${cv.phone}`}>{cv.phone}</a>
-          <span>{cv.location}</span>
-        </div>
-
-        <div class="contact-block">
-          <p class="block-label">Links</p>
-          <a href={cv.github} target="_blank" rel="noreferrer">GitHub</a>
-          <a href={cv.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-        </div>
-      </aside>
+      <div class="contact">
+        <a href={`mailto:${cv.email}`}>{cv.email}</a>
+        <a href={`tel:${cv.phone}`}>{cv.phone}</a>
+        <span>{cv.location}</span>
+        <a href={cv.github} target="_blank" rel="noreferrer">GitHub</a>
+        <a href={cv.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
     </header>
 
-    <section class="content">
-      <div class="main-column">
+    <section class="intro">
+      <p>{cv.intro}</p>
+      <p>{cv.profile}</p>
+    </section>
+
+    <section class="metrics">
+      {cv.metrics.map((metric) => (
+        <article class="metric">
+          <strong>{metric.value}</strong>
+          <span>{metric.label}</span>
+        </article>
+      ))}
+    </section>
+
+    <section class="layout">
+      <div class="main">
         <section class="section">
-          <div class="section-heading">
+          <div class="section-head">
             <p class="section-label">Experience</p>
             <h2>Professional Experience</h2>
           </div>
@@ -56,7 +58,7 @@ const highlightAuthor = (authors: string[]) =>
                 </div>
                 <span class="period">{job.period}</span>
               </div>
-              <p class="copy strong-copy">{job.summary}</p>
+              <p class="summary">{job.summary}</p>
               <ul class="bullet-list">
                 {job.bullets.map((bullet) => <li>{bullet}</li>)}
               </ul>
@@ -65,88 +67,84 @@ const highlightAuthor = (authors: string[]) =>
         </section>
 
         <section class="section">
-          <div class="section-heading">
+          <div class="section-head">
             <p class="section-label">Selected Publications</p>
             <h2>First-Author Highlights</h2>
           </div>
 
-          <div class="publication-list">
-            {cv.publications.map((paper) => (
-              <article class="publication">
-                <div class="publication-top">
-                  <a href={paper.url} target="_blank" rel="noreferrer">{paper.title}</a>
-                  <span class="period">{paper.year}</span>
+          {cv.publications.map((paper) => (
+            <article class="entry publication">
+              <div class="entry-top">
+                <div>
+                  <h3>
+                    <a href={paper.url} target="_blank" rel="noreferrer">{paper.title}</a>
+                  </h3>
+                  <p class="meta">{paper.venue}</p>
                 </div>
-                <p class="meta">{paper.venue}</p>
-                <p class="copy" set:html={highlightAuthor(paper.authors)} />
-              </article>
-            ))}
-          </div>
+                <span class="period">{paper.year}</span>
+              </div>
+              <p class="copy" set:html={highlightAuthor(paper.authors)} />
+            </article>
+          ))}
         </section>
       </div>
 
-      <aside class="side-column">
-        <section class="section side-section">
-          <div class="section-heading compact-heading">
+      <aside class="side">
+        <section class="section section-tight">
+          <div class="section-head">
             <p class="section-label">Research Interests</p>
           </div>
-          <div class="chips">
-            {cv.interests.map((interest) => <span class="chip">{interest}</span>)}
-          </div>
+          <ul class="plain-list">
+            {cv.interests.map((interest) => <li>{interest}</li>)}
+          </ul>
         </section>
 
-        <section class="section side-section">
-          <div class="section-heading compact-heading">
+        <section class="section section-tight">
+          <div class="section-head">
             <p class="section-label">Education</p>
           </div>
-          <div class="stack">
-            {cv.education.map((item) => (
-              <article class="stack-item">
-                <div class="stack-top">
-                  <h3>{item.degree}</h3>
-                  <span class="period">{item.period}</span>
-                </div>
-                <p class="meta">{item.school}</p>
-                {item.detail && <p class="copy">{item.detail}</p>}
-                {item.focus && <p class="copy">{item.focus}</p>}
-              </article>
-            ))}
-          </div>
+          {cv.education.map((item) => (
+            <article class="stack-item">
+              <div class="stack-top">
+                <h3>{item.degree}</h3>
+                <span class="period">{item.period}</span>
+              </div>
+              <p class="meta">{item.school}</p>
+              {item.detail && <p class="copy">{item.detail}</p>}
+              {item.focus && <p class="copy">{item.focus}</p>}
+            </article>
+          ))}
         </section>
 
-        <section class="section side-section">
-          <div class="section-heading compact-heading">
+        <section class="section section-tight">
+          <div class="section-head">
             <p class="section-label">Projects</p>
           </div>
-          <div class="stack">
-            {cv.projects.map((project) => (
-              <article class="stack-item">
-                <div class="stack-top">
-                  <h3>{project.name}</h3>
-                  <span class="period">{project.period}</span>
-                </div>
-                <p class="meta">{project.title}</p>
-                <p class="copy">{project.description}</p>
-                <a href={project.url} target="_blank" rel="noreferrer" class="subtle-link">
-                  {project.url.replace("https://", "").replace("http://", "")}
-                </a>
-              </article>
-            ))}
-          </div>
+          {cv.projects.map((project) => (
+            <article class="stack-item">
+              <div class="stack-top">
+                <h3>{project.name}</h3>
+                <span class="period">{project.period}</span>
+              </div>
+              <p class="meta">{project.title}</p>
+              <p class="copy">{project.description}</p>
+              <a href={project.url} target="_blank" rel="noreferrer" class="subtle-link">
+                {project.url.replace("https://", "").replace("http://", "")}
+              </a>
+            </article>
+          ))}
         </section>
 
-        <section class="section side-section">
-          <div class="section-heading compact-heading">
+        <section class="section section-tight">
+          <div class="section-head">
             <p class="section-label">Skills</p>
           </div>
-          <div class="stack">
-            {cv.skills.map((skill) => (
-              <article class="stack-item">
-                <h3>{skill.label}</h3>
-                <p class="copy">{skill.items.join(" · ")}</p>
-              </article>
-            ))}
-          </div>
+          {cv.skills.map((skill) => (
+            <article class="stack-item">
+              <h3>{skill.label}</h3>
+              <p class="copy">{skill.items.join(" · ")}</p>
+            </article>
+          ))}
         </section>
       </aside>
     </section>
@@ -155,16 +153,13 @@ const highlightAuthor = (authors: string[]) =>
 
 <style>
   :global(:root) {
-    --bg: #f7f5f1;
-    --panel: #fffdfa;
-    --text: #172126;
-    --muted: #5d6a72;
-    --line: #e2dcd2;
-    --line-strong: #c8c0b4;
-    --accent: #184e57;
-    --accent-soft: #70818a;
-    --chip: #f1ede6;
-    --shadow: 0 12px 28px rgba(25, 28, 31, 0.05);
+    --bg: #f8f7f4;
+    --surface: #fffdf9;
+    --text: #1b2227;
+    --muted: #5d6770;
+    --line: #ddd8cf;
+    --line-strong: #c8c1b6;
+    --accent: #0f4c5c;
   }
 
   :global(html) {
@@ -176,15 +171,27 @@ const highlightAuthor = (authors: string[]) =>
   :global(body) {
     margin: 0;
     min-height: 100vh;
-    background: linear-gradient(180deg, #faf8f4 0%, #f4f1eb 100%);
+    background: var(--bg);
   }
 
   h1,
   h2,
   h3 {
     margin: 0;
-    font-family: "Space Grotesk", sans-serif;
     color: var(--text);
+  }
+
+  h1,
+  h2 {
+    font-family: "Source Serif 4", serif;
+  }
+
+  h3,
+  p,
+  li,
+  a,
+  span {
+    font-family: "IBM Plex Sans", sans-serif;
   }
 
   p {
@@ -196,132 +203,140 @@ const highlightAuthor = (authors: string[]) =>
   }
 
   .page {
-    max-width: 1100px;
+    max-width: 1040px;
     margin: 0 auto;
-    padding: 40px 20px 64px;
+    padding: 40px 20px 72px;
   }
 
-  .hero {
+  .masthead {
     display: grid;
-    grid-template-columns: minmax(0, 1.7fr) minmax(220px, 0.7fr);
-    gap: 28px;
-    padding-bottom: 26px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 24px;
+    padding-bottom: 22px;
     border-bottom: 1px solid var(--line-strong);
   }
 
   .eyebrow,
-  .section-label,
-  .block-label {
+  .section-label {
     font-size: 0.72rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--accent-soft);
+    color: var(--muted);
   }
 
   h1 {
-    margin-top: 10px;
-    font-size: clamp(2.7rem, 5vw, 4.4rem);
+    margin-top: 8px;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
     line-height: 0.96;
     letter-spacing: -0.03em;
   }
 
-  .role {
+  .title {
     margin-top: 10px;
-    font-size: 1.02rem;
-    font-weight: 600;
+    font-size: 1rem;
     color: var(--accent);
+    font-weight: 600;
   }
 
-  .summary {
-    margin-top: 18px;
-    display: grid;
-    gap: 12px;
-    max-width: 70ch;
-  }
-
-  .summary p,
-  .copy,
-  .bullet-list li,
-  .meta {
-    line-height: 1.65;
-  }
-
-  .summary p,
-  .copy {
-    color: var(--muted);
-    font-size: 0.97rem;
-  }
-
-  .strong-copy {
-    color: var(--text);
-  }
-
-  .hero-side {
-    display: grid;
-    gap: 18px;
-    align-content: start;
-  }
-
-  .contact-block {
-    background: rgba(255, 253, 250, 0.76);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 16px 18px;
-    box-shadow: var(--shadow);
+  .contact {
     display: grid;
     gap: 6px;
+    justify-items: end;
+    text-align: right;
+    color: var(--muted);
+    font-size: 0.94rem;
   }
 
-  .contact-block a,
-  .subtle-link,
-  .publication-top a {
+  .contact a {
     text-decoration: none;
   }
 
-  .contact-block a:hover,
+  .contact a:hover,
   .subtle-link:hover,
-  .publication-top a:hover {
+  .publication a:hover {
     text-decoration: underline;
   }
 
-  .content {
-    margin-top: 28px;
+  .intro {
+    max-width: 74ch;
+    margin-top: 20px;
     display: grid;
-    grid-template-columns: minmax(0, 1.68fr) minmax(260px, 0.9fr);
+    gap: 12px;
+  }
+
+  .intro p,
+  .summary,
+  .copy {
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 0.97rem;
+  }
+
+  .summary {
+    color: var(--text);
+    margin-top: 10px;
+  }
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .metric {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+
+  .metric strong {
+    display: block;
+    font-size: 1.2rem;
+    color: var(--text);
+  }
+
+  .metric span {
+    display: block;
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.65fr) minmax(260px, 0.92fr);
     gap: 28px;
+    margin-top: 26px;
   }
 
   .section {
-    background: var(--panel);
+    background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 16px;
-    box-shadow: var(--shadow);
+    border-radius: 10px;
     padding: 22px;
   }
 
   .section + .section {
-    margin-top: 20px;
+    margin-top: 18px;
   }
 
-  .side-section + .side-section {
-    margin-top: 16px;
+  .section-tight + .section-tight {
+    margin-top: 14px;
   }
 
-  .section-heading {
-    margin-bottom: 16px;
-  }
-
-  .compact-heading {
-    margin-bottom: 12px;
+  .section-head {
+    margin-bottom: 14px;
   }
 
   h2 {
-    margin-top: 5px;
-    font-size: 1.2rem;
+    margin-top: 4px;
+    font-size: 1.28rem;
   }
 
   .entry + .entry,
-  .publication + .publication,
   .stack-item + .stack-item {
     margin-top: 16px;
     padding-top: 16px;
@@ -329,33 +344,29 @@ const highlightAuthor = (authors: string[]) =>
   }
 
   .entry-top,
-  .publication-top,
   .stack-top {
     display: flex;
     justify-content: space-between;
-    gap: 14px;
+    gap: 16px;
     align-items: start;
   }
 
   h3 {
-    font-size: 0.98rem;
+    font-size: 0.99rem;
     line-height: 1.42;
   }
 
   .meta {
     margin-top: 4px;
-    font-size: 0.9rem;
     color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
 
   .period {
-    font-size: 0.8rem;
-    color: var(--accent-soft);
     white-space: nowrap;
-  }
-
-  .entry-summary {
-    margin-top: 10px;
+    color: var(--muted);
+    font-size: 0.81rem;
   }
 
   .bullet-list {
@@ -367,43 +378,38 @@ const highlightAuthor = (authors: string[]) =>
 
   .bullet-list li {
     color: var(--text);
+    line-height: 1.56;
   }
 
-  .publication-top a {
-    font-weight: 700;
-    line-height: 1.45;
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .chip {
-    background: var(--chip);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 8px 12px;
-    font-size: 0.9rem;
-    color: var(--text);
-  }
-
-  .stack {
+  .plain-list {
+    margin: 0;
+    padding-left: 18px;
     display: grid;
+    gap: 7px;
+  }
+
+  .plain-list li {
+    line-height: 1.56;
   }
 
   .subtle-link {
     display: inline-block;
     margin-top: 8px;
-    font-size: 0.88rem;
     color: var(--accent);
+    font-size: 0.88rem;
+    text-decoration: none;
   }
 
-  @media (max-width: 920px) {
-    .hero,
-    .content {
+  @media (max-width: 900px) {
+    .layout,
+    .masthead,
+    .metrics {
       grid-template-columns: 1fr;
+    }
+
+    .contact {
+      justify-items: start;
+      text-align: left;
     }
   }
 
@@ -413,12 +419,11 @@ const highlightAuthor = (authors: string[]) =>
     }
 
     .section,
-    .contact-block {
+    .metric {
       padding: 18px;
     }
 
     .entry-top,
-    .publication-top,
     .stack-top {
       flex-direction: column;
       gap: 6px;
