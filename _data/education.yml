@@ -2,14 +2,15 @@
 - degree: Ph.D. in Computer Science
   uni: KAIST
   year: Sep. 2012 — Feb. 2021
+  advisor: "Prof. Dongsoo Han"
   awards: 
     # - award: Best Paper Award
     #   organization: IEEE International Conference on Communications
     #   year: 2017
   
-  dissertation: "High-Precision Indoor Positioning Using Geomagnetic Anomaly"
+  dissertation: "High-precision Indoor Positioning using Geomagnetic Anomaly"
   committee: "Dongsoo Han (Chair), Giwan Yoon, Geehyuk Lee, Junekoo Rhee, Hojin Choi"
-  summary: "Proposed a novel methodology for high-precision indoor positioning by generating orientation-invariant features from geomagnetic anomalies, overcoming the limitations of direction-dependent sensor data."
+  summary: "Developed a high-precision indoor positioning methodology based on geomagnetic anomalies, enabling orientation-invariant localization in complex indoor environments."
 
 - degree: M.S. in Computer Science
   uni: KAIST
@@ -20,7 +21,7 @@
     #   year: 2012
   
   thesis: "Missing Signal Imputation for Accurate WLAN-based Indoor Localization System"
-  summary: "Enhanced the accuracy of WLAN-based indoor localization by implementing a Kalman filter for spatial prediction, effectively imputing missing signals to ensure robust positioning."
+  summary: "Studied WLAN-based indoor localization and improved positioning robustness through signal imputation and spatial prediction."
 
 - degree: B.S. in Computer Science
   uni: Hanyang University
@@ -31,5 +32,4 @@
     #   year: 2010
   
   project: "Intelligent Lane Detection"
-  summary: "Developed a robust lane detection system by combining a Hough Transform with road area clustering. This approach significantly improved accuracy by isolating the road and filtering out irrelevant regions, such as the sky."
-
+  summary: "Built a robust lane detection system by combining Hough Transform methods with road area clustering."

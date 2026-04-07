@@ -1,90 +1,38 @@
 # Publications
 - year: 2020
-  title: "ILoA: Indoor Localization Using Augmented Vector of Geomagnetic Field"
+  title: "Indoor Localization Using Augmented Vector of Geomagnetic Field"
   authors:
-    - Sangjae Lee
+    - "<strong>Sangjae Lee</strong>"
     - Seungwoo Chae
     - Dongsoo Han
   venue: "IEEE Access"
   type: journal
   url: "https://ieeexplore.ieee.org/document/9216148"
 
-- year: 2020
-  title: "Fusion of the SLAM with Wi-Fi-Based Positioning Methods for Mobile Robot"
-  authors:
-    - Gunwoo Lee
-    - Byeong-Cheol Moon
-    - Sangjae Lee
-    - Dongsoo Han
-  venue: "Sensors (MDPI)"
-  type: journal
-  url: "https://www.mdpi.com/1424-8220/20/18/5182"
-
 - year: 2019
   title: "Rover Who Make Indoor Radio Map"
   authors:
-    - Sangjae Lee
+    - "<strong>Sangjae Lee</strong>"
     - Dongsoo Han
-  venue: "MobiSys '19, ACM International Conference on Mobile Systems, Applications, and Services, Seoul, South Korea"
+  venue: "MobiSys '19"
   type: conference
   url: "https://dl.acm.org/doi/abs/10.1145/3307334.3328596"
 
 - year: 2017
   title: "Construction of an Indoor Positioning System for Home IoT Applications"
   authors:
-    - Sangjae Lee
+    - "<strong>Sangjae Lee</strong>"
     - et al.
-  venue: "ICC '17, IEEE International Conference on Communications, Paris, France"
+  venue: "ICC '17"
   type: conference
   url: "https://ieeexplore.ieee.org/abstract/document/7997159/"
-
-- year: 2016
-  title: "A Crowdsourcing-Based Global Indoor Positioning and Navigation System"
-  authors:
-    - Suk-hoon Jung
-    - Sangjae Lee
-    - Dongsoo Han
-  venue: "Pervasive and Mobile Computing"
-  type: journal
-  url: "https://www.sciencedirect.com/science/article/pii/S1574119216000389"
-
-- year: 2016
-  title: "A Sensor Fusion Method for Wi-Fi-Based Indoor Positioning"
-  authors:
-    - Dongsoo Han
-    - Suk-hoon Jung
-    - Sangjae Lee
-  venue: "ICT Express"
-  type: journal
-  url: "https://www.sciencedirect.com/science/article/pii/S2405959516300145"
-
-- year: 2014
-  title: "KAILOS: KAIST Indoor Locating System"
-  authors:
-    - Dongsoo Han
-    - Sangjae Lee
-    - Sunghoon Kim
-  venue: "IPIN '14, International Conference on Indoor Positioning and Indoor Navigation, Busan, South Korea"
-  type: conference
-  url: "https://ieeexplore.ieee.org/abstract/document/7275535/"
 
 - year: 2012
   title: "Uncaught Signal Imputation for WLAN-Based Positioning"
   authors:
-    - Sangjae Lee
+    - "<strong>Sangjae Lee</strong>"
     - Sukhoon Jung
     - Dongsoo Han
   venue: "MobiGIS '12, ACM SIGSPATIAL International Workshop on Mobile Geographic Information Systems, Redondo Beach, California"
   type: conference
   url: "https://dl.acm.org/doi/abs/10.1145/2442810.2442825"
-
-- year: 2012
-  title: "Elekspot: A Platform for Urban Place Recognition via Crowdsourcing"
-  authors:
-    - Minkyu Lee
-    - SukHoon Jung
-    - Sangjae Lee
-    - Dongsoo Han
-  venue: "SAINT '12, IEEE/IPSJ International Symposium on Applications and the Internet, Izmir, Turkey"
-  type: conference
-  url: "https://ieeexplore.ieee.org/abstract/document/6305280/"

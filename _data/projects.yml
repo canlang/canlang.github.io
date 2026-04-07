@@ -9,11 +9,11 @@
 - project: KAILOS
   title: Crowdsourcing Indoor Positioning Service Platform
   url: https://kailos.io
-  duration: 2014 — Present
-  description: "Designed and implemented a RESTful backend and APIs for indoor localization, including data ingestion, map management, and positioning services."
+  duration: 2014 — 2016
+  description: "Contributed to the development of an indoor positioning service platform for crowdsourced localization, including backend APIs, data ingestion workflows, map management, and positioning services. The platform remains publicly available at kailos.io."
 
 - project: IPIN'14
   title: On-site Indoor Positioning and Navigation Competition
   url: http://ipin-conference.org/2014/
   duration: 2014
-  description: "Developed competition scenarios and led on-site operations for the IPIN'14 event, ensuring smooth execution and participant engagement."
+  description: "Supported the design of competition scenarios and on-site operations for the IPIN 2014 event, helping ensure reliable execution and participant engagement."

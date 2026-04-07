@@ -80,6 +80,10 @@
         <div class="resume-item" itemscope itemprop="alumniOf" itemtype="http://schema.org/CollegeOrUniversity">
           <h3 class="resume-item-title" itemprop="name">{{ education.uni }}</h3>
           <h4 class="resume-item-details group" itemprop="description">{{ education.degree }} &bull; {{ education.year }}</h4>
+
+          {% if education.advisor %}
+          <h5 class="resume-item-details">Advisor: <span class="highlight">{{ education.advisor }}</span></h5>
+          {% endif %}
           
           {% if education.dissertation %}
           <h5 class="resume-item-details">Dissertation: <span class="highlight">{{ education.dissertation }}</span></h5>
@@ -119,7 +123,7 @@
       <!-- begin Publications -->
       <section class="content-section publications">
         <header class="section-header">
-          <h2>Publications</h2>
+          <h2>Selected Publications</h2>
         </header>
 
         <!-- {% assign sorted_papers = site.data.papers | sort: 'year' | reverse %} -->
@@ -152,7 +156,7 @@
       <!-- begin Projects -->
       <section class="content-section">
         <header class="section-header">
-          <h2>Contributions</h2>
+          <h2>Projects</h2>
         </header>
 
         {% for project in site.data.projects %}
@@ -238,7 +242,7 @@
       <section class="content-section">
 
         <header class="section-header">
-          <h2>Outside Interests</h2>
+          <h2>Research Interests</h2>
         </header>
 
         <div class="resume-item">
