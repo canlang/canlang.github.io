@@ -2,7 +2,7 @@
 - company: Samsung Research
   position: Staff Engineer
   duration: Apr. 2022 — Present
-  summary: "My research focused on developing key technologies for intelligent and context-aware connectivity. This included designing a novel, geomagnetic-based network roaming methodology, researching a data-driven device prioritization method using hand motion, and developing a Transformer-based model for same-place detection."
+  summary: "Led research and development of indoor localization systems using geomagnetic signals, Wi-Fi, and conventional machine learning approaches.<ul class=\"resume-item-list\"><li>Developed spatial discrimination models for distinguishing users within identical environments using deep neural networks.</li><li>Designed motion-based proximity detection systems leveraging deep learning for device interaction and sensing.</li><li>Built context-aware network switching mechanisms between cellular and Wi-Fi using deep neural networks for improved connectivity optimization.</li><li>Currently developing LLM-based network optimization agents for autonomous decision-making in wireless environments.</li><li>Progressively evolved from signal-based positioning to AI-driven network intelligence and autonomous optimization systems.</li></ul>"
 
 # # VP of Global Communications
 # - company: Springfield International Human Rights Outreach

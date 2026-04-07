@@ -6,14 +6,26 @@
 #   role: Project Leader
 #   duration: 2007 &mdash; Present
 
-- project: KAILOS
-  title: Crowdsourcing Indoor Positioning Service Platform
-  url: https://kailos.io
-  duration: 2014 — Present
-  description: "Designed and implemented a RESTful backend and APIs for indoor localization, including data ingestion, map management, and positioning services."
+- project: Geomagnetic Indoor Localization
+  title: High-precision indoor positioning using geomagnetic signals
+  duration: 2016 — 2020
+  role: Lead Researcher
+  description: "Developed a high-precision indoor localization method using geomagnetic anomalies and published the core results in IEEE Access."
 
-- project: IPIN'14
-  title: On-site Indoor Positioning and Navigation Competition
-  url: http://ipin-conference.org/2014/
-  duration: 2014
-  description: "Developed competition scenarios and led on-site operations for the IPIN'14 event, ensuring smooth execution and participant engagement."
+- project: Multi-modal Sensor Fusion
+  title: Robust positioning with Wi-Fi, SLAM, and mobile sensing
+  duration: 2019 — Present
+  role: Research Engineer
+  description: "Proposed sensor fusion frameworks that integrate Wi-Fi, SLAM, and onboard sensors for resilient indoor positioning in real-world environments."
+
+- project: Crowdsourced Radio Map Construction
+  title: Scalable infrastructure for indoor positioning
+  duration: 2014 — Present
+  role: System Designer
+  description: "Designed scalable systems for crowdsourced radio map construction and automated data collection to support large-scale indoor positioning services."
+
+- project: Connectivity and Tracking Systems
+  title: Applied localization and sensing in production systems
+  duration: 2022 — Present
+  role: Staff Engineer
+  description: "Applied localization and sensing technologies to connectivity optimization and tracking systems deployed in production-oriented environments."
