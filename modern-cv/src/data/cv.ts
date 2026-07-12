@@ -39,7 +39,7 @@ export const cv = {
     {
       title: "AI for Network Operations",
       detail:
-        "Extending conventional ML work into LLM-based agents for autonomous optimization in wireless environments."
+        "Extending conventional ML work into LLM-based decision support for network optimization in wireless environments."
     }
   ],
   interests: [
@@ -61,7 +61,7 @@ export const cv = {
         "Built spatial discrimination models for distinguishing users within near-identical indoor environments using deep neural networks.",
         "Designed motion-based proximity detection systems for device interaction and sensing applications.",
         "Developed context-aware network switching mechanisms between cellular and Wi-Fi using learned models for connectivity optimization.",
-        "Currently developing LLM-based network optimization agents for autonomous decision-making in wireless environments.",
+        "Developing an LLM-based network optimization agent for decision support in wireless environments.",
         "Extended research prototypes into deployment-oriented system design across localization, sensing, and networking."
       ]
     }
