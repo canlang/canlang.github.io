@@ -1,10 +1,14 @@
-_site/
-.sass-cache/
-.jekyll-cache/
-.bundle/
-vendor/
-Gemfile.lock
+# Build output
+dist/
+.astro/
+
+# Dependencies
 node_modules/
-_site/
-_vendor/
+
+# Environment
 .env
+.env.production
+
+# OS
+.DS_Store
+Thumbs.db

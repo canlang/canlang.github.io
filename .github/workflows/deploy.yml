@@ -1,5 +1,9 @@
 name: Deploy Modern CV to GitHub Pages
-on: [push]
+
+on:
+  push:
+    branches: [codex/update-cv-site, master]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -14,21 +18,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: modern-cv/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
-        working-directory: modern-cv
         run: npm ci
 
-      - name: Build modern CV site
-        working-directory: modern-cv
+      - name: Build Astro site
         run: npm run build
         env:
           ASTRO_TELEMETRY_DISABLED: 1
@@ -37,7 +40,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./modern-cv/dist
+          publish_dir: ./dist
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -45,7 +48,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./modern-cv/dist
+          path: ./dist
 
   deploy:
     environment:
