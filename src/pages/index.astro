@@ -13,11 +13,11 @@ const highlightAuthor = (authors: string[]) =>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <main class="page-container">
-    <!-- Top Utility Bar: Theme Toggle & Quick Status -->
+    <!-- Top Utility Bar: Theme Toggle & Role Badge -->
     <div class="top-bar">
       <div class="status-pill">
         <span class="pulse-dot"></span>
-        <span class="status-text">Staff Engineer @ Samsung Research · Ph.D. (KAIST)</span>
+        <span class="status-text">Staff Engineer @ Samsung Research · Ph.D. in CS (KAIST)</span>
       </div>
       <button id="theme-toggle-btn" class="theme-toggle" title="Toggle Light / Dark mode" aria-label="Toggle theme">
         <span class="theme-icon">🌓</span>
@@ -25,14 +25,14 @@ const highlightAuthor = (authors: string[]) =>
       </button>
     </div>
 
-    <!-- Masthead: Academic Identity with Right-side Avatar -->
+    <!-- Masthead: Identity & Harmonious Link Bar -->
     <header class="masthead">
       <div class="masthead-bio">
         <h1 class="name">
           {cv.name} <span class="ko-name">이상재</span>
         </h1>
         <p class="role-affiliation">
-          {cv.title} · Ph.D. in Computer Science
+          {cv.title}
         </p>
         <p class="headline-summary">
           {cv.headline}
@@ -42,21 +42,25 @@ const highlightAuthor = (authors: string[]) =>
           {cv.intro}
         </p>
 
-        <!-- Action Links Toolbar -->
+        <!-- Balanced, Harmonious Quick-Links Bar -->
         <div class="quick-links">
-          <button id="copy-email-btn" class="link-btn primary" data-email={cv.email}>
-            ✉️ {cv.email}
+          <button id="copy-email-btn" class="link-item" data-email={cv.email} title="Click to copy email">
+            <span class="icon">✉️</span> {cv.email}
           </button>
-          <a href="/sangjae-lee-pro-academic-cv.pdf" target="_blank" rel="noreferrer" class="link-btn">
-            📄 CV (PDF) ↗
+          <span class="link-sep">/</span>
+          <a href="/sangjae-lee-pro-academic-cv.pdf" target="_blank" rel="noreferrer" class="link-item">
+            <span class="icon">📄</span> CV (PDF) ↗
           </a>
-          <a href={cv.github} target="_blank" rel="noreferrer" class="link-btn">
+          <span class="link-sep">/</span>
+          <a href={cv.github} target="_blank" rel="noreferrer" class="link-item">
             GitHub ↗
           </a>
-          <a href={cv.linkedin} target="_blank" rel="noreferrer" class="link-btn">
+          <span class="link-sep">/</span>
+          <a href={cv.linkedin} target="_blank" rel="noreferrer" class="link-item">
             LinkedIn ↗
           </a>
-          <span class="location-tag">📍 {cv.location}</span>
+          <span class="link-sep">/</span>
+          <span class="location-item">📍 {cv.location}</span>
         </div>
       </div>
 
@@ -65,19 +69,42 @@ const highlightAuthor = (authors: string[]) =>
       </div>
     </header>
 
-    <!-- Compact Key Metrics Strip -->
-    <section class="metrics-strip">
-      {cv.metrics.map((metric) => (
-        <div class="metric-item">
-          <span class="metric-value">{metric.value}</span>
-          <span class="metric-label">{metric.label}</span>
-        </div>
-      ))}
+    <!-- Recent Focus & Featured Highlights (Latest Trajectory) -->
+    <section class="content-section highlight-section">
+      <div class="section-header-row">
+        <h2 class="section-heading">Current Trajectory & Highlights</h2>
+        <span class="section-tag-label">Recent Work</span>
+      </div>
+      <p class="section-intro-text">
+        At Samsung Research, my work centers on bridging wireless connectivity intelligence with state-of-the-art Telco AI and Multi-Agent systems.
+      </p>
+
+      <div class="highlights-container">
+        {cv.recentHighlights.map((item, idx) => (
+          <article class={`highlight-item ${idx === 0 ? 'featured-highlight' : ''}`}>
+            <div class="highlight-header">
+              <div class="highlight-title-group">
+                <span class="highlight-tag">{item.tag}</span>
+                <h3 class="highlight-title">{item.title}</h3>
+              </div>
+              <span class="highlight-period">{item.period}</span>
+            </div>
+            <p class="highlight-desc">{item.description}</p>
+            {item.link && (
+              <div class="highlight-action">
+                <a href={item.link} target="_blank" rel="noreferrer" class="article-link">
+                  🔗 Read Article: {item.linkLabel}
+                </a>
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
     </section>
 
-    <!-- Research Focus & Domains -->
+    <!-- Research Focus & Domain Tags -->
     <section class="content-section">
-      <h2 class="section-heading">Research Focus</h2>
+      <h2 class="section-heading">Research Domains</h2>
       <p class="prose-text">
         {cv.profile}
       </p>
@@ -95,11 +122,11 @@ const highlightAuthor = (authors: string[]) =>
         <span class="section-counter">{cv.publications.length} peer-reviewed articles</span>
       </div>
       <p class="section-intro-text">
-        Articles covering indoor localization, wireless sensing, sensor fusion SLAM, and network optimization.
+        Articles in wireless sensing, indoor positioning, SLAM, and network optimization across ACM MobiSys, IEEE Access, and IEEE ICC.
       </p>
 
       <ol class="publications-list">
-        {cv.publications.map((paper, index) => (
+        {cv.publications.map((paper) => (
           <li class="pub-entry">
             <div class="pub-main-content">
               <h3 class="pub-title">
@@ -217,7 +244,7 @@ const highlightAuthor = (authors: string[]) =>
       </div>
     </section>
 
-    <!-- Skills & Tooling -->
+    <!-- Technical Competencies -->
     <section class="content-section">
       <h2 class="section-heading">Technical Competencies</h2>
       <div class="skills-wrapper">
@@ -232,7 +259,7 @@ const highlightAuthor = (authors: string[]) =>
 
     <!-- Footer -->
     <footer class="page-footer">
-      <p>© {new Date().getFullYear()} {cv.name}. Built with Astro & TypeScript. Clean academic & engineering typesetting.</p>
+      <p>© {new Date().getFullYear()} {cv.name}. Built with Astro & TypeScript.</p>
       <div class="footer-bottom-links">
         <a href={cv.github} target="_blank" rel="noreferrer">GitHub</a> · 
         <a href={cv.linkedin} target="_blank" rel="noreferrer">LinkedIn</a> · 
@@ -315,11 +342,14 @@ const highlightAuthor = (authors: string[]) =>
     --status-border: #bbf7d0;
     --status-text: #166534;
 
+    --highlight-border: #0284c7;
+    --highlight-bg: #f0f9ff;
+
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Monaco, Consolas, monospace;
   }
 
-  /* Dark Theme Tokens (Deep Obsidian with High Readability) */
+  /* Dark Theme Tokens */
   :global(.dark) {
     --bg-main: #09090b;
     --bg-subtle: #121215;
@@ -339,9 +369,12 @@ const highlightAuthor = (authors: string[]) =>
     --status-bg: rgba(16, 185, 129, 0.1);
     --status-border: rgba(16, 185, 129, 0.25);
     --status-text: #6ee7b7;
+
+    --highlight-border: #38bdf8;
+    --highlight-bg: rgba(56, 189, 248, 0.08);
   }
 
-  /* Base Reset & Layout */
+  /* Base Reset */
   * {
     box-sizing: border-box;
     margin: 0;
@@ -444,9 +477,9 @@ const highlightAuthor = (authors: string[]) =>
     justify-content: space-between;
     align-items: flex-start;
     gap: 2.5rem;
-    padding-bottom: 2.25rem;
+    padding-bottom: 2.5rem;
     border-bottom: 1px solid var(--border-subtle);
-    margin-bottom: 2.25rem;
+    margin-bottom: 2.75rem;
   }
 
   .masthead-bio {
@@ -490,49 +523,45 @@ const highlightAuthor = (authors: string[]) =>
     margin-bottom: 1.5rem;
   }
 
-  /* Quick links */
+  /* Balanced Quick Links */
   .quick-links {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.6rem;
-    font-size: 0.85rem;
+    gap: 0.5rem;
+    font-size: 0.875rem;
   }
 
-  .link-btn {
-    background: var(--bg-chip);
-    border: 1px solid var(--border-subtle);
-    color: var(--text-secondary);
-    padding: 0.35rem 0.75rem;
-    border-radius: 6px;
+  .link-item {
+    background: transparent;
+    border: none;
+    color: var(--link-color);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.825rem;
+    font-size: 0.875rem;
     cursor: pointer;
+    padding: 0.15rem 0.25rem;
+    border-radius: 4px;
     transition: all 0.15s ease;
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.3rem;
+    font-family: inherit;
   }
-  .link-btn:hover {
-    background: var(--text-primary);
-    color: var(--bg-main);
-    border-color: var(--text-primary);
-  }
-  .link-btn.primary {
-    background: var(--text-primary);
-    color: var(--bg-main);
-    border-color: var(--text-primary);
-    font-weight: 600;
-  }
-  .link-btn.primary:hover {
-    opacity: 0.9;
+  .link-item:hover {
+    color: var(--link-hover);
+    background: var(--bg-chip);
+    text-decoration: underline;
   }
 
-  .location-tag {
+  .link-sep {
+    color: var(--border-subtle);
+    font-size: 0.8rem;
+  }
+
+  .location-item {
     font-size: 0.825rem;
     color: var(--text-muted);
-    margin-left: 0.25rem;
   }
 
   /* Avatar */
@@ -546,34 +575,6 @@ const highlightAuthor = (authors: string[]) =>
     object-fit: cover;
     border: 3px solid var(--border-subtle);
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-  }
-
-  /* Metrics Strip */
-  .metrics-strip {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.25rem;
-    padding: 1.25rem;
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-subtle);
-    border-radius: 8px;
-    margin-bottom: 3rem;
-  }
-  .metric-item {
-    display: flex;
-    flex-direction: column;
-  }
-  .metric-value {
-    font-size: 1.85rem;
-    font-weight: 800;
-    color: var(--text-primary);
-    font-family: var(--font-mono);
-    line-height: 1.1;
-  }
-  .metric-label {
-    font-size: 0.825rem;
-    color: var(--text-muted);
-    margin-top: 0.2rem;
   }
 
   /* Content Sections */
@@ -604,8 +605,9 @@ const highlightAuthor = (authors: string[]) =>
     margin-bottom: 0;
     padding-bottom: 0;
   }
-  .section-counter {
-    font-size: 0.85rem;
+  .section-counter,
+  .section-tag-label {
+    font-size: 0.825rem;
     color: var(--text-muted);
     font-family: var(--font-mono);
   }
@@ -616,6 +618,94 @@ const highlightAuthor = (authors: string[]) =>
     margin-bottom: 1.5rem;
   }
 
+  /* Highlights Section */
+  .highlights-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .highlight-item {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    transition: border-color 0.15s ease;
+  }
+  .highlight-item:hover {
+    border-color: var(--link-color);
+  }
+
+  .featured-highlight {
+    background: var(--highlight-bg);
+    border-left: 4px solid var(--highlight-border);
+  }
+
+  .highlight-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .highlight-title-group {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+  }
+
+  .highlight-tag {
+    font-size: 0.725rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--bg-chip);
+    color: var(--text-accent);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .highlight-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .highlight-period {
+    font-size: 0.825rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .highlight-desc {
+    font-size: 0.925rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0.65rem;
+  }
+
+  .highlight-action {
+    margin-top: 0.5rem;
+  }
+  .article-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--link-color);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .article-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Research Domains */
   .prose-text {
     font-size: 0.975rem;
     color: var(--text-secondary);
@@ -632,9 +722,9 @@ const highlightAuthor = (authors: string[]) =>
     background: var(--bg-chip);
     border: 1px solid var(--border-subtle);
     color: var(--text-secondary);
-    font-size: 0.8rem;
+    font-size: 0.825rem;
     font-weight: 500;
-    padding: 0.25rem 0.65rem;
+    padding: 0.25rem 0.7rem;
     border-radius: 4px;
     font-family: var(--font-mono);
   }
@@ -988,7 +1078,8 @@ const highlightAuthor = (authors: string[]) =>
     }
     .exp-title-row,
     .grant-title-line,
-    .edu-header {
+    .edu-header,
+    .highlight-header {
       flex-direction: column;
       align-items: flex-start;
       gap: 0.2rem;
@@ -999,7 +1090,7 @@ const highlightAuthor = (authors: string[]) =>
     }
   }
 
-  /* Print Stylesheet (Clean A4 Paper Output) */
+  /* Print Stylesheet */
   @media print {
     :root {
       --bg-main: #ffffff !important;
@@ -1033,7 +1124,7 @@ const highlightAuthor = (authors: string[]) =>
 
     .masthead,
     .content-section,
-    .metrics-strip {
+    .highlight-item {
       border: none !important;
       margin-bottom: 1.25rem !important;
       padding: 0 !important;
@@ -1042,7 +1133,8 @@ const highlightAuthor = (authors: string[]) =>
 
     .pub-entry,
     .exp-entry,
-    .grant-row {
+    .grant-row,
+    .highlight-item {
       break-inside: avoid;
       page-break-inside: avoid;
     }

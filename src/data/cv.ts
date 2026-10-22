@@ -1,21 +1,46 @@
 export const cv = {
   name: "Sangjae Lee",
   title: "Staff Engineer, Samsung Research",
-  headline: "Wireless Sensing, Indoor Localization, and AI-Native Network Intelligence",
+  headline: "Telco AI, Agentic Networks, Wireless Connectivity, and Sensing",
   email: "research@studiosjlee.com",
   secondaryEmail: "summit@kaist.ac.kr",
   phone: "+82-10-8960-0708",
   github: "https://github.com/canlang",
   linkedin: "https://www.linkedin.com/in/sjlee-korea/",
-  location: "Daejeon / Seoul, Republic of Korea",
+  location: "Seoul / Daejeon, Republic of Korea",
   intro:
-    "Staff Engineer at Samsung Research with a Ph.D. in Computer Science from KAIST, specializing in indoor localization, wireless sensing, sensor fusion, and AI-driven network optimization.",
+    "Staff Engineer at Samsung Research with a Ph.D. in Computer Science from KAIST. My current research explores Telco AI, Large Telecom Models (LTM), and multi-agent systems for autonomous network optimization, building upon a strong foundation in wireless connectivity, mobility prediction, and indoor sensing.",
   profile:
-    "My work focuses on turning sensing and localization research into dependable systems for real-world deployment. Across research and engineering roles, I have developed methods that connect noisy physical signals to practical positioning, connectivity, and optimization decisions.",
+    "At Samsung Research, my work began with intelligent wireless connectivity and context-aware multi-RAT (Cellular/Wi-Fi) switching, and has recently expanded into cutting-edge Telco AI and Agentic networks. I collaborate closely with global telecom operators—such as our recent joint autonomous network research with SoftBank—to design interoperable, LLM-driven decision systems that bridge domain-specific foundation models with mission-critical telecom infrastructure.",
+  recentHighlights: [
+    {
+      title: "Autonomous Network via Multi-Agent Collaboration with LTM (Joint Research with SoftBank)",
+      period: "Oct 2026",
+      tag: "Telco AI / Multi-Agent / LTM",
+      link: "https://www.softbank.jp/en/corp/technology/research/topics/235/",
+      linkLabel: "SoftBank Tech Blog Article ↗",
+      description:
+        "Joint research between SoftBank and Samsung Electronics on autonomous network operations powered by the Large Telecom Model (LTM). Developed multi-agent architectures (A2A, A2A-T, TMF921) enabling operator Telco Agents and vendor Vendor Agents to autonomously coordinate complex stadium congestion management and parameter optimization. Featured at SVFW Summit 2026."
+    },
+    {
+      title: "Large Telecom Model (LTM) & Agentic Network Optimization",
+      period: "2024 - Present",
+      tag: "Samsung Research",
+      description:
+        "Designing domain-specialized foundation models and autonomous multi-agent pipelines for telecom operations, automated root-cause diagnosis, and closed-loop wireless optimization."
+    },
+    {
+      title: "Context-Aware Wireless Connectivity & Intelligent Network Switching",
+      period: "2022 - 2024",
+      tag: "Samsung Research",
+      description:
+        "Engineered machine-learned context recognition and predictive switching mechanisms between cellular and Wi-Fi networks to enhance user QoE and link reliability in challenging indoor/outdoor environments."
+    }
+  ],
   metrics: [
     {
       value: "14+",
-      label: "Years in localization and sensing research"
+      label: "Years in localization, sensing & wireless research"
     },
     {
       value: "9",
@@ -28,27 +53,27 @@ export const cv = {
   ],
   strengths: [
     {
+      title: "Telco AI & Autonomous Networks",
+      detail:
+        "Pioneering multi-agent collaborative frameworks and Large Telecom Models (LTM) for intelligent network operations."
+    },
+    {
+      title: "Wireless Connectivity Intelligence",
+      detail:
+        "Context-aware network switching mechanisms bridging physical channel signals with reliable policy decisions."
+    },
+    {
       title: "Applied Research Leadership",
       detail:
-        "Turning advanced sensing and localization research into systems that hold up in product and deployment contexts."
-    },
-    {
-      title: "Signal-to-Intelligence Systems",
-      detail:
-        "Designing pipelines that move from raw wireless and geomagnetic signals to reliable inference and decision support."
-    },
-    {
-      title: "AI for Network Operations",
-      detail:
-        "Extending conventional ML work into LLM-based decision support for network optimization in wireless environments."
+        "Bridging fundamental academic algorithms with large-scale deployment in mission-critical industrial environments."
     }
   ],
   interests: [
-    "Wireless sensing",
-    "Indoor localization",
-    "Sensor fusion & SLAM",
-    "Network intelligence",
-    "AI-driven optimization"
+    "Telco AI & Large Telecom Models (LTM)",
+    "Multi-Agent Autonomous Networks",
+    "Wireless Connectivity & Mobility",
+    "Indoor Localization & SLAM",
+    "Sensor Fusion & Signal Processing"
   ],
   experience: [
     {
@@ -56,14 +81,13 @@ export const cv = {
       role: "Staff Engineer",
       period: "Apr 2022 - Present",
       summary:
-        "Leading research and development for indoor localization and wireless intelligence systems, with work spanning signal-based positioning, learned sensing models, and AI-driven optimization.",
+        "Leading research across Telco AI, multi-agent network intelligence, wireless connectivity, and indoor sensing systems.",
       bullets: [
-        "Developed indoor localization systems using geomagnetic signals, Wi-Fi, and conventional machine learning approaches.",
-        "Built spatial discrimination models for distinguishing users within near-identical indoor environments using deep neural networks.",
-        "Designed motion-based proximity detection systems for device interaction and sensing applications.",
-        "Developed context-aware network switching mechanisms between cellular and Wi-Fi using learned models for connectivity optimization.",
-        "Developing an LLM-based network optimization agent for decision support in wireless environments.",
-        "Extended research prototypes into deployment-oriented system design across localization, sensing, and networking."
+        "Co-developed multi-agent autonomous network optimization architecture with SoftBank using Large Telecom Models (LTM) and standardized A2A/TMF921 interfaces.",
+        "Developing LLM-based autonomous agent frameworks for real-time root-cause analysis and configuration optimization in wireless environments.",
+        "Engineered learned context-aware network switching mechanisms between cellular and Wi-Fi to optimize link reliability and throughput.",
+        "Developed indoor localization and spatial discrimination models using deep neural networks and multi-modal wireless/geomagnetic signals.",
+        "Translating fundamental wireless and AI research prototypes into scalable deployment-oriented production systems."
       ]
     }
   ],
@@ -323,16 +347,16 @@ export const cv = {
   ],
   skills: [
     {
-      label: "Languages",
-      items: ["Python", "Java", "C/C++", "JavaScript", "MATLAB", "Kotlin"]
+      label: "Domains & Systems",
+      items: ["Telco AI & Large Telecom Models (LTM)", "Multi-Agent Systems", "Autonomous Networks", "Wireless Connectivity & Switching", "Indoor Localization & SLAM"]
     },
     {
-      label: "Modeling & Analysis",
-      items: ["Deep Learning", "Signal Processing", "Multi-Sensor Fusion", "SLAM", "Factor-Graph Optimization"]
+      label: "Methods & AI",
+      items: ["LLM Agents", "A2A Interoperability", "Reinforcement Learning", "Multi-Sensor Fusion", "Factor-Graph Optimization"]
     },
     {
-      label: "Systems & Domains",
-      items: ["Indoor Localization", "Wireless Sensing", "Geomagnetic Anomaly Modeling", "Autonomous Network Intelligence"]
+      label: "Languages & Tools",
+      items: ["Python", "PyTorch", "C/C++", "Java", "Kotlin", "MATLAB", "Linux/Git"]
     }
   ]
 };
