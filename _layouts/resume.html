@@ -35,22 +35,126 @@
           {% include icon-links.html %}
         </div>
 
+        {% if site.resume_research_keywords %}
+        <div class="research-keywords no-print">
+          {% for kw in site.resume_research_keywords %}
+          <span class="keyword-tag">{{ kw }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+
         <div class="executive-summary" itemprop="description">
           {{ site.resume_header_intro }}
         </div>
 
-        {% if site.resume_looking_for_work == 'yes' %}
-        <a href="mailto:{{ site.resume_contact_email }}" class="contact-button no-print" itemprop="email">Contact me</a>
-        {% elsif site.resume_looking_for_work == 'no' %}
-        <a class="contact-button not-looking no-print">I'm not looking for work right now.</a>
-        {% else %}
-        {% endif %}
+        <div class="header-contact-meta no-print">
+          {% if site.resume_contact_email %}
+          <span class="meta-item"><a href="mailto:{{ site.resume_contact_email }}"><span class="meta-icon">✉️</span> {{ site.resume_contact_email }}</a></span>
+          {% endif %}
+          {% if site.resume_secondary_email %}
+          <span class="meta-sep">&bull;</span>
+          <span class="meta-item"><a href="mailto:{{ site.resume_secondary_email }}"><span class="meta-icon">🏛️</span> {{ site.resume_secondary_email }}</a></span>
+          {% endif %}
+          <span class="meta-sep">&bull;</span>
+          <span class="meta-item"><span class="meta-icon">📍</span> Daejeon / Seoul, Republic of Korea</span>
+        </div>
 
       </header>
 
+      {% if site.resume_section_featured_research %}
+      <!-- begin Featured Research -->
+      <section class="content-section featured-research-section" id="featured-research">
+
+        <header class="section-header">
+          <h2>Featured Research & Systems</h2>
+        </header>
+
+        <div class="featured-grid">
+          {% for item in site.data.featured_research %}
+          <div class="featured-card">
+            <div class="featured-card-header">
+              <span class="featured-badge">{{ item.badge }}</span>
+              <h3 class="featured-card-title">{{ item.title }}</h3>
+            </div>
+            <p class="featured-card-summary">{{ item.summary }}</p>
+            <ul class="featured-card-points">
+              {% for pt in item.key_points %}
+              <li>{{ pt }}</li>
+              {% endfor %}
+            </ul>
+            {% if item.links %}
+            <div class="featured-card-links">
+              {% for link in item.links %}
+              <a href="{{ link.url }}" class="action-pill" {% if link.url contains 'http' %}target="_blank" rel="noopener"{% endif %}>{{ link.label }} &rarr;</a>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+
+      </section>
+      <!-- end Featured Research -->
+      {% endif %}
+
+      {% if site.resume_section_publications %}
+      <!-- begin Publications -->
+      <section class="content-section publications-section" id="publications">
+        <header class="section-header">
+          <h2>Publications</h2>
+        </header>
+
+        {% assign sorted_papers = site.data.papers %}
+        {% for paper in sorted_papers %}
+        <div class="resume-item pub-item" itemscope itemtype="http://schema.org/CreativeWork" id="{{ paper.id }}">
+          {% assign link = paper.url %}
+          {% if link == nil and paper.doi %}
+            {% assign link = 'https://doi.org/' | append: paper.doi %}
+          {% endif %}
+          <h3 class="resume-item-title pub-title" itemprop="name">
+            {% if link %}
+              <a href="{{ link }}" target="_blank" rel="noopener">{{ paper.title }}</a>
+            {% else %}
+              {{ paper.title }}
+            {% endif %}
+          </h3>
+          <h4 class="resume-item-details pub-meta" itemprop="datePublished">
+            <span class="pub-venue">{{ paper.venue }}</span> &bull; <span class="pub-year">{{ paper.year }}</span>
+            {% if paper.type %}<span class="pub-type-tag">{{ paper.type | capitalize }}</span>{% endif %}
+          </h4>
+          <p class="resume-item-copy pub-authors"><strong>Authors:</strong> {{ paper.authors | join: ', ' }}</p>
+
+          <div class="pub-actions no-print">
+            {% if link %}
+            <a href="{{ link }}" class="action-pill" target="_blank" rel="noopener">📄 Paper</a>
+            {% endif %}
+            {% if paper.doi %}
+            <a href="https://doi.org/{{ paper.doi }}" class="action-pill" target="_blank" rel="noopener">🔗 DOI</a>
+            {% endif %}
+            {% if paper.bibtex %}
+            <button type="button" class="action-pill bibtex-toggle-btn" onclick="toggleBibtex('bib-{{ forloop.index }}')">📑 BibTeX</button>
+            {% endif %}
+          </div>
+
+          {% if paper.bibtex %}
+          <div id="bib-{{ forloop.index }}" class="bibtex-block" style="display: none;">
+            <div class="bibtex-bar">
+              <span>BibTeX Citation</span>
+              <button type="button" class="bibtex-copy-btn" onclick="copyBibtex('bib-code-{{ forloop.index }}', this)">Copy</button>
+            </div>
+            <pre><code id="bib-code-{{ forloop.index }}">{{ paper.bibtex | strip }}</code></pre>
+          </div>
+          {% endif %}
+        </div>
+        {% endfor %}
+
+      </section>
+      <!-- end Publications -->
+      {% endif %}
+
       {% if site.resume_section_experience %}
       <!-- begin Experience -->
-      <section class="content-section">
+      <section class="content-section" id="experience">
 
         <header class="section-header">
           <h2>Experience</h2>
@@ -68,10 +172,9 @@
       <!-- end Experience -->
       {% endif %}
 
-
       {% if site.resume_section_education %}
       <!-- begin Education -->
-      <section class="content-section">
+      <section class="content-section" id="education">
         <header class="section-header">
           <h2>Education</h2>
         </header>
@@ -116,39 +219,6 @@
         {% endfor %}
       </section>
       <!-- end Education -->
-      {% endif %}
-
-
-      {% if site.resume_section_publications %}
-      <!-- begin Publications -->
-      <section class="content-section publications">
-        <header class="section-header">
-          <h2>Selected Publications</h2>
-        </header>
-
-        <!-- {% assign sorted_papers = site.data.papers | sort: 'year' | reverse %} -->
-        {% assign sorted_papers = site.data.papers %}
-        {% for paper in sorted_papers %}
-        <div class="resume-item" itemscope itemtype="http://schema.org/CreativeWork">
-          {% comment %} Linkify publication titles when url or doi is provided {% endcomment %}
-          {% assign link = paper.url %}
-          {% if link == nil and paper.doi %}
-            {% assign link = 'https://doi.org/' | append: paper.doi %}
-          {% endif %}
-          <h3 class="resume-item-title" itemprop="name">
-            {% if link %}
-              <a href="{{ link }}" target="_blank" rel="noopener">{{ paper.title }}</a>
-            {% else %}
-              {{ paper.title }}
-            {% endif %}
-          </h3>
-          <h4 class="resume-item-details" itemprop="datePublished">{{ paper.venue }} &bull; {{ paper.year }}</h4>
-          <p class="resume-item-copy"><strong>Authors:</strong> {{ paper.authors | join: ', ' }}</p>
-        </div>
-        {% endfor %}
-
-      </section>
-      <!-- end Publications -->
       {% endif %}
 
 
@@ -299,6 +369,45 @@
       </footer> -->
 
     </div>
+
+    <script>
+      function toggleBibtex(id) {
+        var el = document.getElementById(id);
+        if (el) {
+          el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+        }
+      }
+      function copyBibtex(codeId, btn) {
+        var el = document.getElementById(codeId);
+        if (el) {
+          var text = el.innerText || el.textContent;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function() {
+              showCopiedFeedback(btn);
+            });
+          } else {
+            var textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            showCopiedFeedback(btn);
+          }
+        }
+      }
+      function showCopiedFeedback(btn) {
+        var orig = btn.innerText;
+        btn.innerText = 'Copied!';
+        btn.style.backgroundColor = '#2da44e';
+        btn.style.color = '#fff';
+        setTimeout(function() {
+          btn.innerText = orig;
+          btn.style.backgroundColor = '';
+          btn.style.color = '';
+        }, 2000);
+      }
+    </script>
 
   </body>
 

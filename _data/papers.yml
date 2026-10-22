@@ -1,38 +1,205 @@
-# Publications
-- year: 2020
+# Publications List
+- id: lee2020indoor
+  year: 2020
   title: "Indoor Localization Using Augmented Vector of Geomagnetic Field"
   authors:
     - "<strong>Sangjae Lee</strong>"
-    - Seungwoo Chae
-    - Dongsoo Han
+    - "Seungwoo Chae"
+    - "Dongsoo Han"
   venue: "IEEE Access"
   type: journal
   url: "https://ieeexplore.ieee.org/document/9216148"
+  doi: "10.1109/ACCESS.2020.3029671"
+  bibtex: |
+    @article{lee2020indoor,
+      title={Indoor Localization Using Augmented Vector of Geomagnetic Field},
+      author={Lee, Sangjae and Chae, Seungwoo and Han, Dongsoo},
+      journal={IEEE Access},
+      volume={8},
+      pages={184852--184863},
+      year={2020},
+      publisher={IEEE},
+      doi={10.1109/ACCESS.2020.3029671}
+    }
 
-- year: 2019
+- id: lee2020fusion
+  year: 2020
+  title: "Fusion of the SLAM with Wi-Fi-Based Positioning Methods for Mobile Robot"
+  authors:
+    - "Gunwoo Lee"
+    - "Byeong-Cheol Moon"
+    - "<strong>Sangjae Lee</strong>"
+    - "Dongsoo Han"
+  venue: "MDPI Sensors"
+  type: journal
+  url: "https://www.mdpi.com/1424-8220/20/18/5182"
+  doi: "10.3390/s20185182"
+  bibtex: |
+    @article{lee2020fusion,
+      title={Fusion of the SLAM with Wi-Fi-Based Positioning Methods for Mobile Robot},
+      author={Lee, Gunwoo and Moon, Byeong-Cheol and Lee, Sangjae and Han, Dongsoo},
+      journal={Sensors},
+      volume={20},
+      number={18},
+      pages={5182},
+      year={2020},
+      publisher={MDPI},
+      doi={10.3390/s20185182}
+    }
+
+- id: lee2019rover
+  year: 2019
   title: "Rover Who Make Indoor Radio Map"
   authors:
     - "<strong>Sangjae Lee</strong>"
-    - Dongsoo Han
-  venue: "MobiSys '19"
+    - "Dongsoo Han"
+  venue: "ACM MobiSys '19"
   type: conference
   url: "https://dl.acm.org/doi/abs/10.1145/3307334.3328596"
+  doi: "10.1145/3307334.3328596"
+  bibtex: |
+    @inproceedings{lee2019rover,
+      title={Rover Who Make Indoor Radio Map},
+      author={Lee, Sangjae and Han, Dongsoo},
+      booktitle={Proceedings of the 17th Annual International Conference on Mobile Systems, Applications, and Services (MobiSys '19)},
+      pages={668--669},
+      year={2019},
+      doi={10.1145/3307334.3328596}
+    }
 
-- year: 2017
+- id: lee2017construction
+  year: 2017
   title: "Construction of an Indoor Positioning System for Home IoT Applications"
   authors:
     - "<strong>Sangjae Lee</strong>"
-    - et al.
-  venue: "ICC '17"
+    - "Seungwoo Chae"
+    - "Sukhoon Jung"
+    - "Dongsoo Han"
+  venue: "IEEE ICC '17"
   type: conference
   url: "https://ieeexplore.ieee.org/abstract/document/7997159/"
+  doi: "10.1109/ICC.2017.7997159"
+  bibtex: |
+    @inproceedings{lee2017construction,
+      title={Construction of an Indoor Positioning System for Home IoT Applications},
+      author={Lee, Sangjae and Chae, Seungwoo and Jung, Sukhoon and Han, Dongsoo},
+      booktitle={2017 IEEE International Conference on Communications (ICC)},
+      pages={1--6},
+      year={2017},
+      organization={IEEE},
+      doi={10.1109/ICC.2017.7997159}
+    }
 
-- year: 2012
+- id: jung2016crowdsourcing
+  year: 2016
+  title: "A Crowdsourcing-Based Global Indoor Positioning and Navigation System"
+  authors:
+    - "Suk-hoon Jung"
+    - "<strong>Sangjae Lee</strong>"
+    - "Dongsoo Han"
+  venue: "Pervasive and Mobile Computing"
+  type: journal
+  url: "https://www.sciencedirect.com/science/article/pii/S1574119216000389"
+  doi: "10.1016/j.pmcj.2016.03.003"
+  bibtex: |
+    @article{jung2016crowdsourcing,
+      title={A crowdsourcing-based global indoor positioning and navigation system},
+      author={Jung, Suk-hoon and Lee, Sangjae and Han, Dongsoo},
+      journal={Pervasive and Mobile Computing},
+      volume={29},
+      pages={29--44},
+      year={2016},
+      publisher={Elsevier},
+      doi={10.1016/j.pmcj.2016.03.003}
+    }
+
+- id: han2016sensor
+  year: 2016
+  title: "A Sensor Fusion Method for Wi-Fi-Based Indoor Positioning"
+  authors:
+    - "Dongsoo Han"
+    - "Suk-hoon Jung"
+    - "<strong>Sangjae Lee</strong>"
+  venue: "ICT Express"
+  type: journal
+  url: "https://www.sciencedirect.com/science/article/pii/S2405959516300145"
+  doi: "10.1016/j.icte.2016.05.002"
+  bibtex: |
+    @article{han2016sensor,
+      title={A sensor fusion method for Wi-Fi-based indoor positioning},
+      author={Han, Dongsoo and Jung, Suk-hoon and Lee, Sangjae},
+      journal={ICT Express},
+      volume={2},
+      number={2},
+      pages={69--72},
+      year={2016},
+      publisher={Elsevier},
+      doi={10.1016/j.icte.2016.05.002}
+    }
+
+- id: han2014kailos
+  year: 2014
+  title: "KAILOS: KAIST Indoor Locating System"
+  authors:
+    - "Dongsoo Han"
+    - "<strong>Sangjae Lee</strong>"
+    - "Sunghoon Kim"
+  venue: "IPIN '14"
+  type: conference
+  url: "https://ieeexplore.ieee.org/abstract/document/7275535/"
+  doi: "10.1109/IPIN.2014.7275535"
+  bibtex: |
+    @inproceedings{han2014kailos,
+      title={KAILOS: KAIST Indoor Locating System},
+      author={Han, Dongsoo and Lee, Sangjae and Kim, Sunghoon},
+      booktitle={2014 International Conference on Indoor Positioning and Indoor Navigation (IPIN)},
+      pages={671--674},
+      year={2014},
+      organization={IEEE},
+      doi={10.1109/IPIN.2014.7275535}
+    }
+
+- id: lee2012uncaught
+  year: 2012
   title: "Uncaught Signal Imputation for WLAN-Based Positioning"
   authors:
     - "<strong>Sangjae Lee</strong>"
-    - Sukhoon Jung
-    - Dongsoo Han
-  venue: "MobiGIS '12, ACM SIGSPATIAL International Workshop on Mobile Geographic Information Systems, Redondo Beach, California"
+    - "Sukhoon Jung"
+    - "Dongsoo Han"
+  venue: "ACM MobiGIS '12"
   type: conference
   url: "https://dl.acm.org/doi/abs/10.1145/2442810.2442825"
+  doi: "10.1145/2442810.2442825"
+  bibtex: |
+    @inproceedings{lee2012uncaught,
+      title={Uncaught Signal Imputation for WLAN-Based Positioning},
+      author={Lee, Sangjae and Jung, Sukhoon and Han, Dongsoo},
+      booktitle={Proceedings of the First ACM SIGSPATIAL International Workshop on Mobile Geographic Information Systems (MobiGIS '12)},
+      pages={57--64},
+      year={2012},
+      organization={ACM},
+      doi={10.1145/2442810.2442825}
+    }
+
+- id: lee2012elekspot
+  year: 2012
+  title: "Elekspot: A Platform for Urban Place Recognition via Crowdsourcing"
+  authors:
+    - "Minkyu Lee"
+    - "SukHoon Jung"
+    - "<strong>Sangjae Lee</strong>"
+    - "Dongsoo Han"
+  venue: "IEEE/IPSJ SAINT '12"
+  type: conference
+  url: "https://ieeexplore.ieee.org/abstract/document/6305280/"
+  doi: "10.1109/SAINT.2012.33"
+  bibtex: |
+    @inproceedings{lee2012elekspot,
+      title={Elekspot: A Platform for Urban Place Recognition via Crowdsourcing},
+      author={Lee, Minkyu and Jung, SukHoon and Lee, Sangjae and Han, Dongsoo},
+      booktitle={2012 IEEE/IPSJ 12th International Symposium on Applications and the Internet (SAINT)},
+      pages={188--193},
+      year={2012},
+      organization={IEEE},
+      doi={10.1109/SAINT.2012.33}
+    }

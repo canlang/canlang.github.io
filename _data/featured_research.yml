@@ -1,0 +1,50 @@
+# Featured Research & Systems
+- id: geomagnetic-localization
+  title: "Augmented 3D Geomagnetic Indoor Positioning"
+  badge: "Ph.D. Dissertation • IEEE Access '20"
+  summary: "Infrastructure-free indoor positioning leveraging ambient geomagnetic anomalies. Formulates augmented gradient vectors and sequence matching to achieve orientation-invariant sub-meter positioning without external beacon deployment."
+  key_points:
+    - "Eliminates magnetic heading sensitivity through multi-axis augmented vector modeling."
+    - "Maintains meter-level accuracy in complex reinforced concrete structures without anchor installation."
+  links:
+    - label: "Paper (IEEE Access)"
+      url: "https://ieeexplore.ieee.org/document/9216148"
+    - label: "Dissertation"
+      url: "#education"
+
+- id: robot-slam-radiomap
+  title: "Autonomous Mobile Robot SLAM & Radio Map Construction"
+  badge: "MDPI Sensors '20 • ACM MobiSys '19"
+  summary: "Autonomous robotic survey systems ('Rover') fusing LiDAR/inertial SLAM with Wi-Fi positioning. Automatically constructs dense indoor radio maps with centimeter-grade odometry, replacing manual fingerprinting site surveys."
+  key_points:
+    - "Pose-graph optimization coupling Wi-Fi signal decay with mobile robot odometry and loop-closure."
+    - "Demonstrated autonomous radio map construction at ACM MobiSys '19 in Seoul."
+  links:
+    - label: "Paper (MDPI Sensors)"
+      url: "https://www.mdpi.com/1424-8220/20/18/5182"
+    - label: "MobiSys '19"
+      url: "https://dl.acm.org/doi/abs/10.1145/3307334.3328596"
+
+- id: kailos-platform
+  title: "KAILOS: Global Crowdsourced Indoor Positioning Platform"
+  badge: "Platform • Pervasive & Mobile Computing '16"
+  summary: "Pioneered crowdsourced indoor positioning and navigation systems. Built cloud-native log ingestion pipelines, floor-plan registration tools, and client positioning SDKs serving real-world users."
+  key_points:
+    - "Crowdsourcing framework aggregating heterogeneous smartphone sensor logs into coherent global radio maps."
+    - "Deployed as a live public positioning platform at kailos.io and evaluated in large commercial complexes."
+  links:
+    - label: "Platform (kailos.io)"
+      url: "https://kailos.io"
+    - label: "Journal Paper"
+      url: "https://www.sciencedirect.com/science/article/pii/S1574119216000389"
+
+- id: edge-spatial-ai
+  title: "On-Device Spatial AI & Connectivity Intelligence"
+  badge: "Samsung Research • Staff Engineer"
+  summary: "Leading edge spatial perception and network intelligence algorithms. Develops deep-learning-driven spatial discrimination models, proximity sensing, and autonomous network optimization agents on commercial devices."
+  key_points:
+    - "Designed deep neural networks for spatial user discrimination and motion-based proximity detection."
+    - "Built context-aware cellular/Wi-Fi switching agents and intelligent wireless decision models."
+  links:
+    - label: "Experience Details"
+      url: "#experience"
