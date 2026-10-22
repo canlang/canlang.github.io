@@ -2,7 +2,7 @@ name: Deploy Modern CV to GitHub Pages
 on: [push]
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -14,10 +14,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
@@ -32,6 +32,12 @@ jobs:
         run: npm run build
         env:
           ASTRO_TELEMETRY_DISABLED: 1
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./modern-cv/dist
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5

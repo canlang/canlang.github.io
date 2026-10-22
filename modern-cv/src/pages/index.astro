@@ -10,21 +10,26 @@ const highlightAuthor = (authors: string[]) =>
     .join(", ");
 ---
 
-<Layout title={`${cv.name} | CV`} description={cv.intro}>
+<Layout title={`${cv.name} | Academic CV & Research Portfolio`} description={cv.intro}>
   <main class="page">
     <header class="masthead">
       <div class="identity">
-        <p class="eyebrow">Curriculum Vitae</p>
+        <p class="eyebrow">Academic CV & Research Portfolio</p>
         <h1>{cv.name}</h1>
         <p class="title">{cv.title}</p>
+        <p class="headline">{cv.headline}</p>
       </div>
       <div class="contact">
-        <a href={`mailto:${cv.email}`}>{cv.email}</a>
-        <a href={`tel:${cv.phone}`}>{cv.phone}</a>
-        <span>{cv.location}</span>
-        <a href={cv.github} target="_blank" rel="noreferrer">GitHub</a>
-        <a href={cv.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-        <a href="/sangjae-lee-pro-academic-cv.pdf" target="_blank" rel="noreferrer">PDF CV</a>
+        <a href={`mailto:${cv.email}`} class="contact-highlight">✉️ {cv.email}</a>
+        <a href={`mailto:${cv.secondaryEmail}`} class="contact-secondary">🏛️ {cv.secondaryEmail}</a>
+        <span>📍 {cv.location}</span>
+        <div class="contact-links">
+          <a href={cv.github} target="_blank" rel="noreferrer">GitHub</a>
+          <span class="sep">·</span>
+          <a href={cv.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+          <span class="sep">·</span>
+          <a href="/sangjae-lee-pro-academic-cv.pdf" target="_blank" rel="noreferrer" class="pdf-link">PDF CV 📄</a>
+        </div>
       </div>
     </header>
 
@@ -44,6 +49,7 @@ const highlightAuthor = (authors: string[]) =>
 
     <section class="layout">
       <div class="main">
+        <!-- Experience -->
         <section class="section">
           <div class="section-head">
             <p class="section-label">Experience</p>
@@ -67,40 +73,109 @@ const highlightAuthor = (authors: string[]) =>
           ))}
         </section>
 
+        <!-- Publications -->
         <section class="section">
           <div class="section-head">
-            <p class="section-label">Selected Publications</p>
-            <h2>First-Author Highlights</h2>
+            <p class="section-label">Publications</p>
+            <h2>Journal & Conference Publications</h2>
           </div>
 
-          {cv.publications.map((paper) => (
-            <article class="entry publication">
-              <div class="entry-top">
-                <div>
-                  <h3>
-                    <a href={paper.url} target="_blank" rel="noreferrer">{paper.title}</a>
-                  </h3>
-                  <p class="meta">{paper.venue}</p>
+          <div class="publication-list">
+            {cv.publications.map((paper) => (
+              <article class="entry publication">
+                <div class="entry-top">
+                  <div>
+                    <h3>
+                      <a href={paper.url} target="_blank" rel="noreferrer">{paper.title}</a>
+                    </h3>
+                    <p class="meta">
+                      <span class="venue-badge">{paper.venue}</span>
+                      <span class="type-tag">{paper.type}</span>
+                    </p>
+                  </div>
+                  <span class="period">{paper.year}</span>
                 </div>
-                <span class="period">{paper.year}</span>
-              </div>
-              <p class="copy" set:html={highlightAuthor(paper.authors)} />
-            </article>
-          ))}
+                <p class="copy" set:html={highlightAuthor(paper.authors)} />
+
+                <div class="paper-actions">
+                  {paper.url && (
+                    <a href={paper.url} target="_blank" rel="noreferrer" class="action-btn">
+                      📄 Paper
+                    </a>
+                  )}
+                  {paper.doi && (
+                    <a href={`https://doi.org/${paper.doi}`} target="_blank" rel="noreferrer" class="action-btn">
+                      🔗 DOI
+                    </a>
+                  )}
+                  {paper.bibtex && (
+                    <details class="bibtex-toggle">
+                      <summary class="action-btn">📑 BibTeX</summary>
+                      <pre><code>{paper.bibtex}</code></pre>
+                    </details>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <!-- Sponsored Research & Industry Collaborations -->
+        <section class="section">
+          <div class="section-head">
+            <p class="section-label">Sponsored Research & Grants</p>
+            <h2>Industry-Sponsored R&D & National Grants</h2>
+          </div>
+
+          <div class="grants-featured">
+            {cv.sponsoredResearch.featured.map((grant) => (
+              <article class="grant-card">
+                <div class="entry-top">
+                  <div>
+                    <span class="sponsor-badge">{grant.sponsor}</span>
+                    <h3>{grant.title}</h3>
+                    <p class="grant-role">{grant.role}</p>
+                  </div>
+                  <span class="period">{grant.period}</span>
+                </div>
+                <p class="copy">{grant.description}</p>
+                {grant.url && (
+                  <a href={grant.url} target="_blank" rel="noreferrer" class="subtle-link">
+                    Visit {grant.url.replace("https://", "").replace("http://", "")} &rarr;
+                  </a>
+                )}
+              </article>
+            ))}
+          </div>
+
+          <div class="additional-grants">
+            <h4 class="subhead">Additional Sponsored Research</h4>
+            <ul class="grant-list">
+              {cv.sponsoredResearch.additional.map((item) => (
+                <li>
+                  <span class="grant-item-title">{item.title}</span>
+                  <span class="grant-item-meta">— {item.sponsor} ({item.period})</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </section>
       </div>
 
+      <!-- Sidebar -->
       <aside class="side">
-        <section class="section section-tight">
+        <section class="card section section-tight">
           <div class="section-head">
-            <p class="section-label">Research Interests</p>
+            <p class="section-label">Research Focus</p>
           </div>
-          <ul class="plain-list">
-            {cv.interests.map((interest) => <li>{interest}</li>)}
-          </ul>
+          <div class="tag-list">
+            {cv.interests.map((interest) => (
+              <span class="tag">{interest}</span>
+            ))}
+          </div>
         </section>
 
-        <section class="section section-tight">
+        <section class="card section section-tight">
           <div class="section-head">
             <p class="section-label">Education</p>
           </div>
@@ -117,28 +192,9 @@ const highlightAuthor = (authors: string[]) =>
           ))}
         </section>
 
-        <section class="section section-tight">
+        <section class="card section section-tight">
           <div class="section-head">
-            <p class="section-label">Projects</p>
-          </div>
-          {cv.projects.map((project) => (
-            <article class="stack-item">
-              <div class="stack-top">
-                <h3>{project.name}</h3>
-                <span class="period">{project.period}</span>
-              </div>
-              <p class="meta">{project.title}</p>
-              <p class="copy">{project.description}</p>
-              <a href={project.url} target="_blank" rel="noreferrer" class="subtle-link">
-                {project.url.replace("https://", "").replace("http://", "")}
-              </a>
-            </article>
-          ))}
-        </section>
-
-        <section class="section section-tight">
-          <div class="section-head">
-            <p class="section-label">Skills</p>
+            <p class="section-label">Core Capabilities</p>
           </div>
           {cv.skills.map((skill) => (
             <article class="stack-item">
@@ -161,6 +217,8 @@ const highlightAuthor = (authors: string[]) =>
     --line: #ddd8cf;
     --line-strong: #c8c1b6;
     --accent: #0f4c5c;
+    --accent-light: #e6f0f2;
+    --badge-bg: #eef2f5;
   }
 
   :global(html) {
@@ -177,7 +235,8 @@ const highlightAuthor = (authors: string[]) =>
 
   h1,
   h2,
-  h3 {
+  h3,
+  h4 {
     margin: 0;
     color: var(--text);
   }
@@ -188,6 +247,7 @@ const highlightAuthor = (authors: string[]) =>
   }
 
   h3,
+  h4,
   p,
   li,
   a,
@@ -211,9 +271,9 @@ const highlightAuthor = (authors: string[]) =>
 
   .masthead {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1.4fr) auto;
     gap: 24px;
-    padding-bottom: 22px;
+    padding-bottom: 24px;
     border-bottom: 1px solid var(--line-strong);
   }
 
@@ -227,16 +287,23 @@ const highlightAuthor = (authors: string[]) =>
 
   h1 {
     margin-top: 8px;
-    font-size: clamp(2.8rem, 5vw, 4.2rem);
-    line-height: 0.96;
+    font-size: clamp(2.6rem, 4.8vw, 3.8rem);
+    line-height: 1;
     letter-spacing: -0.03em;
   }
 
   .title {
-    margin-top: 10px;
-    font-size: 1rem;
+    margin-top: 8px;
+    font-size: 1.05rem;
     color: var(--accent);
     font-weight: 600;
+  }
+
+  .headline {
+    margin-top: 6px;
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.45;
   }
 
   .contact {
@@ -245,17 +312,54 @@ const highlightAuthor = (authors: string[]) =>
     justify-items: end;
     text-align: right;
     color: var(--muted);
-    font-size: 0.94rem;
+    font-size: 0.92rem;
   }
 
-  .contact a {
+  .contact-highlight {
+    color: var(--accent) !important;
+    font-weight: 600;
     text-decoration: none;
   }
 
+  .contact-secondary {
+    color: var(--muted) !important;
+    text-decoration: none;
+  }
+
+  .contact-links {
+    margin-top: 4px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .contact-links a {
+    text-decoration: none;
+  }
+
+  .contact-links a:hover,
   .contact a:hover,
   .subtle-link:hover,
   .publication a:hover {
     text-decoration: underline;
+  }
+
+  .pdf-link {
+    background-color: var(--accent);
+    color: #ffffff !important;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none !important;
+  }
+
+  .pdf-link:hover {
+    opacity: 0.9;
+  }
+
+  .sep {
+    color: var(--line-strong);
   }
 
   .intro {
@@ -294,21 +398,21 @@ const highlightAuthor = (authors: string[]) =>
 
   .metric strong {
     display: block;
-    font-size: 1.2rem;
-    color: var(--text);
+    font-size: 1.3rem;
+    color: var(--accent);
   }
 
   .metric span {
     display: block;
     margin-top: 6px;
     color: var(--muted);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     line-height: 1.45;
   }
 
   .layout {
     display: grid;
-    grid-template-columns: minmax(0, 1.65fr) minmax(260px, 0.92fr);
+    grid-template-columns: minmax(0, 1.75fr) minmax(260px, 0.95fr);
     gap: 28px;
     margin-top: 26px;
   }
@@ -329,18 +433,19 @@ const highlightAuthor = (authors: string[]) =>
   }
 
   .section-head {
-    margin-bottom: 14px;
+    margin-bottom: 16px;
   }
 
   h2 {
     margin-top: 4px;
-    font-size: 1.28rem;
+    font-size: 1.3rem;
   }
 
   .entry + .entry,
+  .grant-card + .grant-card,
   .stack-item + .stack-item {
-    margin-top: 16px;
-    padding-top: 16px;
+    margin-top: 18px;
+    padding-top: 18px;
     border-top: 1px solid var(--line);
   }
 
@@ -353,8 +458,8 @@ const highlightAuthor = (authors: string[]) =>
   }
 
   h3 {
-    font-size: 0.99rem;
-    line-height: 1.42;
+    font-size: 1.05rem;
+    line-height: 1.35;
   }
 
   .meta {
@@ -367,7 +472,7 @@ const highlightAuthor = (authors: string[]) =>
   .period {
     white-space: nowrap;
     color: var(--muted);
-    font-size: 0.81rem;
+    font-size: 0.82rem;
   }
 
   .bullet-list {
@@ -382,15 +487,141 @@ const highlightAuthor = (authors: string[]) =>
     line-height: 1.56;
   }
 
-  .plain-list {
+  .venue-badge {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .type-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 3px;
+    background: var(--badge-bg);
+    color: var(--muted);
+    margin-left: 6px;
+  }
+
+  .paper-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+    align-items: center;
+  }
+
+  .action-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 1.3;
+  }
+
+  .action-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  details.bibtex-toggle {
+    display: inline-block;
+  }
+
+  details.bibtex-toggle summary {
+    list-style: none;
+  }
+
+  details.bibtex-toggle summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details.bibtex-toggle pre {
+    margin-top: 8px;
+    padding: 10px 12px;
+    background: #f1efe9;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    overflow-x: auto;
+  }
+
+  details.bibtex-toggle code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: var(--text);
+  }
+
+  .sponsor-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+  }
+
+  .grant-role {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .additional-grants {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line-strong);
+  }
+
+  .subhead {
+    font-size: 0.92rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .grant-list {
     margin: 0;
     padding-left: 18px;
     display: grid;
-    gap: 7px;
+    gap: 8px;
+    font-size: 0.92rem;
   }
 
-  .plain-list li {
-    line-height: 1.56;
+  .grant-item-title {
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .grant-item-meta {
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--badge-bg);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    font-size: 0.82rem;
+    color: var(--text);
   }
 
   .subtle-link {
@@ -399,6 +630,7 @@ const highlightAuthor = (authors: string[]) =>
     color: var(--accent);
     font-size: 0.88rem;
     text-decoration: none;
+    font-weight: 500;
   }
 
   @media (max-width: 900px) {
