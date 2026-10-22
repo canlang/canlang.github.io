@@ -2,344 +2,249 @@
 import Layout from "../layouts/Layout.astro";
 import { cv } from "../data/cv";
 
-const firstAuthor = cv.name;
-
 const highlightAuthor = (authors: string[]) =>
   authors
-    .map((author) => (author.includes(firstAuthor) ? `<strong>${author}</strong>` : author))
+    .map((author) => (author.includes(cv.name) ? `<strong class="author-highlight">${author}</strong>` : author))
     .join(", ");
-
-const journalCount = cv.publications.filter((p) => p.type === "Journal").length;
-const confCount = cv.publications.filter((p) => p.type === "Conference").length;
 ---
 
 <Layout title={`${cv.name} | Staff Engineer & Ph.D.`} description={cv.intro}>
-  <!-- Toast Notification Container -->
+  <!-- Toast Notification -->
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <main class="page">
-    <!-- Masthead & Identity -->
-    <header class="masthead">
-      <div class="masthead-main">
-        <div class="avatar-wrap">
-          <img src="/avatar2.jpg" alt={cv.name} class="avatar-img" />
-          <span class="status-indicator" title="Available for academic/research collaborations"></span>
-        </div>
-        <div class="identity">
-          <div class="identity-top">
-            <span class="badge-role">Academic CV & Engineering Portfolio</span>
-            <div class="theme-control-mobile">
-              <button id="theme-toggle-mobile" class="icon-btn" title="Toggle theme" aria-label="Toggle dark/light theme">
-                <span class="theme-icon">🌓</span>
-              </button>
-            </div>
-          </div>
-          <h1>{cv.name} <span class="korean-name">이상재</span></h1>
-          <p class="role-title">{cv.title}</p>
-          <p class="headline">{cv.headline}</p>
+  <main class="page-container">
+    <!-- Top Utility Bar: Theme Toggle & Quick Status -->
+    <div class="top-bar">
+      <div class="status-pill">
+        <span class="pulse-dot"></span>
+        <span class="status-text">Staff Engineer @ Samsung Research · Ph.D. (KAIST)</span>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle" title="Toggle Light / Dark mode" aria-label="Toggle theme">
+        <span class="theme-icon">🌓</span>
+        <span class="theme-label">Theme</span>
+      </button>
+    </div>
 
-          <div class="domain-tags">
-            {cv.interests.map((interest) => (
-              <span class="tag">{interest}</span>
-            ))}
-          </div>
+    <!-- Masthead: Academic Identity with Right-side Avatar -->
+    <header class="masthead">
+      <div class="masthead-bio">
+        <h1 class="name">
+          {cv.name} <span class="ko-name">이상재</span>
+        </h1>
+        <p class="role-affiliation">
+          {cv.title} · Ph.D. in Computer Science
+        </p>
+        <p class="headline-summary">
+          {cv.headline}
+        </p>
+
+        <p class="intro-prose">
+          {cv.intro}
+        </p>
+
+        <!-- Action Links Toolbar -->
+        <div class="quick-links">
+          <button id="copy-email-btn" class="link-btn primary" data-email={cv.email}>
+            ✉️ {cv.email}
+          </button>
+          <a href="/sangjae-lee-pro-academic-cv.pdf" target="_blank" rel="noreferrer" class="link-btn">
+            📄 CV (PDF) ↗
+          </a>
+          <a href={cv.github} target="_blank" rel="noreferrer" class="link-btn">
+            GitHub ↗
+          </a>
+          <a href={cv.linkedin} target="_blank" rel="noreferrer" class="link-btn">
+            LinkedIn ↗
+          </a>
+          <span class="location-tag">📍 {cv.location}</span>
         </div>
       </div>
 
-      <!-- Action Toolbar -->
-      <div class="toolbar">
-        <div class="contact-links">
-          <button id="copy-email-btn" class="btn btn-primary" data-email={cv.email}>
-            <span class="btn-icon">✉️</span> Copy Email
-          </button>
-          <a href="/sangjae-lee-pro-academic-cv.pdf" target="_blank" rel="noreferrer" class="btn btn-secondary">
-            <span class="btn-icon">📄</span> PDF CV
-          </a>
-          <a href={cv.github} target="_blank" rel="noreferrer" class="btn btn-ghost" title="GitHub Profile">
-            <svg class="icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-            </svg>
-            GitHub
-          </a>
-          <a href={cv.linkedin} target="_blank" rel="noreferrer" class="btn btn-ghost" title="LinkedIn Profile">
-            <svg class="icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-            </svg>
-            LinkedIn
-          </a>
-        </div>
-
-        <div class="toolbar-right">
-          <span class="meta-location">📍 {cv.location}</span>
-          <button id="theme-toggle" class="icon-btn desktop-only" title="Toggle theme (Light / Dark)" aria-label="Toggle dark/light theme">
-            <span class="theme-icon">🌓</span>
-          </button>
-        </div>
+      <div class="avatar-area">
+        <img src="/avatar2.jpg" alt={cv.name} class="avatar-photo" />
       </div>
     </header>
 
-    <!-- Metrics Strip -->
-    <section class="metrics-grid">
+    <!-- Compact Key Metrics Strip -->
+    <section class="metrics-strip">
       {cv.metrics.map((metric) => (
-        <div class="metric-card">
-          <strong class="metric-value">{metric.value}</strong>
+        <div class="metric-item">
+          <span class="metric-value">{metric.value}</span>
           <span class="metric-label">{metric.label}</span>
         </div>
       ))}
     </section>
 
-    <!-- Bio & Summary -->
-    <section class="card intro-card">
-      <h2 class="card-title">Executive Summary</h2>
-      <p class="lead-text">{cv.intro}</p>
-      <p class="secondary-text">{cv.profile}</p>
+    <!-- Research Focus & Domains -->
+    <section class="content-section">
+      <h2 class="section-heading">Research Focus</h2>
+      <p class="prose-text">
+        {cv.profile}
+      </p>
+      <div class="tags-container">
+        {cv.interests.map((interest) => (
+          <span class="interest-tag">{interest}</span>
+        ))}
+      </div>
     </section>
 
-    <!-- Main 2-Column Content Layout -->
-    <div class="content-layout">
-      <!-- Left Column (Primary Focus: Experience, Publications, Systems) -->
-      <div class="main-column">
-        <!-- Publications Section -->
-        <section class="card section-card">
-          <div class="section-header">
-            <div>
-              <p class="section-tag">Scholarship</p>
-              <h2 class="card-title">Peer-Reviewed Publications</h2>
-            </div>
-            <!-- Filter Tabs -->
-            <div class="filter-tabs" role="tablist">
-              <button class="filter-tab active" data-filter="all">All ({cv.publications.length})</button>
-              <button class="filter-tab" data-filter="Journal">Journals ({journalCount})</button>
-              <button class="filter-tab" data-filter="Conference">Conferences ({confCount})</button>
-            </div>
-          </div>
+    <!-- Peer-Reviewed Publications -->
+    <section class="content-section">
+      <div class="section-header-row">
+        <h2 class="section-heading">Selected Publications</h2>
+        <span class="section-counter">{cv.publications.length} peer-reviewed articles</span>
+      </div>
+      <p class="section-intro-text">
+        Articles covering indoor localization, wireless sensing, sensor fusion SLAM, and network optimization.
+      </p>
 
-          <div class="publications-list" id="publications-container">
-            {cv.publications.map((paper) => (
-              <article class="paper-item" data-type={paper.type}>
-                <div class="paper-header">
-                  <div class="paper-meta">
-                    <span class={`type-badge badge-${paper.type.toLowerCase()}`}>{paper.type}</span>
-                    <span class="paper-year">{paper.year}</span>
-                    <span class="paper-venue">{paper.venue}</span>
-                  </div>
-                </div>
+      <ol class="publications-list">
+        {cv.publications.map((paper, index) => (
+          <li class="pub-entry">
+            <div class="pub-main-content">
+              <h3 class="pub-title">
+                <a href={paper.url} target="_blank" rel="noreferrer">
+                  {paper.title}
+                </a>
+              </h3>
 
-                <h3 class="paper-title">
-                  <a href={paper.url} target="_blank" rel="noreferrer">
-                    {paper.title}
-                  </a>
-                </h3>
+              <div class="pub-authors" set:html={highlightAuthor(paper.authors)} />
 
-                <p class="paper-authors" set:html={highlightAuthor(paper.authors)} />
-
-                <div class="paper-actions">
-                  <a href={paper.url} target="_blank" rel="noreferrer" class="action-link">
-                    DOI / Paper ↗
-                  </a>
+              <div class="pub-meta">
+                <span class="venue-name">{paper.venue}</span>
+                <span class="meta-dot">·</span>
+                <span class="pub-year">{paper.year}</span>
+                <span class="meta-dot">·</span>
+                <span class="badge-type">{paper.type}</span>
+                <span class="meta-actions">
+                  [<a href={paper.url} target="_blank" rel="noreferrer">DOI / Paper ↗</a>]
                   {paper.bibtex && (
-                    <button class="action-link bibtex-btn" type="button" aria-expanded="false">
-                      BibTeX ▼
+                    <button class="bibtex-toggle-btn" type="button" aria-expanded="false">
+                      [BibTeX]
                     </button>
                   )}
-                </div>
+                </span>
+              </div>
 
-                {paper.bibtex && (
-                  <div class="bibtex-drawer hidden">
-                    <div class="bibtex-bar">
-                      <span>BibTeX</span>
-                      <button class="copy-bibtex-btn" data-bibtex={paper.bibtex}>
-                        Copy BibTeX
-                      </button>
-                    </div>
-                    <pre><code>{paper.bibtex}</code></pre>
+              {paper.bibtex && (
+                <div class="bibtex-container hidden">
+                  <div class="bibtex-header">
+                    <span>BibTeX Citation</span>
+                    <button class="copy-bibtex-btn" data-bibtex={paper.bibtex}>
+                      Copy to Clipboard
+                    </button>
                   </div>
-                )}
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <!-- Professional Experience -->
-        <section class="card section-card">
-          <div class="section-header">
-            <div>
-              <p class="section-tag">Industry Experience</p>
-              <h2 class="card-title">Professional Experience</h2>
-            </div>
-          </div>
-
-          <div class="timeline">
-            {cv.experience.map((job) => (
-              <article class="timeline-entry">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content">
-                  <div class="timeline-head">
-                    <div>
-                      <h3 class="job-role">{job.role}</h3>
-                      <p class="job-company">{job.company}</p>
-                    </div>
-                    <span class="timeline-period">{job.period}</span>
-                  </div>
-                  <p class="job-summary">{job.summary}</p>
-                  <ul class="job-bullets">
-                    {job.bullets.map((bullet) => (
-                      <li>{bullet}</li>
-                    ))}
-                  </ul>
+                  <pre><code>{paper.bibtex}</code></pre>
                 </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <!-- Sponsored Research & Platforms -->
-        <section class="card section-card">
-          <div class="section-header">
-            <div>
-              <p class="section-tag">Grants & Deployment</p>
-              <h2 class="card-title">Sponsored R&D & Systems</h2>
+              )}
             </div>
-          </div>
+          </li>
+        ))}
+      </ol>
+    </section>
 
-          <div class="grant-grid">
-            {cv.sponsoredResearch.featured.map((grant) => (
-              <article class="grant-card">
-                <div class="grant-top">
-                  <span class="grant-sponsor">{grant.sponsor}</span>
-                  <span class="grant-period">{grant.period}</span>
-                </div>
-                <h3 class="grant-title">
-                  {grant.url ? (
-                    <a href={grant.url} target="_blank" rel="noreferrer">
-                      {grant.title} ↗
-                    </a>
-                  ) : (
-                    grant.title
-                  )}
-                </h3>
-                <p class="grant-role">{grant.role}</p>
-                <p class="grant-desc">{grant.description}</p>
-              </article>
-            ))}
-          </div>
-
-          <div class="additional-grants">
-            <h4 class="subhead">Additional Sponsored Projects</h4>
-            <ul class="simple-list">
-              {cv.sponsoredResearch.additional.map((item) => (
-                <li>
-                  <strong>{item.title}</strong>
-                  <span class="muted"> — {item.sponsor} ({item.period})</span>
-                </li>
+    <!-- Professional Experience -->
+    <section class="content-section">
+      <h2 class="section-heading">Professional Experience</h2>
+      <div class="experience-list">
+        {cv.experience.map((job) => (
+          <article class="exp-entry">
+            <div class="exp-title-row">
+              <span class="exp-company-role">
+                <strong>{job.company}</strong> — <span class="exp-role">{job.role}</span>
+              </span>
+              <span class="exp-period">{job.period}</span>
+            </div>
+            <p class="exp-summary-text">{job.summary}</p>
+            <ul class="exp-bullet-list">
+              {job.bullets.map((bullet) => (
+                <li>{bullet}</li>
               ))}
             </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Sponsored R&D & Systems -->
+    <section class="content-section">
+      <h2 class="section-heading">Sponsored Research & Deployment</h2>
+      <div class="grants-list">
+        {cv.sponsoredResearch.featured.map((grant) => (
+          <div class="grant-row">
+            <div class="grant-title-line">
+              <span class="grant-name">
+                {grant.url ? (
+                  <a href={grant.url} target="_blank" rel="noreferrer">{grant.title} ↗</a>
+                ) : (
+                  grant.title
+                )}
+              </span>
+              <span class="grant-meta-sub">{grant.sponsor} ({grant.period})</span>
+            </div>
+            <p class="grant-role-tag">{grant.role}</p>
+            <p class="grant-body-desc">{grant.description}</p>
           </div>
-        </section>
+        ))}
       </div>
 
-      <!-- Right Column (Sidebar: Education, Strengths, Skills) -->
-      <aside class="side-column">
-        <!-- Education -->
-        <section class="card side-card">
-          <h2 class="card-title">Education</h2>
-          <div class="edu-list">
-            {cv.education.map((edu) => (
-              <div class="edu-item">
-                <div class="edu-head">
-                  <h3 class="edu-degree">{edu.degree}</h3>
-                  <span class="edu-period">{edu.period}</span>
-                </div>
-                <p class="edu-school">{edu.school}</p>
-                {edu.detail && <p class="edu-advisor">{edu.detail}</p>}
-                <p class="edu-focus">{edu.focus}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+      <div class="additional-grants-block">
+        <h4 class="sub-heading">Additional Sponsored Contracts</h4>
+        <ul class="bullet-list-simple">
+          {cv.sponsoredResearch.additional.map((item) => (
+            <li>
+              <strong>{item.title}</strong> — <span class="muted">{item.sponsor} ({item.period})</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
 
-        <!-- Technical Strengths -->
-        <section class="card side-card">
-          <h2 class="card-title">Core Competencies</h2>
-          <div class="strengths-list">
-            {cv.strengths.map((str) => (
-              <div class="strength-item">
-                <h3 class="strength-title">{str.title}</h3>
-                <p class="strength-desc">{str.detail}</p>
-              </div>
-            ))}
+    <!-- Education -->
+    <section class="content-section">
+      <h2 class="section-heading">Education</h2>
+      <div class="education-grid">
+        {cv.education.map((edu) => (
+          <div class="edu-card">
+            <div class="edu-header">
+              <span class="edu-school-name"><strong>{edu.school}</strong> · {edu.degree}</span>
+              <span class="edu-years">{edu.period}</span>
+            </div>
+            {edu.detail && <p class="edu-advisor-text">{edu.detail}</p>}
+            <p class="edu-focus-text">{edu.focus}</p>
           </div>
-        </section>
+        ))}
+      </div>
+    </section>
 
-        <!-- Technical Skills -->
-        <section class="card side-card">
-          <h2 class="card-title">Skills & Tooling</h2>
-          <div class="skills-groups">
-            {cv.skills.map((skillGroup) => (
-              <div class="skill-group">
-                <h3 class="skill-label">{skillGroup.label}</h3>
-                <div class="skill-pills">
-                  {skillGroup.items.map((skill) => (
-                    <span class="skill-pill">{skill}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
+    <!-- Skills & Tooling -->
+    <section class="content-section">
+      <h2 class="section-heading">Technical Competencies</h2>
+      <div class="skills-wrapper">
+        {cv.skills.map((group) => (
+          <div class="skill-category">
+            <span class="category-name">{group.label}:</span>
+            <span class="category-items">{group.items.join(" · ")}</span>
           </div>
-        </section>
-
-        <!-- Contact & Direct Coordinates -->
-        <section class="card side-card">
-          <h2 class="card-title">Direct Inquiries</h2>
-          <div class="contact-box">
-            <div class="contact-row">
-              <span class="c-label">Primary</span>
-              <a href={`mailto:${cv.email}`} class="c-link">{cv.email}</a>
-            </div>
-            <div class="contact-row">
-              <span class="c-label">Academic</span>
-              <a href={`mailto:${cv.secondaryEmail}`} class="c-link">{cv.secondaryEmail}</a>
-            </div>
-            <div class="contact-row">
-              <span class="c-label">Phone</span>
-              <span class="c-val">{cv.phone}</span>
-            </div>
-            <div class="contact-row">
-              <span class="c-label">Location</span>
-              <span class="c-val">{cv.location}</span>
-            </div>
-          </div>
-        </section>
-      </aside>
-    </div>
+        ))}
+      </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="footer">
-      <p>© {new Date().getFullYear()} {cv.name}. Built with Astro & TypeScript. Hosted on GitHub Pages.</p>
-      <p class="footer-links">
+    <footer class="page-footer">
+      <p>© {new Date().getFullYear()} {cv.name}. Built with Astro & TypeScript. Clean academic & engineering typesetting.</p>
+      <div class="footer-bottom-links">
         <a href={cv.github} target="_blank" rel="noreferrer">GitHub</a> · 
         <a href={cv.linkedin} target="_blank" rel="noreferrer">LinkedIn</a> · 
-        <a href="/sangjae-lee-pro-academic-cv.pdf" target="_blank" rel="noreferrer">Download Printable PDF</a>
-      </p>
+        <a href={`mailto:${cv.email}`}>Email</a> · 
+        <a href="/sangjae-lee-pro-academic-cv.pdf" target="_blank">Printable PDF</a>
+      </div>
     </footer>
   </main>
 </Layout>
 
 <script>
-  // Theme Toggle Logic
-  const themeToggle = document.getElementById("theme-toggle");
-  const themeToggleMobile = document.getElementById("theme-toggle-mobile");
-
-  function toggleTheme() {
-    const isDark = document.documentElement.classList.toggle("dark");
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-    showToast(`Switched to ${isDark ? "Dark" : "Light"} mode`);
-  }
-
-  themeToggle?.addEventListener("click", toggleTheme);
-  themeToggleMobile?.addEventListener("click", toggleTheme);
-
-  // Toast Functionality
+  // Toast Utility
   function showToast(message: string) {
     const toast = document.getElementById("toast");
     if (!toast) return;
@@ -347,8 +252,16 @@ const confCount = cv.publications.filter((p) => p.type === "Conference").length;
     toast.classList.add("show");
     setTimeout(() => {
       toast.classList.remove("show");
-    }, 2800);
+    }, 2600);
   }
+
+  // Theme Toggle (Light / Dark)
+  const themeBtn = document.getElementById("theme-toggle-btn");
+  themeBtn?.addEventListener("click", () => {
+    const isDark = document.documentElement.classList.toggle("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+    showToast(`Switched to ${isDark ? "Dark" : "Light"} mode`);
+  });
 
   // Copy Email Button
   const copyEmailBtn = document.getElementById("copy-email-btn");
@@ -359,37 +272,13 @@ const confCount = cv.publications.filter((p) => p.type === "Conference").length;
     });
   });
 
-  // Publication Filter Tabs
-  const filterTabs = document.querySelectorAll(".filter-tab");
-  const paperItems = document.querySelectorAll<HTMLElement>(".paper-item");
-
-  filterTabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      filterTabs.forEach((t) => t.classList.remove("active"));
-      tab.classList.add("active");
-
-      const filter = tab.getAttribute("data-filter");
-
-      paperItems.forEach((item) => {
-        const itemType = item.getAttribute("data-type");
-        if (filter === "all" || itemType === filter) {
-          item.style.display = "block";
-        } else {
-          item.style.display = "none";
-        }
-      });
-    });
-  });
-
-  // BibTeX Drawer Toggles & Copy
-  document.querySelectorAll(".bibtex-btn").forEach((btn) => {
+  // BibTeX Toggle & Copy
+  document.querySelectorAll(".bibtex-toggle-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const parent = btn.closest(".paper-item");
-      const drawer = parent?.querySelector(".bibtex-drawer");
+      const parent = btn.closest(".pub-entry");
+      const drawer = parent?.querySelector(".bibtex-container");
       if (drawer) {
-        const isHidden = drawer.classList.toggle("hidden");
-        btn.setAttribute("aria-expanded", (!isHidden).toString());
-        btn.textContent = isHidden ? "BibTeX ▼" : "BibTeX ▲";
+        drawer.classList.toggle("hidden");
       }
     });
   });
@@ -407,66 +296,49 @@ const confCount = cv.publications.filter((p) => p.type === "Conference").length;
 <style>
   /* Design Tokens & CSS Variables */
   :root {
-    --bg-page: #f8fafc;
-    --bg-card: #ffffff;
-    --bg-card-subtle: #f1f5f9;
-    --border-color: #e2e8f0;
-    --border-focus: #cbd5e1;
-    
-    --text-primary: #0f172a;
-    --text-secondary: #334155;
-    --text-muted: #64748b;
+    --bg-main: #ffffff;
+    --bg-subtle: #f8fafc;
+    --bg-chip: #f1f5f9;
+    --border-subtle: #e2e8f0;
+    --border-strong: #1e293b;
+
+    --text-primary: #111827;
+    --text-secondary: #374151;
+    --text-muted: #6b7280;
     --text-accent: #0284c7;
 
-    --brand-primary: #0284c7;
-    --brand-primary-hover: #0369a1;
-    --brand-tint: #e0f2fe;
+    --link-color: #0284c7;
+    --link-hover: #0369a1;
 
-    --badge-journal-bg: #e0f2fe;
-    --badge-journal-color: #0369a1;
-    --badge-conf-bg: #fef3c7;
-    --badge-conf-color: #92400e;
+    --pulse-color: #10b981;
+    --status-bg: #f0fdf4;
+    --status-border: #bbf7d0;
+    --status-text: #166534;
 
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-
-    --radius-sm: 6px;
-    --radius-md: 10px;
-    --radius-lg: 16px;
-    --radius-pill: 9999px;
-
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08);
-
-    --page-max-width: 1140px;
+    --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Monaco, Consolas, monospace;
   }
 
-  /* Dark Theme */
+  /* Dark Theme Tokens (Deep Obsidian with High Readability) */
   :global(.dark) {
-    --bg-page: #090d16;
-    --bg-card: #111827;
-    --bg-card-subtle: #1f2937;
-    --border-color: #1f2937;
-    --border-focus: #374151;
+    --bg-main: #09090b;
+    --bg-subtle: #121215;
+    --bg-chip: #18181b;
+    --border-subtle: #27272a;
+    --border-strong: #fafafa;
 
-    --text-primary: #f9fafb;
-    --text-secondary: #d1d5db;
-    --text-muted: #9ca3af;
+    --text-primary: #f4f4f5;
+    --text-secondary: #d4d4d8;
+    --text-muted: #a1a1aa;
     --text-accent: #38bdf8;
 
-    --brand-primary: #38bdf8;
-    --brand-primary-hover: #7dd3fc;
-    --brand-tint: rgba(56, 189, 248, 0.12);
+    --link-color: #38bdf8;
+    --link-hover: #7dd3fc;
 
-    --badge-journal-bg: rgba(56, 189, 248, 0.15);
-    --badge-journal-color: #7dd3fc;
-    --badge-conf-bg: rgba(251, 191, 36, 0.15);
-    --badge-conf-color: #fcd34d;
-
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.6);
+    --pulse-color: #34d399;
+    --status-bg: rgba(16, 185, 129, 0.1);
+    --status-border: rgba(16, 185, 129, 0.25);
+    --status-text: #6ee7b7;
   }
 
   /* Base Reset & Layout */
@@ -477,19 +349,19 @@ const confCount = cv.publications.filter((p) => p.type === "Conference").length;
   }
 
   :global(body) {
-    background-color: var(--bg-page);
+    background-color: var(--bg-main);
     color: var(--text-primary);
     font-family: var(--font-sans);
-    line-height: 1.6;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    transition: background-color 0.25s ease, color 0.25s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
-  .page {
-    max-width: var(--page-max-width);
+  .page-container {
+    max-width: 860px;
     margin: 0 auto;
-    padding: 3rem 1.5rem 5rem;
+    padding: 3rem 1.5rem 6rem;
   }
 
   /* Toast Notification */
@@ -498,947 +370,689 @@ const confCount = cv.publications.filter((p) => p.type === "Conference").length;
     bottom: 2rem;
     right: 2rem;
     background-color: var(--text-primary);
-    color: var(--bg-page);
-    padding: 0.75rem 1.25rem;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-lg);
-    font-size: 0.875rem;
+    color: var(--bg-main);
+    padding: 0.65rem 1.15rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    font-size: 0.85rem;
     font-weight: 500;
     opacity: 0;
-    transform: translateY(1rem);
+    transform: translateY(0.75rem);
     pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: all 0.2s ease;
     z-index: 9999;
   }
-
   .toast.show {
     opacity: 1;
     transform: translateY(0);
   }
 
-  /* Masthead & Identity */
-  .masthead {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    padding: 2.5rem;
-    box-shadow: var(--shadow-sm);
-    margin-bottom: 2rem;
-  }
-
-  .masthead-main {
+  /* Top Bar */
+  .top-bar {
     display: flex;
-    gap: 2.25rem;
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-subtle);
   }
 
-  .avatar-wrap {
-    position: relative;
-    flex-shrink: 0;
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--status-bg);
+    border: 1px solid var(--status-border);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.785rem;
+    color: var(--status-text);
+    font-weight: 500;
   }
 
-  .avatar-img {
-    width: 120px;
-    height: 120px;
-    border-radius: var(--radius-lg);
-    object-fit: cover;
-    border: 3px solid var(--border-color);
-    box-shadow: var(--shadow-md);
-  }
-
-  .status-indicator {
-    position: absolute;
-    bottom: 4px;
-    right: 4px;
-    width: 16px;
-    height: 16px;
-    background-color: #10b981;
-    border: 3px solid var(--bg-card);
+  .pulse-dot {
+    width: 7px;
+    height: 7px;
+    background-color: var(--pulse-color);
     border-radius: 50%;
+    box-shadow: 0 0 6px var(--pulse-color);
   }
 
-  .identity {
+  .theme-toggle {
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 0.35rem 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    font-size: 0.825rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: all 0.15s ease;
+  }
+  .theme-toggle:hover {
+    background: var(--bg-subtle);
+    color: var(--text-primary);
+    border-color: var(--text-muted);
+  }
+
+  /* Masthead */
+  .masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2.5rem;
+    padding-bottom: 2.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+    margin-bottom: 2.25rem;
+  }
+
+  .masthead-bio {
     flex: 1;
   }
 
-  .identity-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-  }
-
-  .badge-role {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-weight: 700;
-    color: var(--brand-primary);
-  }
-
-  h1 {
-    font-size: 2.25rem;
+  .name {
+    font-size: 2.35rem;
     font-weight: 800;
     letter-spacing: -0.03em;
     color: var(--text-primary);
-    line-height: 1.2;
-    margin-bottom: 0.25rem;
-  }
-
-  .korean-name {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: var(--text-muted);
-    margin-left: 0.5rem;
-  }
-
-  .role-title {
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: var(--text-secondary);
+    line-height: 1.15;
     margin-bottom: 0.35rem;
   }
 
-  .headline {
+  .ko-name {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-left: 0.35rem;
+  }
+
+  .role-affiliation {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-accent);
+    margin-bottom: 0.25rem;
+  }
+
+  .headline-summary {
     font-size: 0.95rem;
     color: var(--text-muted);
-    max-width: 720px;
-    line-height: 1.5;
     margin-bottom: 1rem;
+    line-height: 1.45;
   }
 
-  .domain-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .tag {
-    font-size: 0.775rem;
-    font-weight: 500;
-    background-color: var(--bg-card-subtle);
+  .intro-prose {
+    font-size: 0.975rem;
     color: var(--text-secondary);
-    border: 1px solid var(--border-color);
-    padding: 0.25rem 0.65rem;
-    border-radius: var(--radius-pill);
-    font-family: var(--font-mono);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
   }
 
-  /* Toolbar */
-  .toolbar {
-    margin-top: 1.75rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border-color);
+  /* Quick links */
+  .quick-links {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .contact-links {
-    display: flex;
     align-items: center;
-    gap: 0.65rem;
-    flex-wrap: wrap;
-  }
-
-  .toolbar-right {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .meta-location {
+    gap: 0.6rem;
     font-size: 0.85rem;
-    color: var(--text-muted);
-    font-weight: 500;
   }
 
-  /* Buttons */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 0.5rem 0.95rem;
-    border-radius: var(--radius-sm);
+  .link-btn {
+    background: var(--bg-chip);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
     text-decoration: none;
+    font-weight: 500;
+    font-size: 0.825rem;
     cursor: pointer;
-    border: 1px solid transparent;
     transition: all 0.15s ease;
-  }
-
-  .btn-primary {
-    background-color: var(--brand-primary);
-    color: #ffffff;
-  }
-  .btn-primary:hover {
-    background-color: var(--brand-primary-hover);
-  }
-
-  .btn-secondary {
-    background-color: var(--brand-tint);
-    color: var(--brand-primary);
-    border-color: var(--brand-primary);
-  }
-  .btn-secondary:hover {
-    background-color: var(--brand-primary);
-    color: #ffffff;
-  }
-
-  .btn-ghost {
-    background-color: transparent;
-    color: var(--text-secondary);
-    border-color: var(--border-color);
-  }
-  .btn-ghost:hover {
-    background-color: var(--bg-card-subtle);
-    color: var(--text-primary);
-    border-color: var(--border-focus);
-  }
-
-  .icon-btn {
-    background: transparent;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-    width: 36px;
-    height: 36px;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: all 0.15s ease;
+    gap: 0.35rem;
   }
-  .icon-btn:hover {
-    background: var(--bg-card-subtle);
-    border-color: var(--border-focus);
+  .link-btn:hover {
+    background: var(--text-primary);
+    color: var(--bg-main);
+    border-color: var(--text-primary);
   }
-
-  .theme-control-mobile {
-    display: none;
+  .link-btn.primary {
+    background: var(--text-primary);
+    color: var(--bg-main);
+    border-color: var(--text-primary);
+    font-weight: 600;
   }
-
-  /* Metrics Grid */
-  .metrics-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.25rem;
-    margin-bottom: 2rem;
+  .link-btn.primary:hover {
+    opacity: 0.9;
   }
 
-  .metric-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    padding: 1.5rem;
-    text-align: center;
-    box-shadow: var(--shadow-sm);
-  }
-
-  .metric-value {
-    display: block;
-    font-size: 2.25rem;
-    font-weight: 800;
-    color: var(--brand-primary);
-    letter-spacing: -0.03em;
-    line-height: 1;
-    margin-bottom: 0.4rem;
-    font-family: var(--font-mono);
-  }
-
-  .metric-label {
-    font-size: 0.85rem;
+  .location-tag {
+    font-size: 0.825rem;
     color: var(--text-muted);
-    font-weight: 500;
+    margin-left: 0.25rem;
   }
 
-  /* General Cards & Layout */
-  .card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-    box-shadow: var(--shadow-sm);
-    margin-bottom: 2rem;
+  /* Avatar */
+  .avatar-area {
+    flex-shrink: 0;
+  }
+  .avatar-photo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--border-subtle);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
   }
 
-  .card-title {
+  /* Metrics Strip */
+  .metrics-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+    padding: 1.25rem;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    margin-bottom: 3rem;
+  }
+  .metric-item {
+    display: flex;
+    flex-direction: column;
+  }
+  .metric-value {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    line-height: 1.1;
+  }
+  .metric-label {
+    font-size: 0.825rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+  }
+
+  /* Content Sections */
+  .content-section {
+    margin-bottom: 3.5rem;
+  }
+
+  .section-heading {
     font-size: 1.35rem;
     font-weight: 700;
     letter-spacing: -0.02em;
     color: var(--text-primary);
+    border-bottom: 1.5px solid var(--border-strong);
+    padding-bottom: 0.4rem;
+    margin-bottom: 1.25rem;
   }
 
-  .intro-card {
-    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-card-subtle) 100%);
-  }
-
-  .lead-text {
-    font-size: 1.05rem;
-    color: var(--text-primary);
-    font-weight: 500;
-    line-height: 1.7;
-    margin-top: 0.8rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .secondary-text {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    line-height: 1.65;
-  }
-
-  /* 2-Column Grid Layout */
-  .content-layout {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 2rem;
-    align-items: start;
-  }
-
-  /* Section Headers */
-  .section-header {
+  .section-header-row {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 1.75rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid var(--border-color);
-    flex-wrap: wrap;
-    gap: 1rem;
+    align-items: baseline;
+    border-bottom: 1.5px solid var(--border-strong);
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.75rem;
   }
-
-  .section-tag {
-    font-size: 0.725rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    color: var(--brand-primary);
-    margin-bottom: 0.2rem;
-  }
-
-  /* Filter Tabs */
-  .filter-tabs {
-    display: flex;
-    gap: 0.35rem;
-    background: var(--bg-card-subtle);
-    padding: 0.25rem;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border-color);
-  }
-
-  .filter-tab {
-    background: transparent;
-    border: none;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    padding: 0.35rem 0.75rem;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    transition: all 0.15s ease;
-  }
-
-  .filter-tab.active {
-    background: var(--bg-card);
-    color: var(--brand-primary);
-    box-shadow: var(--shadow-sm);
-  }
-
-  /* Publications List */
-  .publications-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .paper-item {
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border-color);
-  }
-  .paper-item:last-child {
+  .section-header-row .section-heading {
     border-bottom: none;
+    margin-bottom: 0;
     padding-bottom: 0;
   }
-
-  .paper-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.4rem;
-  }
-
-  .type-badge {
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 0.15rem 0.45rem;
-    border-radius: var(--radius-sm);
-  }
-
-  .badge-journal {
-    background: var(--badge-journal-bg);
-    color: var(--badge-journal-color);
-  }
-
-  .badge-conference {
-    background: var(--badge-conf-bg);
-    color: var(--badge-conf-color);
-  }
-
-  .paper-year {
-    font-size: 0.8rem;
-    font-weight: 600;
+  .section-counter {
+    font-size: 0.85rem;
     color: var(--text-muted);
     font-family: var(--font-mono);
   }
 
-  .paper-venue {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--text-secondary);
+  .section-intro-text {
+    font-size: 0.925rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
   }
 
-  .paper-title {
+  .prose-text {
+    font-size: 0.975rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .interest-tag {
+    background: var(--bg-chip);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+  }
+
+  /* Publications */
+  .publications-list {
+    padding-left: 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .pub-entry {
+    padding-left: 0.5rem;
+  }
+
+  .pub-title {
     font-size: 1.05rem;
     font-weight: 700;
-    line-height: 1.4;
-    margin-bottom: 0.35rem;
+    line-height: 1.45;
+    margin-bottom: 0.3rem;
   }
-
-  .paper-title a {
+  .pub-title a {
     color: var(--text-primary);
     text-decoration: none;
     transition: color 0.15s ease;
   }
-  .paper-title a:hover {
-    color: var(--brand-primary);
+  .pub-title a:hover {
+    color: var(--link-color);
+    text-decoration: underline;
   }
 
-  .paper-authors {
-    font-size: 0.875rem;
+  .pub-authors {
+    font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.5;
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.35rem;
   }
-
-  :global(.paper-authors strong) {
+  :global(.pub-authors .author-highlight) {
     color: var(--text-primary);
     font-weight: 700;
     text-decoration: underline;
     text-underline-offset: 3px;
   }
 
-  .paper-actions {
+  .pub-meta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
     display: flex;
-    gap: 0.75rem;
+    flex-wrap: wrap;
     align-items: center;
+    gap: 0.4rem;
   }
-
-  .action-link {
-    background: transparent;
-    border: none;
-    color: var(--brand-primary);
-    font-size: 0.8rem;
+  .venue-name {
     font-weight: 600;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
+    color: var(--text-secondary);
+    font-style: italic;
   }
-  .action-link:hover {
+  .pub-year {
+    font-family: var(--font-mono);
+  }
+  .badge-type {
+    background: var(--bg-chip);
+    border: 1px solid var(--border-subtle);
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.725rem;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .meta-dot {
+    color: var(--border-subtle);
+  }
+  .meta-actions {
+    margin-left: 0.5rem;
+    display: inline-flex;
+    gap: 0.4rem;
+  }
+  .meta-actions a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .meta-actions a:hover {
     text-decoration: underline;
   }
 
-  .bibtex-drawer {
-    margin-top: 0.75rem;
-    background: var(--bg-card-subtle);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-    padding: 0.75rem;
+  .bibtex-toggle-btn {
+    background: none;
+    border: none;
+    color: var(--link-color);
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+    padding: 0;
   }
-  .bibtex-drawer.hidden {
+  .bibtex-toggle-btn:hover {
+    text-decoration: underline;
+  }
+
+  .bibtex-container {
+    margin-top: 0.75rem;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 0.85rem;
+  }
+  .bibtex-container.hidden {
     display: none;
   }
 
-  .bibtex-bar {
+  .bibtex-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.5rem;
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    font-family: var(--font-mono);
   }
-
   .copy-bibtex-btn {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    font-size: 0.75rem;
-    font-weight: 600;
+    background: var(--bg-main);
+    border: 1px solid var(--border-subtle);
     color: var(--text-secondary);
-    padding: 0.2rem 0.5rem;
-    border-radius: var(--radius-sm);
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 500;
   }
   .copy-bibtex-btn:hover {
-    color: var(--brand-primary);
-    border-color: var(--brand-primary);
+    color: var(--link-color);
+    border-color: var(--link-color);
   }
 
-  .bibtex-drawer pre {
+  .bibtex-container pre {
     margin: 0;
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.775rem;
     line-height: 1.45;
-    overflow-x: auto;
     color: var(--text-secondary);
+    overflow-x: auto;
   }
 
-  /* Timeline (Experience) */
-  .timeline {
-    position: relative;
-    padding-left: 1.5rem;
-    border-left: 2px solid var(--border-color);
+  /* Experience */
+  .experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
-
-  .timeline-entry {
-    position: relative;
-    margin-bottom: 2rem;
-  }
-  .timeline-entry:last-child {
-    margin-bottom: 0;
-  }
-
-  .timeline-marker {
-    position: absolute;
-    left: -1.825rem;
-    top: 0.25rem;
-    width: 12px;
-    height: 12px;
-    background-color: var(--brand-primary);
-    border-radius: 50%;
-    border: 2px solid var(--bg-card);
-  }
-
-  .timeline-head {
+  .exp-title-row {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
+    align-items: baseline;
+    margin-bottom: 0.4rem;
   }
-
-  .job-role {
-    font-size: 1.15rem;
-    font-weight: 700;
+  .exp-company-role {
+    font-size: 1.05rem;
     color: var(--text-primary);
   }
-
-  .job-company {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--brand-primary);
+  .exp-role {
+    font-weight: 500;
+    color: var(--text-accent);
   }
-
-  .timeline-period {
-    font-size: 0.8rem;
-    font-weight: 600;
+  .exp-period {
+    font-size: 0.85rem;
     color: var(--text-muted);
     font-family: var(--font-mono);
   }
-
-  .job-summary {
-    font-size: 0.925rem;
+  .exp-summary-text {
+    font-size: 0.95rem;
     color: var(--text-secondary);
     line-height: 1.6;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.65rem;
   }
-
-  .job-bullets {
-    padding-left: 1.25rem;
+  .exp-bullet-list {
+    padding-left: 1.35rem;
     font-size: 0.9rem;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.65;
   }
-
-  .job-bullets li {
-    margin-bottom: 0.4rem;
-  }
-
-  /* Grants Grid */
-  .grant-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .grant-card {
-    background: var(--bg-card-subtle);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    padding: 1.25rem;
-  }
-
-  .grant-top {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--brand-primary);
-    margin-bottom: 0.4rem;
-  }
-
-  .grant-period {
-    color: var(--text-muted);
-    font-family: var(--font-mono);
-  }
-
-  .grant-title {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1.4;
+  .exp-bullet-list li {
     margin-bottom: 0.35rem;
   }
-  .grant-title a {
+
+  /* Grants */
+  .grants-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .grant-row {
+    padding-bottom: 1.25rem;
+    border-bottom: 1px dashed var(--border-subtle);
+  }
+  .grant-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .grant-title-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.25rem;
+  }
+  .grant-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  .grant-name a {
     color: inherit;
     text-decoration: none;
   }
-  .grant-title a:hover {
-    color: var(--brand-primary);
+  .grant-name a:hover {
+    color: var(--link-color);
   }
-
-  .grant-role {
-    font-size: 0.775rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    margin-bottom: 0.5rem;
-  }
-
-  .grant-desc {
+  .grant-meta-sub {
     font-size: 0.85rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+  .grant-role-tag {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-accent);
+    margin-bottom: 0.4rem;
+  }
+  .grant-body-desc {
+    font-size: 0.9rem;
     color: var(--text-secondary);
-    line-height: 1.5;
+    line-height: 1.55;
   }
 
-  .additional-grants {
-    margin-top: 1.5rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--border-color);
+  .additional-grants-block {
+    margin-top: 1.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-subtle);
   }
-
-  .subhead {
+  .sub-heading {
     font-size: 0.95rem;
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 0.75rem;
   }
-
-  .simple-list {
+  .bullet-list-simple {
     list-style: none;
-    font-size: 0.85rem;
-    line-height: 1.6;
+    font-size: 0.875rem;
     color: var(--text-secondary);
+    line-height: 1.65;
   }
-  .simple-list li {
-    margin-bottom: 0.35rem;
+  .bullet-list-simple li {
+    margin-bottom: 0.4rem;
   }
-  .simple-list li::before {
+  .bullet-list-simple li::before {
     content: "•";
-    color: var(--brand-primary);
+    color: var(--text-accent);
     display: inline-block;
     width: 1em;
   }
 
-  /* Sidebar Cards */
-  .side-card {
-    padding: 1.75rem;
-  }
-
-  .edu-list {
+  /* Education */
+  .education-grid {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
-    margin-top: 1rem;
   }
-
-  .edu-item {
-    border-bottom: 1px solid var(--border-color);
+  .edu-card {
     padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-subtle);
   }
-  .edu-item:last-child {
+  .edu-card:last-child {
     border-bottom: none;
     padding-bottom: 0;
   }
-
-  .edu-head {
+  .edu-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    gap: 0.5rem;
+    margin-bottom: 0.25rem;
   }
-
-  .edu-degree {
-    font-size: 0.95rem;
-    font-weight: 700;
+  .edu-school-name {
+    font-size: 0.975rem;
     color: var(--text-primary);
   }
-
-  .edu-period {
-    font-size: 0.75rem;
+  .edu-years {
+    font-size: 0.825rem;
     color: var(--text-muted);
     font-family: var(--font-mono);
   }
-
-  .edu-school {
+  .edu-advisor-text {
     font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--brand-primary);
-    margin-bottom: 0.25rem;
-  }
-
-  .edu-advisor {
-    font-size: 0.8rem;
     color: var(--text-muted);
     font-style: italic;
   }
-
-  .edu-focus {
-    font-size: 0.8rem;
+  .edu-focus-text {
+    font-size: 0.875rem;
     color: var(--text-secondary);
-    line-height: 1.45;
     margin-top: 0.25rem;
   }
 
-  .strengths-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-  .strength-title {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 0.2rem;
-  }
-
-  .strength-desc {
-    font-size: 0.825rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-  }
-
-  .skills-groups {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-  .skill-label {
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-muted);
-    margin-bottom: 0.4rem;
-  }
-
-  .skill-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-  }
-
-  .skill-pill {
-    font-size: 0.75rem;
-    background: var(--bg-card-subtle);
-    border: 1px solid var(--border-color);
-    padding: 0.2rem 0.5rem;
-    border-radius: var(--radius-sm);
-    color: var(--text-secondary);
-    font-family: var(--font-mono);
-  }
-
-  .contact-box {
-    margin-top: 1rem;
+  /* Skills */
+  .skills-wrapper {
     display: flex;
     flex-direction: column;
     gap: 0.65rem;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
-
-  .contact-row {
+  .skill-category {
     display: flex;
-    flex-direction: column;
+    gap: 0.5rem;
   }
-
-  .c-label {
-    font-size: 0.7rem;
-    text-transform: uppercase;
+  .category-name {
     font-weight: 700;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
+    color: var(--text-primary);
+    min-width: 150px;
   }
-
-  .c-link {
-    color: var(--brand-primary);
-    text-decoration: none;
-    font-weight: 500;
-  }
-  .c-link:hover {
-    text-decoration: underline;
-  }
-
-  .c-val {
+  .category-items {
     color: var(--text-secondary);
   }
 
   /* Footer */
-  .footer {
-    text-align: center;
-    padding-top: 3rem;
-    border-top: 1px solid var(--border-color);
-    font-size: 0.85rem;
+  .page-footer {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 2.5rem;
+    font-size: 0.825rem;
     color: var(--text-muted);
+    text-align: center;
     line-height: 1.8;
   }
-
-  .footer-links a {
+  .footer-bottom-links a {
     color: var(--text-secondary);
     text-decoration: none;
   }
-  .footer-links a:hover {
-    color: var(--brand-primary);
+  .footer-bottom-links a:hover {
+    color: var(--link-color);
   }
 
-  /* Responsive Design */
-  @media (max-width: 860px) {
-    .content-layout {
-      grid-template-columns: 1fr;
-    }
-
-    .masthead-main {
-      flex-direction: column;
+  /* Responsive Mobile */
+  @media (max-width: 720px) {
+    .masthead {
+      flex-direction: column-reverse;
       align-items: center;
       text-align: center;
+      gap: 1.5rem;
     }
-
-    .domain-tags {
+    .quick-links {
       justify-content: center;
     }
-
-    .toolbar {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .contact-links {
-      justify-content: center;
-    }
-
-    .toolbar-right {
-      justify-content: center;
-    }
-
-    .desktop-only {
-      display: none;
-    }
-
-    .theme-control-mobile {
-      display: block;
-    }
-
-    .section-header {
+    .exp-title-row,
+    .grant-title-line,
+    .edu-header {
       flex-direction: column;
       align-items: flex-start;
+      gap: 0.2rem;
+    }
+    .skill-category {
+      flex-direction: column;
+      gap: 0.15rem;
     }
   }
 
-  /* Print Stylesheet (Clean 2-3 page document) */
+  /* Print Stylesheet (Clean A4 Paper Output) */
   @media print {
     :root {
-      --bg-page: #ffffff;
-      --bg-card: #ffffff;
-      --bg-card-subtle: #ffffff;
-      --border-color: #d1d5db;
-      --text-primary: #000000;
-      --text-secondary: #1f2937;
-      --text-muted: #4b5563;
-      --brand-primary: #000000;
+      --bg-main: #ffffff !important;
+      --text-primary: #000000 !important;
+      --text-secondary: #1f2937 !important;
+      --text-muted: #4b5563 !important;
+      --link-color: #000000 !important;
+      --border-subtle: #d1d5db !important;
+      --border-strong: #000000 !important;
     }
 
     body {
-      background: #ffffff !important;
-      color: #000000 !important;
       font-size: 9.5pt;
       line-height: 1.4;
+      background: #ffffff !important;
+      color: #000000 !important;
     }
 
-    .page {
+    .page-container {
       padding: 0;
       max-width: 100%;
     }
 
-    .toolbar,
-    .filter-tabs,
-    .paper-actions,
-    .bibtex-drawer,
-    .icon-btn,
-    .toast,
-    .status-indicator,
-    .theme-control-mobile {
+    .top-bar,
+    .quick-links,
+    .meta-actions,
+    .bibtex-container,
+    .toast {
       display: none !important;
     }
 
     .masthead,
-    .card,
-    .metric-card,
-    .grant-card {
+    .content-section,
+    .metrics-strip {
       border: none !important;
-      box-shadow: none !important;
-      padding: 0 !important;
       margin-bottom: 1.25rem !important;
+      padding: 0 !important;
       background: transparent !important;
     }
 
-    .content-layout {
-      grid-template-columns: 1fr;
-    }
-
-    .paper-item,
-    .timeline-entry,
-    .grant-card {
+    .pub-entry,
+    .exp-entry,
+    .grant-row {
       break-inside: avoid;
       page-break-inside: avoid;
     }
 
-    .timeline {
-      padding-left: 0;
-      border-left: none;
-    }
-    .timeline-marker {
-      display: none;
-    }
-
-    h1 {
+    h1.name {
       font-size: 1.75rem;
     }
-    h2.card-title {
-      font-size: 1.2rem;
+    h2.section-heading {
+      font-size: 1.15rem;
       border-bottom: 1px solid #000;
-      padding-bottom: 2px;
-      margin-bottom: 8px;
     }
   }
 </style>
