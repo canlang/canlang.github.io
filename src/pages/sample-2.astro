@@ -1,0 +1,623 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { cv } from "../data/cv";
+
+const highlightAuthor = (authors: string[]) =>
+  authors
+    .map((author) => (author.includes(cv.name) ? `<span class="author-me">${author}</span>` : author))
+    .join(", ");
+---
+
+<Layout title={`${cv.name} | Staff Engineer Portfolio (Sample 2)`} description={cv.intro}>
+  <div class="sample-banner">
+    <span>⚡ <strong>Sample 2</strong>: 실리콘밸리 다크 테크 (Linear / Staff Engineer Studio Style)</span>
+    <div class="banner-links">
+      <a href="/sample-1">Sample 1 (Academic)</a>
+      <a href="/sample-2" class="active">Sample 2</a>
+      <a href="/sample-3">Sample 3 (Split-Pane)</a>
+      <a href="/">Current Main</a>
+    </div>
+  </div>
+
+  <div class="dark-tech-wrapper">
+    <!-- Ambient Glow Top -->
+    <div class="ambient-glow"></div>
+
+    <div class="tech-container">
+      <!-- Top Terminal Navigation -->
+      <nav class="tech-nav">
+        <div class="nav-brand">
+          <span class="prompt-sym">λ</span>
+          <span class="user-id">sangjae.lee</span>
+          <span class="status-dot"></span>
+        </div>
+        <div class="nav-links">
+          <a href="#papers">Publications</a>
+          <a href="#experience">Experience</a>
+          <a href="#systems">R&D Systems</a>
+          <a href="/sangjae-lee-pro-academic-cv.pdf" target="_blank" class="nav-cv-btn">CV.pdf ↗</a>
+        </div>
+      </nav>
+
+      <!-- Hero Header -->
+      <header class="tech-hero">
+        <div class="hero-left">
+          <div class="role-pill">
+            <span class="pulse"></span>
+            Staff Engineer @ Samsung Research · Ph.D.
+          </div>
+          <h1 class="hero-title">{cv.name}</h1>
+          <p class="hero-sub">{cv.headline}</p>
+
+          <p class="hero-bio">{cv.intro}</p>
+
+          <div class="hero-coords">
+            <a href={`mailto:${cv.email}`} class="coord-item">
+              <span class="key">EMAIL</span>
+              <span class="val">{cv.email}</span>
+            </a>
+            <a href={cv.github} target="_blank" class="coord-item">
+              <span class="key">GITHUB</span>
+              <span class="val">canlang ↗</span>
+            </a>
+            <a href={cv.linkedin} target="_blank" class="coord-item">
+              <span class="key">LINKEDIN</span>
+              <span class="val">sjlee-korea ↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-avatar-box">
+          <div class="avatar-frame">
+            <img src="/avatar2.jpg" alt={cv.name} class="avatar-img" />
+          </div>
+          <div class="stats-mini">
+            <div class="stat-col">
+              <span class="stat-num">14+</span>
+              <span class="stat-lbl">Years R&D</span>
+            </div>
+            <div class="stat-col">
+              <span class="stat-num">9</span>
+              <span class="stat-lbl">Top Papers</span>
+            </div>
+            <div class="stat-col">
+              <span class="stat-num">8+</span>
+              <span class="stat-lbl">Grants</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Publications Terminal Section -->
+      <section id="papers" class="tech-section">
+        <div class="section-label">
+          <span class="sec-num">01.</span>
+          <h2>Selected Publications</h2>
+          <div class="sec-line"></div>
+        </div>
+
+        <div class="paper-grid">
+          {cv.publications.map((paper, index) => (
+            <article class="paper-tech-card">
+              <div class="card-top">
+                <span class="paper-index">REF/{String(index + 1).padStart(2, "0")}</span>
+                <span class="tech-badge">{paper.venue}</span>
+              </div>
+              <h3 class="paper-headline">
+                <a href={paper.url} target="_blank" rel="noreferrer">
+                  {paper.title} ↗
+                </a>
+              </h3>
+              <p class="paper-tech-authors" set:html={highlightAuthor(paper.authors)} />
+              <div class="card-bottom">
+                <span class="pub-type">{paper.type} · {paper.year}</span>
+                <a href={paper.url} target="_blank" class="doi-link">DOI Access →</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- Experience Matrix -->
+      <section id="experience" class="tech-section">
+        <div class="section-label">
+          <span class="sec-num">02.</span>
+          <h2>Engineering & Research Timeline</h2>
+          <div class="sec-line"></div>
+        </div>
+
+        <div class="exp-terminal">
+          {cv.experience.map((job) => (
+            <div class="exp-box">
+              <div class="exp-bar">
+                <div class="exp-corp">
+                  <strong>{job.company}</strong>
+                  <span class="slash">/</span>
+                  <span class="exp-position">{job.role}</span>
+                </div>
+                <span class="exp-duration">{job.period}</span>
+              </div>
+              <p class="exp-text">{job.summary}</p>
+              <div class="bullet-tags">
+                {job.bullets.map((bullet) => (
+                  <div class="bullet-tag">
+                    <span class="arrow">›</span>
+                    <span>{bullet}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Systems & Platforms -->
+      <section id="systems" class="tech-section">
+        <div class="section-label">
+          <span class="sec-num">03.</span>
+          <h2>Deployed Systems & Sponsored Grants</h2>
+          <div class="sec-line"></div>
+        </div>
+
+        <div class="systems-grid">
+          {cv.sponsoredResearch.featured.map((grant) => (
+            <div class="system-cell">
+              <div class="cell-head">
+                <span class="cell-sponsor">{grant.sponsor}</span>
+                <span class="cell-period">{grant.period}</span>
+              </div>
+              <h3 class="cell-title">
+                {grant.url ? (
+                  <a href={grant.url} target="_blank">{grant.title} ↗</a>
+                ) : (
+                  grant.title
+                )}
+              </h3>
+              <p class="cell-desc">{grant.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <footer class="tech-footer">
+        <p>TERMINAL SESSION COMPLETED · {cv.name} · SEOUL/DAEJEON, KR</p>
+      </footer>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* Sample Switcher Banner */
+  .sample-banner {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 0.65rem 1.5rem;
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1e293b;
+  }
+  .banner-links {
+    display: flex;
+    gap: 0.75rem;
+  }
+  .banner-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+  .banner-links a:hover,
+  .banner-links a.active {
+    background: #3b82f6;
+    color: #fff;
+  }
+
+  /* Dark Tech Container */
+  .dark-tech-wrapper {
+    background-color: #09090b;
+    color: #e4e4e7;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .ambient-glow {
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, rgba(99, 102, 241, 0.03) 50%, transparent 80%);
+    pointer-events: none;
+  }
+
+  .tech-container {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 6rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Nav */
+  .tech-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #18181b;
+    margin-bottom: 3.5rem;
+    font-family: ui-monospace, monospace;
+    font-size: 0.85rem;
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #a1a1aa;
+  }
+  .prompt-sym {
+    color: #38bdf8;
+    font-weight: 700;
+  }
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    background: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #10b981;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .nav-links a {
+    color: #71717a;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover {
+    color: #f4f4f5;
+  }
+  .nav-cv-btn {
+    border: 1px solid #27272a;
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+    color: #38bdf8 !important;
+  }
+
+  /* Hero */
+  .tech-hero {
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 5rem;
+  }
+  .role-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #18181b;
+    border: 1px solid #27272a;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.775rem;
+    color: #a1a1aa;
+    font-family: ui-monospace, monospace;
+    margin-bottom: 1.25rem;
+  }
+  .pulse {
+    width: 6px;
+    height: 6px;
+    background: #38bdf8;
+    border-radius: 50%;
+  }
+  .hero-title {
+    font-size: 3.25rem;
+    font-weight: 800;
+    color: #fafafa;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+  }
+  .hero-sub {
+    font-size: 1.25rem;
+    color: #a1a1aa;
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+    line-height: 1.45;
+  }
+  .hero-bio {
+    font-size: 0.95rem;
+    color: #71717a;
+    line-height: 1.65;
+    margin-bottom: 2rem;
+  }
+  .hero-coords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    font-family: ui-monospace, monospace;
+    font-size: 0.8rem;
+  }
+  .coord-item {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    border-left: 2px solid #27272a;
+    padding-left: 0.65rem;
+  }
+  .coord-item .key {
+    color: #52525b;
+    font-size: 0.675rem;
+    letter-spacing: 0.05em;
+  }
+  .coord-item .val {
+    color: #38bdf8;
+  }
+
+  .avatar-frame {
+    border: 1px solid #27272a;
+    border-radius: 12px;
+    padding: 6px;
+    background: #121214;
+    margin-bottom: 1rem;
+  }
+  .avatar-img {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    object-fit: cover;
+    display: block;
+  }
+  .stats-mini {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid #18181b;
+    border-radius: 8px;
+    background: #0f0f11;
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+    font-family: ui-monospace, monospace;
+  }
+  .stat-num {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fafafa;
+  }
+  .stat-lbl {
+    font-size: 0.65rem;
+    color: #52525b;
+  }
+
+  /* Tech Sections */
+  .tech-section {
+    margin-bottom: 5rem;
+  }
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    font-family: ui-monospace, monospace;
+  }
+  .sec-num {
+    color: #38bdf8;
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+  .section-label h2 {
+    font-size: 1.35rem;
+    color: #fafafa;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .sec-line {
+    flex: 1;
+    height: 1px;
+    background: #18181b;
+  }
+
+  /* Papers Grid */
+  .paper-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.25rem;
+  }
+  .paper-tech-card {
+    background: #111113;
+    border: 1px solid #1f1f23;
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+  }
+  .paper-tech-card:hover {
+    border-color: #38bdf8;
+    background: #141418;
+    transform: translateY(-2px);
+  }
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+  }
+  .paper-index {
+    color: #52525b;
+  }
+  .tech-badge {
+    background: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  .paper-headline {
+    font-size: 1.05rem;
+    line-height: 1.45;
+    margin-bottom: 0.5rem;
+  }
+  .paper-headline a {
+    color: #fafafa;
+    text-decoration: none;
+  }
+  .paper-tech-authors {
+    font-size: 0.85rem;
+    color: #71717a;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+  :global(.paper-tech-authors .author-me) {
+    color: #e4e4e7;
+    font-weight: 700;
+  }
+  .card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #18181b;
+    color: #52525b;
+    font-family: ui-monospace, monospace;
+  }
+  .doi-link {
+    color: #38bdf8;
+    text-decoration: none;
+  }
+
+  /* Experience */
+  .exp-terminal {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .exp-box {
+    background: #111113;
+    border: 1px solid #1f1f23;
+    border-radius: 10px;
+    padding: 1.75rem;
+  }
+  .exp-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+  .exp-corp {
+    font-size: 1.15rem;
+    color: #fafafa;
+  }
+  .slash {
+    color: #52525b;
+    margin: 0 0.5rem;
+  }
+  .exp-position {
+    color: #38bdf8;
+  }
+  .exp-duration {
+    font-family: ui-monospace, monospace;
+    font-size: 0.85rem;
+    color: #71717a;
+  }
+  .exp-text {
+    font-size: 0.925rem;
+    color: #a1a1aa;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+  .bullet-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .bullet-tag {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #a1a1aa;
+    line-height: 1.5;
+  }
+  .arrow {
+    color: #38bdf8;
+    font-weight: 700;
+  }
+
+  /* Systems */
+  .systems-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.25rem;
+  }
+  .system-cell {
+    background: #111113;
+    border: 1px solid #18181b;
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+  .cell-head {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    font-family: ui-monospace, monospace;
+    color: #52525b;
+    margin-bottom: 0.5rem;
+  }
+  .cell-sponsor {
+    color: #38bdf8;
+  }
+  .cell-title {
+    font-size: 1rem;
+    color: #fafafa;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+  }
+  .cell-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .cell-desc {
+    font-size: 0.85rem;
+    color: #71717a;
+    line-height: 1.5;
+  }
+
+  .tech-footer {
+    border-top: 1px solid #18181b;
+    padding-top: 2rem;
+    text-align: center;
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    color: #52525b;
+  }
+
+  @media (max-width: 768px) {
+    .tech-hero {
+      grid-template-columns: 1fr;
+    }
+    .hero-avatar-box {
+      order: -1;
+      width: 160px;
+    }
+    .exp-bar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+  }
+</style>

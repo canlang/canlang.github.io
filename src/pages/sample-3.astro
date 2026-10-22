@@ -1,0 +1,575 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { cv } from "../data/cv";
+
+const highlightAuthor = (authors: string[]) =>
+  authors
+    .map((author) => (author.includes(cv.name) ? `<span class="author-me">${author}</span>` : author))
+    .join(", ");
+---
+
+<Layout title={`${cv.name} | Dual-Pane Portfolio (Sample 3)`} description={cv.intro}>
+  <div class="sample-banner">
+    <span>📐 <strong>Sample 3</strong>: 좌우 분할 스티키 레이아웃 (Dual-Pane / Brittany Chiang Style)</span>
+    <div class="banner-links">
+      <a href="/sample-1">Sample 1 (Academic)</a>
+      <a href="/sample-2">Sample 2 (Dark-Tech)</a>
+      <a href="/sample-3" class="active">Sample 3</a>
+      <a href="/">Current Main</a>
+    </div>
+  </div>
+
+  <div class="split-wrapper">
+    <div class="split-container">
+      <!-- Left Panel: Fixed & Sticky -->
+      <header class="left-panel">
+        <div>
+          <div class="avatar-holder">
+            <img src="/avatar2.jpg" alt={cv.name} class="avatar-round" />
+          </div>
+          <h1 class="brand-name">{cv.name}</h1>
+          <h2 class="brand-title">{cv.title}</h2>
+          <p class="brand-tagline">{cv.headline}</p>
+
+          <!-- Sticky Nav Links -->
+          <nav class="side-nav" aria-label="In-page jump links">
+            <ul class="nav-menu">
+              <li>
+                <a href="#about" class="nav-item">
+                  <span class="nav-line"></span>
+                  <span class="nav-text">ABOUT</span>
+                </a>
+              </li>
+              <li>
+                <a href="#experience" class="nav-item">
+                  <span class="nav-line"></span>
+                  <span class="nav-text">EXPERIENCE</span>
+                </a>
+              </li>
+              <li>
+                <a href="#publications" class="nav-item">
+                  <span class="nav-line"></span>
+                  <span class="nav-text">PUBLICATIONS</span>
+                </a>
+              </li>
+              <li>
+                <a href="#grants" class="nav-item">
+                  <span class="nav-line"></span>
+                  <span class="nav-text">SPONSORED R&D</span>
+                </a>
+              </li>
+              <li>
+                <a href="#education" class="nav-item">
+                  <span class="nav-line"></span>
+                  <span class="nav-text">EDUCATION</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="left-footer">
+          <div class="social-row">
+            <a href={`mailto:${cv.email}`} title="Email" class="s-link">✉️</a>
+            <a href={cv.github} target="_blank" title="GitHub" class="s-link">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </a>
+            <a href={cv.linkedin} target="_blank" title="LinkedIn" class="s-link">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+          </div>
+          <a href="/sangjae-lee-pro-academic-cv.pdf" target="_blank" class="cv-pill-btn">
+            View Complete CV (PDF) ↗
+          </a>
+        </div>
+      </header>
+
+      <!-- Right Panel: Scrollable Content Stream -->
+      <main class="right-panel">
+        <!-- About Section -->
+        <section id="about" class="content-block">
+          <p class="paragraph-lead">{cv.intro}</p>
+          <p class="paragraph-body">{cv.profile}</p>
+
+          <div class="metrics-row">
+            {cv.metrics.map((m) => (
+              <div class="metric-pill">
+                <strong>{m.value}</strong>
+                <span>{m.label}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="content-block">
+          <h2 class="mobile-section-title">Experience</h2>
+          <div class="stream-list">
+            {cv.experience.map((job) => (
+              <div class="stream-item">
+                <div class="item-time">{job.period}</div>
+                <div class="item-body">
+                  <h3 class="item-role">
+                    {job.role} · <span class="item-company">{job.company}</span>
+                  </h3>
+                  <p class="item-summary">{job.summary}</p>
+                  <ul class="item-bullets">
+                    {job.bullets.map((b) => (
+                      <li>{b}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="content-block">
+          <h2 class="mobile-section-title">Publications</h2>
+          <div class="stream-list">
+            {cv.publications.map((paper) => (
+              <div class="stream-item">
+                <div class="item-time">{paper.year}</div>
+                <div class="item-body">
+                  <h3 class="paper-title-link">
+                    <a href={paper.url} target="_blank" rel="noreferrer">
+                      {paper.title} ↗
+                    </a>
+                  </h3>
+                  <p class="paper-authors-stream" set:html={highlightAuthor(paper.authors)} />
+                  <div class="paper-venue-badge">
+                    <span>{paper.venue}</span> · <span class="tag-type">{paper.type}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Sponsored Research -->
+        <section id="grants" class="content-block">
+          <h2 class="mobile-section-title">Sponsored R&D</h2>
+          <div class="stream-list">
+            {cv.sponsoredResearch.featured.map((grant) => (
+              <div class="stream-item">
+                <div class="item-time">{grant.period}</div>
+                <div class="item-body">
+                  <h3 class="item-role">
+                    {grant.url ? (
+                      <a href={grant.url} target="_blank">{grant.title} ↗</a>
+                    ) : (
+                      grant.title
+                    )}
+                  </h3>
+                  <p class="grant-sponsor-name">{grant.sponsor} · {grant.role}</p>
+                  <p class="grant-detail-text">{grant.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Education -->
+        <section id="education" class="content-block">
+          <h2 class="mobile-section-title">Education</h2>
+          <div class="stream-list">
+            {cv.education.map((edu) => (
+              <div class="stream-item">
+                <div class="item-time">{edu.period}</div>
+                <div class="item-body">
+                  <h3 class="item-role">{edu.school} — {edu.degree}</h3>
+                  {edu.detail && <p class="edu-detail">{edu.detail}</p>}
+                  <p class="edu-focus">{edu.focus}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <footer class="split-footer">
+          <p>© {new Date().getFullYear()} {cv.name}. Built with Astro & TypeScript.</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // Active nav highlighting on scroll
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(".nav-item");
+
+  window.addEventListener("scroll", () => {
+    let current = "";
+    sections.forEach((section) => {
+      const sectionTop = (section as HTMLElement).offsetTop;
+      if (window.scrollY >= sectionTop - 180) {
+        current = section.getAttribute("id") || "";
+      }
+    });
+
+    navLinks.forEach((link) => {
+      link.classList.remove("active");
+      if (link.getAttribute("href") === `#${current}`) {
+        link.classList.add("active");
+      }
+    });
+  });
+</script>
+
+<style>
+  /* Sample Switcher Banner */
+  .sample-banner {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 0.65rem 1.5rem;
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #334155;
+  }
+  .banner-links {
+    display: flex;
+    gap: 0.75rem;
+  }
+  .banner-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+  .banner-links a:hover,
+  .banner-links a.active {
+    background: #14b8a6;
+    color: #fff;
+  }
+
+  /* Dual Pane Wrapper */
+  .split-wrapper {
+    background-color: #0b1120;
+    color: #94a3b8;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  .split-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
+  }
+
+  /* Left Panel: Sticky */
+  .left-panel {
+    width: 44%;
+    position: sticky;
+    top: 3rem;
+    height: calc(100vh - 4rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3rem 0;
+  }
+
+  .avatar-holder {
+    margin-bottom: 1.5rem;
+  }
+  .avatar-round {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #14b8a6;
+  }
+
+  .brand-name {
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: #f8fafc;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .brand-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #14b8a6;
+    margin-bottom: 1rem;
+  }
+  .brand-tagline {
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.5;
+    max-width: 380px;
+  }
+
+  /* Navigation */
+  .side-nav {
+    margin-top: 3rem;
+  }
+  .nav-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: #64748b;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    transition: all 0.2s ease;
+  }
+  .nav-line {
+    width: 24px;
+    height: 1px;
+    background: #334155;
+    transition: all 0.2s ease;
+  }
+  .nav-item:hover,
+  .nav-item.active {
+    color: #f8fafc;
+  }
+  .nav-item:hover .nav-line,
+  .nav-item.active .nav-line {
+    width: 48px;
+    background: #14b8a6;
+  }
+
+  .left-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .social-row {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .s-link {
+    color: #64748b;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.15s;
+  }
+  .s-link:hover {
+    color: #14b8a6;
+  }
+  .cv-pill-btn {
+    display: inline-block;
+    color: #14b8a6;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .cv-pill-btn:hover {
+    text-decoration: underline;
+  }
+
+  /* Right Panel: Scroll */
+  .right-panel {
+    width: 56%;
+    padding: 6rem 0;
+  }
+  .content-block {
+    margin-bottom: 7rem;
+  }
+  .paragraph-lead {
+    font-size: 1.05rem;
+    color: #cbd5e1;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  .paragraph-body {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    line-height: 1.65;
+    margin-bottom: 2rem;
+  }
+
+  .metrics-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .metric-pill {
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    padding: 0.85rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .metric-pill strong {
+    font-size: 1.5rem;
+    color: #14b8a6;
+  }
+  .metric-pill span {
+    font-size: 0.775rem;
+    color: #64748b;
+  }
+
+  .mobile-section-title {
+    display: none;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Stream list */
+  .stream-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .stream-item {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 1.25rem;
+    padding: 1.25rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+  .stream-item:hover {
+    background: rgba(30, 41, 59, 0.4);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+
+  .item-time {
+    font-size: 0.775rem;
+    color: #64748b;
+    font-weight: 600;
+    font-family: ui-monospace, monospace;
+    padding-top: 0.2rem;
+  }
+  .item-role {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.35rem;
+  }
+  .item-role a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .item-company {
+    color: #14b8a6;
+  }
+  .item-summary {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+  .item-bullets {
+    padding-left: 1.25rem;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    line-height: 1.55;
+  }
+  .item-bullets li {
+    margin-bottom: 0.3rem;
+  }
+
+  .paper-title-link a {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f8fafc;
+    text-decoration: none;
+  }
+  .paper-title-link a:hover {
+    color: #14b8a6;
+  }
+  .paper-authors-stream {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin: 0.3rem 0;
+  }
+  :global(.paper-authors-stream .author-me) {
+    color: #e2e8f0;
+    font-weight: 600;
+  }
+  .paper-venue-badge {
+    font-size: 0.8rem;
+    color: #94a3b8;
+  }
+  .tag-type {
+    color: #14b8a6;
+  }
+
+  .grant-sponsor-name {
+    font-size: 0.85rem;
+    color: #14b8a6;
+    margin-bottom: 0.35rem;
+  }
+  .grant-detail-text {
+    font-size: 0.875rem;
+    color: #94a3b8;
+    line-height: 1.5;
+  }
+
+  .edu-detail {
+    font-size: 0.85rem;
+    color: #64748b;
+  }
+  .edu-focus {
+    font-size: 0.85rem;
+    color: #94a3b8;
+  }
+
+  .split-footer {
+    border-top: 1px solid #1e293b;
+    padding-top: 2rem;
+    font-size: 0.8rem;
+    color: #475569;
+  }
+
+  @media (max-width: 960px) {
+    .split-container {
+      flex-direction: column;
+      gap: 0;
+    }
+    .left-panel {
+      width: 100%;
+      position: static;
+      height: auto;
+      padding: 3rem 0 2rem;
+    }
+    .side-nav {
+      display: none;
+    }
+    .right-panel {
+      width: 100%;
+      padding: 2rem 0 5rem;
+    }
+    .mobile-section-title {
+      display: block;
+    }
+    .content-block {
+      margin-bottom: 4rem;
+    }
+    .stream-item {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+  }
+</style>
