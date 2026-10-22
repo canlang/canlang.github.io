@@ -1,7 +1,7 @@
 export const cv = {
   name: "Sangjae Lee",
   title: "Staff Engineer, Samsung Research",
-  headline: "Telco AI, Agentic Networks, Wireless Connectivity, and Sensing",
+  headline: "Telco AI · Autonomous Agentic Networks · Wireless Intelligence",
   email: "research@studiosjlee.com",
   secondaryEmail: "summit@kaist.ac.kr",
   phone: "+82-10-8960-0708",
@@ -9,70 +9,32 @@ export const cv = {
   linkedin: "https://www.linkedin.com/in/sjlee-korea/",
   location: "Seoul / Daejeon, Republic of Korea",
   intro:
-    "Staff Engineer at Samsung Research with a Ph.D. in Computer Science from KAIST. My current research explores Telco AI, Large Telecom Models (LTM), and multi-agent systems for autonomous network optimization, building upon a strong foundation in wireless connectivity, mobility prediction, and indoor sensing.",
+    "Staff Engineer at Samsung Research with a Ph.D. in Computer Science from KAIST. My research investigates autonomous network orchestration through Large Telecom Models (LTM) and collaborative AI multi-agent architectures, bridging domain-specialized foundation models with mission-critical wireless systems.",
   profile:
-    "At Samsung Research, my work began with intelligent wireless connectivity and context-aware multi-RAT (Cellular/Wi-Fi) switching, and has recently expanded into cutting-edge Telco AI and Agentic networks. I collaborate closely with global telecom operators—such as our recent joint autonomous network research with SoftBank—to design interoperable, LLM-driven decision systems that bridge domain-specific foundation models with mission-critical telecom infrastructure.",
+    "My work at Samsung Research centers on the intersection of telecom foundation models, agentic network intelligence, and physical-layer wireless optimization. In collaboration with global telecom leaders—such as our recent joint autonomous network research with SoftBank—I lead efforts to build interoperable, autonomous multi-agent pipelines for resilient next-generation telecommunications.",
   recentHighlights: [
     {
-      title: "Autonomous Network via Multi-Agent Collaboration with LTM (Joint Research with SoftBank)",
-      period: "Oct 2026",
-      tag: "Telco AI / Multi-Agent / LTM",
+      date: "Oct 2026",
+      tag: "SoftBank × Samsung",
+      title: "Autonomous Networks via Multi-Agent LTM Collaboration",
+      description:
+        "SoftBank and Samsung Electronics unveiled joint research on autonomous network operations powered by Large Telecom Models (LTM). The project establishes standardized multi-agent architectures (A2A, TMF921) enabling operator and vendor AI agents to collaboratively resolve complex network conditions and congestion scenarios. Demonstration showcased at SVFW Summit 2026.",
       link: "https://www.softbank.jp/en/corp/technology/research/topics/235/",
-      linkLabel: "SoftBank Tech Blog Article ↗",
-      description:
-        "Joint research between SoftBank and Samsung Electronics on autonomous network operations powered by the Large Telecom Model (LTM). Developed multi-agent architectures (A2A, A2A-T, TMF921) enabling operator Telco Agents and vendor Vendor Agents to autonomously coordinate complex stadium congestion management and parameter optimization. Featured at SVFW Summit 2026."
+      linkLabel: "SoftBank Research Article"
     },
     {
-      title: "Large Telecom Model (LTM) & Agentic Network Optimization",
-      period: "2024 - Present",
+      date: "2024 - Present",
       tag: "Samsung Research",
+      title: "Next-Generation Telecom Intelligence & Agentic Foundation Models",
       description:
-        "Designing domain-specialized foundation models and autonomous multi-agent pipelines for telecom operations, automated root-cause diagnosis, and closed-loop wireless optimization."
-    },
-    {
-      title: "Context-Aware Wireless Connectivity & Intelligent Network Switching",
-      period: "2022 - 2024",
-      tag: "Samsung Research",
-      description:
-        "Engineered machine-learned context recognition and predictive switching mechanisms between cellular and Wi-Fi networks to enhance user QoE and link reliability in challenging indoor/outdoor environments."
-    }
-  ],
-  metrics: [
-    {
-      value: "14+",
-      label: "Years in localization, sensing & wireless research"
-    },
-    {
-      value: "9",
-      label: "Peer-reviewed publications in MobiSys, IEEE, etc."
-    },
-    {
-      value: "8+",
-      label: "Sponsored industry-academic R&D grants led"
-    }
-  ],
-  strengths: [
-    {
-      title: "Telco AI & Autonomous Networks",
-      detail:
-        "Pioneering multi-agent collaborative frameworks and Large Telecom Models (LTM) for intelligent network operations."
-    },
-    {
-      title: "Wireless Connectivity Intelligence",
-      detail:
-        "Context-aware network switching mechanisms bridging physical channel signals with reliable policy decisions."
-    },
-    {
-      title: "Applied Research Leadership",
-      detail:
-        "Bridging fundamental academic algorithms with large-scale deployment in mission-critical industrial environments."
+        "Leading strategic research programs in telecom-native foundation models (LTM), closed-loop autonomous decision agents, and cross-layer wireless optimization architectures."
     }
   ],
   interests: [
-    "Telco AI & Large Telecom Models (LTM)",
+    "Large Telecom Models (LTM) & Telco AI",
     "Multi-Agent Autonomous Networks",
-    "Wireless Connectivity & Mobility",
-    "Indoor Localization & SLAM",
+    "Agent-to-Agent (A2A) Protocols",
+    "Context-Aware Wireless Systems",
     "Sensor Fusion & Signal Processing"
   ],
   experience: [
@@ -81,13 +43,11 @@ export const cv = {
       role: "Staff Engineer",
       period: "Apr 2022 - Present",
       summary:
-        "Leading research across Telco AI, multi-agent network intelligence, wireless connectivity, and indoor sensing systems.",
+        "Directing strategic research initiatives across telecom foundation models, multi-agent network autonomy, and intelligent wireless systems.",
       bullets: [
-        "Co-developed multi-agent autonomous network optimization architecture with SoftBank using Large Telecom Models (LTM) and standardized A2A/TMF921 interfaces.",
-        "Developing LLM-based autonomous agent frameworks for real-time root-cause analysis and configuration optimization in wireless environments.",
-        "Engineered learned context-aware network switching mechanisms between cellular and Wi-Fi to optimize link reliability and throughput.",
-        "Developed indoor localization and spatial discrimination models using deep neural networks and multi-modal wireless/geomagnetic signals.",
-        "Translating fundamental wireless and AI research prototypes into scalable deployment-oriented production systems."
+        "Pioneering collaborative multi-agent architectures and Large Telecom Models (LTM) for automated network operations in partnership with global telecom operators.",
+        "Leading research on domain-specialized LLMs and autonomous decision pipelines for telecommunication infrastructure.",
+        "Architected intelligent connectivity algorithms and learned mobility mechanisms for next-generation wireless environments."
       ]
     }
   ],
@@ -109,7 +69,7 @@ export const cv = {
       degree: "B.S. in Computer Science",
       school: "Hanyang University",
       period: "Mar 2006 - Feb 2010",
-      focus: "Project: Intelligent Lane Detection (Dean's List)"
+      focus: "Dean's List (GPA 3.91 / 4.50)"
     }
   ],
   sponsoredResearch: {
@@ -347,16 +307,22 @@ export const cv = {
   ],
   skills: [
     {
-      label: "Domains & Systems",
-      items: ["Telco AI & Large Telecom Models (LTM)", "Multi-Agent Systems", "Autonomous Networks", "Wireless Connectivity & Switching", "Indoor Localization & SLAM"]
+      label: "Research Domains",
+      items: ["Large Telecom Models (LTM)", "Multi-Agent Systems", "Autonomous Networks", "Wireless Connectivity & Mobility", "Indoor Localization & SLAM"]
     },
     {
-      label: "Methods & AI",
-      items: ["LLM Agents", "A2A Interoperability", "Reinforcement Learning", "Multi-Sensor Fusion", "Factor-Graph Optimization"]
+      label: "Methods & Tools",
+      items: ["Agentic Frameworks", "Inter-Agent Protocol (A2A)", "Deep Learning", "Sensor Fusion", "Factor-Graph Optimization"]
     },
     {
-      label: "Languages & Tools",
-      items: ["Python", "PyTorch", "C/C++", "Java", "Kotlin", "MATLAB", "Linux/Git"]
+      label: "Languages",
+      items: ["Python", "PyTorch", "C/C++", "Java", "Kotlin", "MATLAB"]
     }
-  ]
+  ],
+  metrics: [
+    { value: "14+", label: "Years in research" },
+    { value: "9", label: "Peer-reviewed publications" },
+    { value: "8+", label: "Sponsored R&D grants" }
+  ],
+  strengths: []
 };

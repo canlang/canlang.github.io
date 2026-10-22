@@ -8,31 +8,27 @@ const highlightAuthor = (authors: string[]) =>
     .join(", ");
 ---
 
-<Layout title={`${cv.name} | Staff Engineer & Ph.D.`} description={cv.intro}>
+<Layout title={`${cv.name} | Staff Engineer, Samsung Research`} description={cv.intro}>
   <!-- Toast Notification -->
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <main class="page-container">
-    <!-- Top Utility Bar: Theme Toggle & Role Badge -->
-    <div class="top-bar">
-      <div class="status-pill">
-        <span class="pulse-dot"></span>
-        <span class="status-text">Staff Engineer @ Samsung Research · Ph.D. in CS (KAIST)</span>
-      </div>
-      <button id="theme-toggle-btn" class="theme-toggle" title="Toggle Light / Dark mode" aria-label="Toggle theme">
-        <span class="theme-icon">🌓</span>
-        <span class="theme-label">Theme</span>
+    <!-- Top Minimal Navigation -->
+    <header class="top-nav">
+      <span class="nav-mark">Research Profile</span>
+      <button id="theme-toggle-btn" class="theme-icon-btn" title="Toggle Light / Dark mode" aria-label="Toggle theme">
+        🌓
       </button>
-    </div>
+    </header>
 
-    <!-- Masthead: Identity & Harmonious Link Bar -->
+    <!-- Masthead: Identity & Cohesive Links -->
     <header class="masthead">
-      <div class="masthead-bio">
+      <div class="masthead-main">
         <h1 class="name">
           {cv.name} <span class="ko-name">이상재</span>
         </h1>
         <p class="role-affiliation">
-          {cv.title}
+          {cv.title} · Ph.D., KAIST
         </p>
         <p class="headline-summary">
           {cv.headline}
@@ -42,67 +38,60 @@ const highlightAuthor = (authors: string[]) =>
           {cv.intro}
         </p>
 
-        <!-- Balanced, Harmonious Quick-Links Bar -->
-        <div class="quick-links">
-          <button id="copy-email-btn" class="link-item" data-email={cv.email} title="Click to copy email">
-            <span class="icon">✉️</span> {cv.email}
+        <!-- Balanced & Equal-Level Link Bar -->
+        <nav class="links-row" aria-label="Primary Links">
+          <button id="copy-email-btn" class="text-link" data-email={cv.email}>
+            Email
           </button>
-          <span class="link-sep">/</span>
-          <a href="/sangjae-lee-pro-academic-cv.pdf" target="_blank" rel="noreferrer" class="link-item">
-            <span class="icon">📄</span> CV (PDF) ↗
+          <span class="sep">/</span>
+          <a href="/sangjae-lee-pro-academic-cv.pdf" target="_blank" rel="noreferrer" class="text-link">
+            CV (PDF) ↗
           </a>
-          <span class="link-sep">/</span>
-          <a href={cv.github} target="_blank" rel="noreferrer" class="link-item">
+          <span class="sep">/</span>
+          <a href={cv.github} target="_blank" rel="noreferrer" class="text-link">
             GitHub ↗
           </a>
-          <span class="link-sep">/</span>
-          <a href={cv.linkedin} target="_blank" rel="noreferrer" class="link-item">
+          <span class="sep">/</span>
+          <a href={cv.linkedin} target="_blank" rel="noreferrer" class="text-link">
             LinkedIn ↗
           </a>
-          <span class="link-sep">/</span>
-          <span class="location-item">📍 {cv.location}</span>
-        </div>
+          <span class="sep">/</span>
+          <span class="meta-location">📍 {cv.location}</span>
+        </nav>
       </div>
 
-      <div class="avatar-area">
+      <div class="avatar-holder">
         <img src="/avatar2.jpg" alt={cv.name} class="avatar-photo" />
       </div>
     </header>
 
-    <!-- Recent Focus & Featured Highlights (Latest Trajectory) -->
-    <section class="content-section highlight-section">
-      <div class="section-header-row">
-        <h2 class="section-heading">Current Trajectory & Highlights</h2>
-        <span class="section-tag-label">Recent Work</span>
-      </div>
-      <p class="section-intro-text">
-        At Samsung Research, my work centers on bridging wireless connectivity intelligence with state-of-the-art Telco AI and Multi-Agent systems.
-      </p>
-
-      <div class="highlights-container">
-        {cv.recentHighlights.map((item, idx) => (
-          <article class={`highlight-item ${idx === 0 ? 'featured-highlight' : ''}`}>
-            <div class="highlight-header">
-              <div class="highlight-title-group">
-                <span class="highlight-tag">{item.tag}</span>
-                <h3 class="highlight-title">{item.title}</h3>
+    <!-- Recent Highlights (News & Selected Updates) -->
+    <section class="content-section">
+      <h2 class="section-heading">Selected Updates</h2>
+      <div class="updates-stream">
+        {cv.recentHighlights.map((item) => (
+          <div class="update-entry">
+            <span class="update-date">{item.date}</span>
+            <div class="update-content">
+              <div class="update-title-line">
+                <span class="update-tag">{item.tag}</span>
+                <h3 class="update-title">{item.title}</h3>
               </div>
-              <span class="highlight-period">{item.period}</span>
+              <p class="update-text">{item.description}</p>
+              {item.link && (
+                <div class="update-link-wrap">
+                  <a href={item.link} target="_blank" rel="noreferrer" class="ext-link">
+                    Read Article ({item.linkLabel}) ↗
+                  </a>
+                </div>
+              )}
             </div>
-            <p class="highlight-desc">{item.description}</p>
-            {item.link && (
-              <div class="highlight-action">
-                <a href={item.link} target="_blank" rel="noreferrer" class="article-link">
-                  🔗 Read Article: {item.linkLabel}
-                </a>
-              </div>
-            )}
-          </article>
+          </div>
         ))}
       </div>
     </section>
 
-    <!-- Research Focus & Domain Tags -->
+    <!-- Research Focus & Domains -->
     <section class="content-section">
       <h2 class="section-heading">Research Domains</h2>
       <p class="prose-text">
@@ -110,7 +99,7 @@ const highlightAuthor = (authors: string[]) =>
       </p>
       <div class="tags-container">
         {cv.interests.map((interest) => (
-          <span class="interest-tag">{interest}</span>
+          <span class="domain-tag">{interest}</span>
         ))}
       </div>
     </section>
@@ -121,14 +110,11 @@ const highlightAuthor = (authors: string[]) =>
         <h2 class="section-heading">Selected Publications</h2>
         <span class="section-counter">{cv.publications.length} peer-reviewed articles</span>
       </div>
-      <p class="section-intro-text">
-        Articles in wireless sensing, indoor positioning, SLAM, and network optimization across ACM MobiSys, IEEE Access, and IEEE ICC.
-      </p>
 
       <ol class="publications-list">
         {cv.publications.map((paper) => (
           <li class="pub-entry">
-            <div class="pub-main-content">
+            <div class="pub-body">
               <h3 class="pub-title">
                 <a href={paper.url} target="_blank" rel="noreferrer">
                   {paper.title}
@@ -172,7 +158,7 @@ const highlightAuthor = (authors: string[]) =>
 
     <!-- Professional Experience -->
     <section class="content-section">
-      <h2 class="section-heading">Professional Experience</h2>
+      <h2 class="section-heading">Experience</h2>
       <div class="experience-list">
         {cv.experience.map((job) => (
           <article class="exp-entry">
@@ -193,9 +179,9 @@ const highlightAuthor = (authors: string[]) =>
       </div>
     </section>
 
-    <!-- Sponsored R&D & Systems -->
+    <!-- Sponsored Research & Platforms -->
     <section class="content-section">
-      <h2 class="section-heading">Sponsored Research & Deployment</h2>
+      <h2 class="section-heading">Sponsored Research & Platforms</h2>
       <div class="grants-list">
         {cv.sponsoredResearch.featured.map((grant) => (
           <div class="grant-row">
@@ -246,7 +232,7 @@ const highlightAuthor = (authors: string[]) =>
 
     <!-- Technical Competencies -->
     <section class="content-section">
-      <h2 class="section-heading">Technical Competencies</h2>
+      <h2 class="section-heading">Competencies & Tooling</h2>
       <div class="skills-wrapper">
         {cv.skills.map((group) => (
           <div class="skill-category">
@@ -257,13 +243,13 @@ const highlightAuthor = (authors: string[]) =>
       </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Minimalist Footer -->
     <footer class="page-footer">
-      <p>© {new Date().getFullYear()} {cv.name}. Built with Astro & TypeScript.</p>
-      <div class="footer-bottom-links">
+      <p>© {new Date().getFullYear()} {cv.name}. Typeset with Astro & TypeScript.</p>
+      <div class="footer-links">
+        <button id="copy-email-footer" class="footer-link-btn" data-email={cv.email}>Email</button> · 
         <a href={cv.github} target="_blank" rel="noreferrer">GitHub</a> · 
         <a href={cv.linkedin} target="_blank" rel="noreferrer">LinkedIn</a> · 
-        <a href={`mailto:${cv.email}`}>Email</a> · 
         <a href="/sangjae-lee-pro-academic-cv.pdf" target="_blank">Printable PDF</a>
       </div>
     </footer>
@@ -279,10 +265,10 @@ const highlightAuthor = (authors: string[]) =>
     toast.classList.add("show");
     setTimeout(() => {
       toast.classList.remove("show");
-    }, 2600);
+    }, 2400);
   }
 
-  // Theme Toggle (Light / Dark)
+  // Minimal Theme Toggle
   const themeBtn = document.getElementById("theme-toggle-btn");
   themeBtn?.addEventListener("click", () => {
     const isDark = document.documentElement.classList.toggle("dark");
@@ -290,13 +276,21 @@ const highlightAuthor = (authors: string[]) =>
     showToast(`Switched to ${isDark ? "Dark" : "Light"} mode`);
   });
 
-  // Copy Email Button
-  const copyEmailBtn = document.getElementById("copy-email-btn");
-  copyEmailBtn?.addEventListener("click", () => {
-    const email = copyEmailBtn.getAttribute("data-email") || "research@studiosjlee.com";
+  // Copy Email Handlers
+  function copyEmail(email: string) {
     navigator.clipboard.writeText(email).then(() => {
-      showToast(`Copied to clipboard: ${email}`);
+      showToast(`Email copied: ${email}`);
     });
+  }
+
+  document.getElementById("copy-email-btn")?.addEventListener("click", (e) => {
+    const email = (e.currentTarget as HTMLElement).getAttribute("data-email") || "research@studiosjlee.com";
+    copyEmail(email);
+  });
+
+  document.getElementById("copy-email-footer")?.addEventListener("click", (e) => {
+    const email = (e.currentTarget as HTMLElement).getAttribute("data-email") || "research@studiosjlee.com";
+    copyEmail(email);
   });
 
   // BibTeX Toggle & Copy
@@ -321,60 +315,43 @@ const highlightAuthor = (authors: string[]) =>
 </script>
 
 <style>
-  /* Design Tokens & CSS Variables */
+  /* Design Tokens */
   :root {
     --bg-main: #ffffff;
     --bg-subtle: #f8fafc;
-    --bg-chip: #f1f5f9;
-    --border-subtle: #e2e8f0;
-    --border-strong: #1e293b;
+    --bg-tag: #f1f5f9;
+    --border-subtle: #eaeaea;
+    --border-strong: #222222;
 
-    --text-primary: #111827;
-    --text-secondary: #374151;
-    --text-muted: #6b7280;
-    --text-accent: #0284c7;
+    --text-primary: #111111;
+    --text-secondary: #333333;
+    --text-muted: #666666;
+    --text-accent: #0969da;
 
-    --link-color: #0284c7;
-    --link-hover: #0369a1;
+    --link-color: #0969da;
+    --link-hover: #0550ae;
 
-    --pulse-color: #10b981;
-    --status-bg: #f0fdf4;
-    --status-border: #bbf7d0;
-    --status-text: #166534;
-
-    --highlight-border: #0284c7;
-    --highlight-bg: #f0f9ff;
-
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Monaco, Consolas, monospace;
   }
 
-  /* Dark Theme Tokens */
+  /* Dark Theme */
   :global(.dark) {
     --bg-main: #09090b;
-    --bg-subtle: #121215;
-    --bg-chip: #18181b;
+    --bg-subtle: #121214;
+    --bg-tag: #1c1c1f;
     --border-subtle: #27272a;
-    --border-strong: #fafafa;
+    --border-strong: #f4f4f5;
 
     --text-primary: #f4f4f5;
     --text-secondary: #d4d4d8;
-    --text-muted: #a1a1aa;
+    --text-muted: #9ca3af;
     --text-accent: #38bdf8;
 
     --link-color: #38bdf8;
     --link-hover: #7dd3fc;
-
-    --pulse-color: #34d399;
-    --status-bg: rgba(16, 185, 129, 0.1);
-    --status-border: rgba(16, 185, 129, 0.25);
-    --status-text: #6ee7b7;
-
-    --highlight-border: #38bdf8;
-    --highlight-bg: rgba(56, 189, 248, 0.08);
   }
 
-  /* Base Reset */
   * {
     box-sizing: border-box;
     margin: 0;
@@ -386,15 +363,16 @@ const highlightAuthor = (authors: string[]) =>
     color: var(--text-primary);
     font-family: var(--font-sans);
     line-height: 1.65;
+    font-size: 15.5px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   .page-container {
-    max-width: 860px;
+    max-width: 820px;
     margin: 0 auto;
-    padding: 3rem 1.5rem 6rem;
+    padding: 2.5rem 1.5rem 6rem;
   }
 
   /* Toast Notification */
@@ -404,13 +382,13 @@ const highlightAuthor = (authors: string[]) =>
     right: 2rem;
     background-color: var(--text-primary);
     color: var(--bg-main);
-    padding: 0.65rem 1.15rem;
-    border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     font-size: 0.85rem;
     font-weight: 500;
     opacity: 0;
-    transform: translateY(0.75rem);
+    transform: translateY(0.5rem);
     pointer-events: none;
     transition: all 0.2s ease;
     z-index: 9999;
@@ -420,55 +398,34 @@ const highlightAuthor = (authors: string[]) =>
     transform: translateY(0);
   }
 
-  /* Top Bar */
-  .top-bar {
+  /* Top Minimal Navigation */
+  .top-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2.25rem;
-    padding-bottom: 1rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--border-subtle);
   }
-
-  .status-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--status-bg);
-    border: 1px solid var(--status-border);
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.785rem;
-    color: var(--status-text);
-    font-weight: 500;
-  }
-
-  .pulse-dot {
-    width: 7px;
-    height: 7px;
-    background-color: var(--pulse-color);
-    border-radius: 50%;
-    box-shadow: 0 0 6px var(--pulse-color);
-  }
-
-  .theme-toggle {
-    background: transparent;
-    border: 1px solid var(--border-subtle);
-    border-radius: 6px;
-    padding: 0.35rem 0.75rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    cursor: pointer;
-    font-size: 0.825rem;
-    font-weight: 500;
+  .nav-mark {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
     color: var(--text-muted);
-    transition: all 0.15s ease;
+    font-family: var(--font-mono);
   }
-  .theme-toggle:hover {
-    background: var(--bg-subtle);
-    color: var(--text-primary);
-    border-color: var(--text-muted);
+  .theme-icon-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.05rem;
+    padding: 0.2rem;
+    opacity: 0.75;
+    transition: opacity 0.15s;
+  }
+  .theme-icon-btn:hover {
+    opacity: 1;
   }
 
   /* Masthead */
@@ -482,31 +439,31 @@ const highlightAuthor = (authors: string[]) =>
     margin-bottom: 2.75rem;
   }
 
-  .masthead-bio {
+  .masthead-main {
     flex: 1;
   }
 
   .name {
-    font-size: 2.35rem;
+    font-size: 2.25rem;
     font-weight: 800;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.025em;
     color: var(--text-primary);
     line-height: 1.15;
     margin-bottom: 0.35rem;
   }
 
   .ko-name {
-    font-size: 1.25rem;
-    font-weight: 500;
+    font-size: 1.2rem;
+    font-weight: 400;
     color: var(--text-muted);
     margin-left: 0.35rem;
   }
 
   .role-affiliation {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 600;
-    color: var(--text-accent);
-    margin-bottom: 0.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.3rem;
   }
 
   .headline-summary {
@@ -517,55 +474,48 @@ const highlightAuthor = (authors: string[]) =>
   }
 
   .intro-prose {
-    font-size: 0.975rem;
+    font-size: 0.965rem;
     color: var(--text-secondary);
     line-height: 1.65;
     margin-bottom: 1.5rem;
   }
 
-  /* Balanced Quick Links */
-  .quick-links {
+  /* Links Row (Equal Hierarchy) */
+  .links-row {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.875rem;
+    font-size: 0.9rem;
   }
 
-  .link-item {
+  .text-link {
     background: transparent;
     border: none;
     color: var(--link-color);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.875rem;
-    cursor: pointer;
-    padding: 0.15rem 0.25rem;
-    border-radius: 4px;
-    transition: all 0.15s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
+    font-size: inherit;
     font-family: inherit;
+    cursor: pointer;
+    padding: 0;
   }
-  .link-item:hover {
-    color: var(--link-hover);
-    background: var(--bg-chip);
+  .text-link:hover {
     text-decoration: underline;
   }
 
-  .link-sep {
+  .sep {
     color: var(--border-subtle);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
 
-  .location-item {
-    font-size: 0.825rem;
+  .meta-location {
+    font-size: 0.85rem;
     color: var(--text-muted);
   }
 
   /* Avatar */
-  .avatar-area {
+  .avatar-holder {
     flex-shrink: 0;
   }
   .avatar-photo {
@@ -574,7 +524,7 @@ const highlightAuthor = (authors: string[]) =>
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid var(--border-subtle);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
 
   /* Content Sections */
@@ -583,12 +533,12 @@ const highlightAuthor = (authors: string[]) =>
   }
 
   .section-heading {
-    font-size: 1.35rem;
+    font-size: 1.3rem;
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.015em;
     color: var(--text-primary);
     border-bottom: 1.5px solid var(--border-strong);
-    padding-bottom: 0.4rem;
+    padding-bottom: 0.35rem;
     margin-bottom: 1.25rem;
   }
 
@@ -597,134 +547,99 @@ const highlightAuthor = (authors: string[]) =>
     justify-content: space-between;
     align-items: baseline;
     border-bottom: 1.5px solid var(--border-strong);
-    padding-bottom: 0.4rem;
-    margin-bottom: 0.75rem;
+    padding-bottom: 0.35rem;
+    margin-bottom: 1.25rem;
   }
   .section-header-row .section-heading {
     border-bottom: none;
     margin-bottom: 0;
     padding-bottom: 0;
   }
-  .section-counter,
-  .section-tag-label {
+  .section-counter {
     font-size: 0.825rem;
     color: var(--text-muted);
     font-family: var(--font-mono);
   }
 
-  .section-intro-text {
-    font-size: 0.925rem;
-    color: var(--text-muted);
-    margin-bottom: 1.5rem;
-  }
-
-  /* Highlights Section */
-  .highlights-container {
+  /* Selected Updates (Stream) */
+  .updates-stream {
     display: flex;
     flex-direction: column;
+    gap: 1.5rem;
+  }
+  .update-entry {
+    display: grid;
+    grid-template-columns: 110px 1fr;
     gap: 1.25rem;
-  }
-
-  .highlight-item {
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-subtle);
-    border-radius: 8px;
-    padding: 1.25rem 1.5rem;
-    transition: border-color 0.15s ease;
-  }
-  .highlight-item:hover {
-    border-color: var(--link-color);
-  }
-
-  .featured-highlight {
-    background: var(--highlight-bg);
-    border-left: 4px solid var(--highlight-border);
-  }
-
-  .highlight-header {
-    display: flex;
-    justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 0.5rem;
-    flex-wrap: wrap;
-    gap: 0.5rem;
   }
-
-  .highlight-title-group {
+  .update-date {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+  .update-title-line {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 0.65rem;
+    margin-bottom: 0.35rem;
     flex-wrap: wrap;
   }
-
-  .highlight-tag {
+  .update-tag {
     font-size: 0.725rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    background: var(--bg-chip);
     color: var(--text-accent);
-    padding: 0.15rem 0.5rem;
-    border-radius: 4px;
+    background: var(--bg-tag);
+    padding: 0.1rem 0.45rem;
+    border-radius: 3px;
     font-family: var(--font-mono);
-    border: 1px solid var(--border-subtle);
   }
-
-  .highlight-title {
-    font-size: 1.05rem;
+  .update-title {
+    font-size: 1.025rem;
     font-weight: 700;
     color: var(--text-primary);
   }
-
-  .highlight-period {
-    font-size: 0.825rem;
-    color: var(--text-muted);
-    font-family: var(--font-mono);
-  }
-
-  .highlight-desc {
+  .update-text {
     font-size: 0.925rem;
     color: var(--text-secondary);
     line-height: 1.6;
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.4rem;
   }
-
-  .highlight-action {
-    margin-top: 0.5rem;
+  .update-link-wrap {
+    margin-top: 0.35rem;
   }
-  .article-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
+  .ext-link {
     color: var(--link-color);
     font-size: 0.875rem;
     font-weight: 600;
     text-decoration: none;
   }
-  .article-link:hover {
+  .ext-link:hover {
     text-decoration: underline;
   }
 
   /* Research Domains */
   .prose-text {
-    font-size: 0.975rem;
+    font-size: 0.965rem;
     color: var(--text-secondary);
-    line-height: 1.7;
+    line-height: 1.65;
     margin-bottom: 1.25rem;
   }
-
   .tags-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.45rem;
   }
-  .interest-tag {
-    background: var(--bg-chip);
+  .domain-tag {
+    background: var(--bg-tag);
     border: 1px solid var(--border-subtle);
     color: var(--text-secondary);
-    font-size: 0.825rem;
+    font-size: 0.8rem;
     font-weight: 500;
-    padding: 0.25rem 0.7rem;
+    padding: 0.2rem 0.65rem;
     border-radius: 4px;
     font-family: var(--font-mono);
   }
@@ -734,42 +649,34 @@ const highlightAuthor = (authors: string[]) =>
     padding-left: 1.35rem;
     display: flex;
     flex-direction: column;
-    gap: 1.75rem;
+    gap: 1.65rem;
   }
-
   .pub-entry {
-    padding-left: 0.5rem;
+    padding-left: 0.35rem;
   }
-
   .pub-title {
-    font-size: 1.05rem;
-    font-weight: 700;
+    font-size: 1.025rem;
+    font-weight: 600;
     line-height: 1.45;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.25rem;
   }
   .pub-title a {
-    color: var(--text-primary);
+    color: var(--link-color);
     text-decoration: none;
-    transition: color 0.15s ease;
   }
   .pub-title a:hover {
-    color: var(--link-color);
     text-decoration: underline;
   }
-
   .pub-authors {
     font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.5;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.3rem;
   }
   :global(.pub-authors .author-highlight) {
     color: var(--text-primary);
     font-weight: 700;
-    text-decoration: underline;
-    text-underline-offset: 3px;
   }
-
   .pub-meta {
     font-size: 0.85rem;
     color: var(--text-muted);
@@ -787,9 +694,9 @@ const highlightAuthor = (authors: string[]) =>
     font-family: var(--font-mono);
   }
   .badge-type {
-    background: var(--bg-chip);
+    background: var(--bg-tag);
     border: 1px solid var(--border-subtle);
-    padding: 0.1rem 0.4rem;
+    padding: 0.1rem 0.35rem;
     border-radius: 3px;
     font-size: 0.725rem;
     text-transform: uppercase;
@@ -799,7 +706,7 @@ const highlightAuthor = (authors: string[]) =>
     color: var(--border-subtle);
   }
   .meta-actions {
-    margin-left: 0.5rem;
+    margin-left: 0.35rem;
     display: inline-flex;
     gap: 0.4rem;
   }
@@ -811,7 +718,6 @@ const highlightAuthor = (authors: string[]) =>
   .meta-actions a:hover {
     text-decoration: underline;
   }
-
   .bibtex-toggle-btn {
     background: none;
     border: none;
@@ -826,16 +732,15 @@ const highlightAuthor = (authors: string[]) =>
   }
 
   .bibtex-container {
-    margin-top: 0.75rem;
+    margin-top: 0.65rem;
     background: var(--bg-subtle);
     border: 1px solid var(--border-subtle);
-    border-radius: 6px;
-    padding: 0.85rem;
+    border-radius: 4px;
+    padding: 0.75rem;
   }
   .bibtex-container.hidden {
     display: none;
   }
-
   .bibtex-header {
     display: flex;
     justify-content: space-between;
@@ -843,28 +748,26 @@ const highlightAuthor = (authors: string[]) =>
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--text-muted);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     font-family: var(--font-mono);
   }
   .copy-bibtex-btn {
     background: var(--bg-main);
     border: 1px solid var(--border-subtle);
     color: var(--text-secondary);
-    padding: 0.2rem 0.55rem;
-    border-radius: 4px;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
     cursor: pointer;
     font-size: 0.75rem;
-    font-weight: 500;
   }
   .copy-bibtex-btn:hover {
     color: var(--link-color);
     border-color: var(--link-color);
   }
-
   .bibtex-container pre {
     margin: 0;
     font-family: var(--font-mono);
-    font-size: 0.775rem;
+    font-size: 0.75rem;
     line-height: 1.45;
     color: var(--text-secondary);
     overflow-x: auto;
@@ -880,7 +783,7 @@ const highlightAuthor = (authors: string[]) =>
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.35rem;
   }
   .exp-company-role {
     font-size: 1.05rem;
@@ -899,7 +802,7 @@ const highlightAuthor = (authors: string[]) =>
     font-size: 0.95rem;
     color: var(--text-secondary);
     line-height: 1.6;
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.6rem;
   }
   .exp-bullet-list {
     padding-left: 1.35rem;
@@ -933,7 +836,7 @@ const highlightAuthor = (authors: string[]) =>
     margin-bottom: 0.25rem;
   }
   .grant-name {
-    font-size: 1rem;
+    font-size: 0.985rem;
     font-weight: 700;
     color: var(--text-primary);
   }
@@ -945,7 +848,7 @@ const highlightAuthor = (authors: string[]) =>
     color: var(--link-color);
   }
   .grant-meta-sub {
-    font-size: 0.85rem;
+    font-size: 0.825rem;
     color: var(--text-muted);
     font-family: var(--font-mono);
   }
@@ -953,7 +856,7 @@ const highlightAuthor = (authors: string[]) =>
     font-size: 0.8rem;
     font-weight: 600;
     color: var(--text-accent);
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.35rem;
   }
   .grant-body-desc {
     font-size: 0.9rem;
@@ -962,12 +865,12 @@ const highlightAuthor = (authors: string[]) =>
   }
 
   .additional-grants-block {
-    margin-top: 1.75rem;
-    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
     border-top: 1px solid var(--border-subtle);
   }
   .sub-heading {
-    font-size: 0.95rem;
+    font-size: 0.925rem;
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 0.75rem;
@@ -976,10 +879,10 @@ const highlightAuthor = (authors: string[]) =>
     list-style: none;
     font-size: 0.875rem;
     color: var(--text-secondary);
-    line-height: 1.65;
+    line-height: 1.6;
   }
   .bullet-list-simple li {
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.35rem;
   }
   .bullet-list-simple li::before {
     content: "•";
@@ -995,7 +898,7 @@ const highlightAuthor = (authors: string[]) =>
     gap: 1.25rem;
   }
   .edu-card {
-    padding-bottom: 1rem;
+    padding-bottom: 0.85rem;
     border-bottom: 1px solid var(--border-subtle);
   }
   .edu-card:last-child {
@@ -1006,10 +909,10 @@ const highlightAuthor = (authors: string[]) =>
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.2rem;
   }
   .edu-school-name {
-    font-size: 0.975rem;
+    font-size: 0.965rem;
     color: var(--text-primary);
   }
   .edu-years {
@@ -1025,14 +928,14 @@ const highlightAuthor = (authors: string[]) =>
   .edu-focus-text {
     font-size: 0.875rem;
     color: var(--text-secondary);
-    margin-top: 0.25rem;
+    margin-top: 0.2rem;
   }
 
   /* Skills */
   .skills-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 0.65rem;
+    gap: 0.6rem;
     font-size: 0.9rem;
   }
   .skill-category {
@@ -1057,15 +960,22 @@ const highlightAuthor = (authors: string[]) =>
     text-align: center;
     line-height: 1.8;
   }
-  .footer-bottom-links a {
+  .footer-links a,
+  .footer-link-btn {
     color: var(--text-secondary);
     text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
   }
-  .footer-bottom-links a:hover {
+  .footer-links a:hover,
+  .footer-link-btn:hover {
     color: var(--link-color);
   }
 
-  /* Responsive Mobile */
+  /* Mobile */
   @media (max-width: 720px) {
     .masthead {
       flex-direction: column-reverse;
@@ -1073,13 +983,16 @@ const highlightAuthor = (authors: string[]) =>
       text-align: center;
       gap: 1.5rem;
     }
-    .quick-links {
+    .links-row {
       justify-content: center;
+    }
+    .update-entry {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
     }
     .exp-title-row,
     .grant-title-line,
-    .edu-header,
-    .highlight-header {
+    .edu-header {
       flex-direction: column;
       align-items: flex-start;
       gap: 0.2rem;
@@ -1090,55 +1003,39 @@ const highlightAuthor = (authors: string[]) =>
     }
   }
 
-  /* Print Stylesheet */
+  /* Print */
   @media print {
-    :root {
-      --bg-main: #ffffff !important;
-      --text-primary: #000000 !important;
-      --text-secondary: #1f2937 !important;
-      --text-muted: #4b5563 !important;
-      --link-color: #000000 !important;
-      --border-subtle: #d1d5db !important;
-      --border-strong: #000000 !important;
-    }
-
     body {
       font-size: 9.5pt;
       line-height: 1.4;
       background: #ffffff !important;
       color: #000000 !important;
     }
-
     .page-container {
       padding: 0;
       max-width: 100%;
     }
-
-    .top-bar,
-    .quick-links,
+    .top-nav,
+    .links-row,
     .meta-actions,
     .bibtex-container,
     .toast {
       display: none !important;
     }
-
     .masthead,
-    .content-section,
-    .highlight-item {
+    .content-section {
       border: none !important;
       margin-bottom: 1.25rem !important;
       padding: 0 !important;
       background: transparent !important;
     }
-
     .pub-entry,
     .exp-entry,
     .grant-row,
-    .highlight-item {
+    .update-entry {
       break-inside: avoid;
       page-break-inside: avoid;
     }
-
     h1.name {
       font-size: 1.75rem;
     }
