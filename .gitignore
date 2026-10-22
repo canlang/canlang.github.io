@@ -5,9 +5,9 @@ dist/
 # Dependencies
 node_modules/
 
-# Environment
+# Environment secrets (Never commit to git)
 .env
-.env.production
+.env.*
 
 # OS
 .DS_Store

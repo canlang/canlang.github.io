@@ -213,14 +213,17 @@ const highlightAuthor = (authors: string[]) =>
       </div>
     </section>
 
-    <!-- Education -->
+    <!-- Education (Refined Balanced Layout: Preserves High Readability with Tightened Spacing) -->
+    <!-- Note: Original layout is backed up at src/data/backups/education-original-snippet.astro -->
     <section class="content-section">
       <h2 class="section-heading">Education</h2>
       <div class="education-grid">
         {cv.education.map((edu) => (
           <div class="edu-card">
             <div class="edu-header">
-              <span class="edu-school-name"><strong>{edu.school}</strong> · {edu.degree}</span>
+              <span class="edu-school-name">
+                <strong>{edu.school}</strong> · {edu.degree}
+              </span>
               <span class="edu-years">{edu.period}</span>
             </div>
             {edu.detail && <p class="edu-advisor-text">{edu.detail}</p>}
@@ -783,6 +786,7 @@ const highlightAuthor = (authors: string[]) =>
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    gap: 1rem;
     margin-bottom: 0.35rem;
   }
   .exp-company-role {
@@ -794,9 +798,11 @@ const highlightAuthor = (authors: string[]) =>
     color: var(--text-accent);
   }
   .exp-period {
-    font-size: 0.85rem;
+    font-size: 0.825rem;
     color: var(--text-muted);
     font-family: var(--font-mono);
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   .exp-summary-text {
     font-size: 0.95rem;
@@ -833,6 +839,7 @@ const highlightAuthor = (authors: string[]) =>
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    gap: 1rem;
     margin-bottom: 0.25rem;
   }
   .grant-name {
@@ -851,6 +858,8 @@ const highlightAuthor = (authors: string[]) =>
     font-size: 0.825rem;
     color: var(--text-muted);
     font-family: var(--font-mono);
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   .grant-role-tag {
     font-size: 0.8rem;
@@ -891,14 +900,14 @@ const highlightAuthor = (authors: string[]) =>
     width: 1em;
   }
 
-  /* Education */
+  /* Education (Refined Balanced Layout: High Readability + Tightened Spacing) */
   .education-grid {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 0.85rem;
   }
   .edu-card {
-    padding-bottom: 0.85rem;
+    padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--border-subtle);
   }
   .edu-card:last-child {
@@ -909,6 +918,7 @@ const highlightAuthor = (authors: string[]) =>
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    gap: 1rem;
     margin-bottom: 0.2rem;
   }
   .edu-school-name {
@@ -919,16 +929,20 @@ const highlightAuthor = (authors: string[]) =>
     font-size: 0.825rem;
     color: var(--text-muted);
     font-family: var(--font-mono);
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   .edu-advisor-text {
     font-size: 0.85rem;
     color: var(--text-muted);
     font-style: italic;
+    line-height: 1.45;
   }
   .edu-focus-text {
     font-size: 0.875rem;
     color: var(--text-secondary);
-    margin-top: 0.2rem;
+    line-height: 1.5;
+    margin-top: 0.15rem;
   }
 
   /* Skills */
@@ -969,6 +983,9 @@ const highlightAuthor = (authors: string[]) =>
     cursor: pointer;
     font-size: inherit;
     font-family: inherit;
+    display: inline;
+    padding: 0;
+    vertical-align: baseline;
   }
   .footer-links a:hover,
   .footer-link-btn:hover {
@@ -1032,7 +1049,8 @@ const highlightAuthor = (authors: string[]) =>
     .pub-entry,
     .exp-entry,
     .grant-row,
-    .update-entry {
+    .update-entry,
+    .edu-card {
       break-inside: avoid;
       page-break-inside: avoid;
     }

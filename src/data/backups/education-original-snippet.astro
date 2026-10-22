@@ -1,0 +1,64 @@
+<!--
+  BACKUP: Original Education Section (Card Style)
+  Saved at: 2026-10-22
+  Use this snippet to restore the multi-line card layout in src/pages/index.astro if desired.
+-->
+
+<!-- Template Snippet -->
+<section class="content-section">
+  <h2 class="section-heading">Education</h2>
+  <div class="education-grid">
+    {cv.education.map((edu) => (
+      <div class="edu-card">
+        <div class="edu-header">
+          <span class="edu-school-name"><strong>{edu.school}</strong> · {edu.degree}</span>
+          <span class="edu-years">{edu.period}</span>
+        </div>
+        {edu.detail && <p class="edu-advisor-text">{edu.detail}</p>}
+        <p class="edu-focus-text">{edu.focus}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- CSS Snippet -->
+<style>
+  .education-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .edu-card {
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .edu-card:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .edu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.2rem;
+  }
+  .edu-school-name {
+    font-size: 0.965rem;
+    color: var(--text-primary);
+  }
+  .edu-years {
+    font-size: 0.825rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+  .edu-advisor-text {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  .edu-focus-text {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-top: 0.2rem;
+  }
+</style>
