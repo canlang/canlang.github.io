@@ -2,7 +2,7 @@ name: Deploy Modern CV to GitHub Pages
 
 on:
   push:
-    branches: [codex/update-cv-site, master]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
